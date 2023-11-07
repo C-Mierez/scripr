@@ -1,0 +1,45 @@
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin scrollbarColor($scrollbarBackgroundColor, $scrollbarThumbColor, $width, $widthProperty) {
+    &::-webkit-scrollbar {
+        width: $width;
+        background-color: $scrollbarBackgroundColor;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbarThumbColor;
+    }
+
+    /* Firefox */
+    @supports (scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor) {
+        scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor;
+        scrollbar-width: $widthProperty;
+    }
+}
+
+@mixin animationCursorFlicker {
+    @keyframes cursorFlicker {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
