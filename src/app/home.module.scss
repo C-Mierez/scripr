@@ -2,6 +2,12 @@
 /*                            Placeholder Sections                            */
 /* ////////////////////////////////////////////////////////////////////////// */
 section.placeholder {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     height: 100vh;
     width: 100%;
     background: var(--color-primary-100);
@@ -12,10 +18,37 @@ section.placeholder {
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
+/*                                   Global                                   */
+/* ////////////////////////////////////////////////////////////////////////// */
+main.main {
+    isolation: isolate;
+
+    .heroWrapper {
+        position: relative;
+        z-index: 0;
+    }
+    .stickyWrapper {
+        --sectionNegativeMarginBottom: calc(var(--border-radius-main) * -1 - var(--margin-shadow));
+        --headerPadding: calc(var(--sectionNegativeMarginBottom) * -1 + 5rem) 0 5rem 0;
+
+        position: relative;
+        z-index: 1;
+
+        header {
+            position: sticky;
+            bottom: 0;
+        }
+    }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
 /*                                Hero Section                                */
 /* ////////////////////////////////////////////////////////////////////////// */
-.sectionContainer {
-    position: relative;
+.heroSpacer {
+    height: 100lvh;
+    width: 100%;
+
+    margin-bottom: -100lvh;
 }
 
 section.hero {
@@ -24,11 +57,6 @@ section.hero {
 
     height: 100lvh; // Assume the margin between sections will create enough spacing between to avoid bad looks on mobile
     width: 100%;
-
-    // padding: 1.5lvh;
-    padding-bottom: 0;
-
-    // z-index: -1;
 
     .background {
         position: absolute;
@@ -244,6 +272,9 @@ section.hero {
     }
 }
 
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                               Segway Section                               */
+/* ////////////////////////////////////////////////////////////////////////// */
 section.segway {
     position: relative;
     // padding-inline: 1.5lvh;
@@ -251,6 +282,10 @@ section.segway {
     // background-color: var(--color-primary-700);
 
     overflow: hidden;
+
+    z-index: 20;
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
 
     .card {
         display: flex;
@@ -298,4 +333,31 @@ section.segway {
             fill: var(--color-black);
         }
     }
+}
+
+header.features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: var(--headerPadding);
+
+    background: var(--color-success);
+
+    h1 {
+        font-family: var(--font-serif);
+        font-weight: 200;
+        font-size: 6rem;
+    }
+
+    z-index: 19;
+}
+section.features {
+    position: relative;
+
+    height: 100lvh;
+    width: 100%;
+    background: var(--color-success);
+
+    z-index: 19;
 }
