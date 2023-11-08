@@ -1,12 +1,11 @@
 import "~/styles/globals.scss";
 
-import { Inconsolata, Cinzel, Roboto_Serif, Archivo } from "next/font/google";
+import { Inconsolata, Cinzel, Roboto_Serif, Archivo, Cinzel_Decorative } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
 const roboto = Roboto_Serif({
-    weight: "400",
     subsets: ["latin"],
     variable: "--font-roboto",
 });
@@ -21,6 +20,12 @@ const cinzel = Cinzel({
     variable: "--font-cinzel",
 });
 
+const cinzelDecorative = Cinzel_Decorative({
+    weight: "700",
+    subsets: ["latin"],
+    variable: "--font-cinzel-decorative",
+});
+
 const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
 
 export const metadata = {
@@ -32,7 +37,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={`${inconsolata.variable} ${archivo.variable} ${cinzel.variable} ${roboto.variable}`}>
+            <body className={`${inconsolata.variable} ${archivo.variable} ${cinzel.variable} ${roboto.variable} ${cinzelDecorative.variable} `}>
                 <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
             </body>
         </html>
