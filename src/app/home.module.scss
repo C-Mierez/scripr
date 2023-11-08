@@ -14,14 +14,21 @@ section.placeholder {
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                Hero Section                                */
 /* ////////////////////////////////////////////////////////////////////////// */
-section.hero {
+.sectionContainer {
     position: relative;
+}
+
+section.hero {
+    position: sticky;
+    top: 0;
 
     height: 100lvh; // Assume the margin between sections will create enough spacing between to avoid bad looks on mobile
     width: 100%;
 
-    padding: 1.5lvh;
+    // padding: 1.5lvh;
     padding-bottom: 0;
+
+    // z-index: -1;
 
     .background {
         position: absolute;
@@ -61,7 +68,7 @@ section.hero {
 
             background-color: var(--color-primary-50);
 
-            &::before {
+            .grid {
                 position: absolute;
                 content: "";
                 top: 0;
@@ -238,9 +245,10 @@ section.hero {
 }
 
 section.segway {
-    padding-inline: 1.5lvh;
+    position: relative;
+    // padding-inline: 1.5lvh;
 
-    background-color: var(--color-primary-700);
+    // background-color: var(--color-primary-700);
 
     overflow: hidden;
 
@@ -252,6 +260,10 @@ section.segway {
 
         border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
         background-color: var(--color-primary-50);
+
+        box-shadow: var(--box-shadow);
+
+        margin-bottom: var(--margin-shadow);
 
         padding-top: 10lvh;
 
