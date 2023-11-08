@@ -1,0 +1,289 @@
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                            Placeholder Sections                            */
+/* ////////////////////////////////////////////////////////////////////////// */
+section.placeholder {
+    height: 100vh;
+    width: 100%;
+    background: var(--color-primary-100);
+
+    &:nth-of-type(odd) {
+        background: var(--color-primary-50);
+    }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Hero Section                                */
+/* ////////////////////////////////////////////////////////////////////////// */
+section.hero {
+    position: relative;
+
+    height: 100lvh; // Assume the margin between sections will create enough spacing between to avoid bad looks on mobile
+    width: 100%;
+
+    padding: 1.5lvh;
+    padding-bottom: 0;
+
+    .background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background-color: var(--color-primary-700);
+
+        z-index: -1;
+    }
+
+    .cardArea {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+        width: 100%;
+
+        border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+
+        // background-color: var(--color-primary-50);
+
+        overflow: hidden;
+
+        .backgroundGrid {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            height: 100%;
+            width: 100%;
+
+            z-index: -1;
+
+            background-color: var(--color-primary-50);
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+
+                height: 100%;
+                width: 100%;
+
+                background: url("~/public/perspectiveGrid.svg") center / 100% 100% no-repeat;
+
+                opacity: 0.4;
+            }
+
+            // &::after {
+            //     position: absolute;
+            //     content: "";
+            //     top: 0;
+            //     left: 0;
+            //     height: 70%;
+            //     width: 100%;
+
+            //     // background: linear-gradient(180deg, #e6e9efff 70%, #e6e9ef00 100%);
+            //     background: linear-gradient(180deg, #e6e9ef00, #e6e9efff 40%, #e6e9efff 70%, #e6e9ef00 100%);
+            // }
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                height: 70%;
+                width: 100%;
+
+                background: linear-gradient(180deg, #e6e9ef00 20%, #e6e9efff 100%);
+                // background: linear-gradient(180deg, #e6e9ef00, #e6e9efff 40%, #e6e9efff 70%, #e6e9ef00 100%);
+            }
+        }
+
+        .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding-block: 1.5rem;
+
+            .logo svg {
+                height: 2.5rem;
+                fill: var(--color-black);
+            }
+
+            .name {
+                font-size: 1rem;
+                font-weight: bold;
+                font-family: var(--font-brand);
+                font-size: 1.25rem;
+                line-height: 1;
+
+                text-transform: uppercase;
+
+                color: var(--color-black);
+                opacity: 0.5;
+            }
+        }
+
+        .slogan {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 18lvh;
+
+            p:nth-child(1) {
+                font-size: 8rem;
+                font-weight: 700;
+                font-family: var(--font-brand);
+
+                // text-shadow: 0 0 0.1rem var(--color-black);
+
+                span {
+                    font-family: var(--font-brand-alt);
+                }
+            }
+
+            p:nth-child(2) {
+                font-size: 2.5rem;
+                font-weight: 500;
+                font-family: var(--font-serif);
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: -50%;
+                left: 0;
+
+                height: 200%;
+                width: 100%;
+
+                background: linear-gradient(180deg, #e6e9ef00 0%, #e6e9efff 50%, #e6e9efff 60%, #e6e9ef00 100%);
+
+                z-index: -1;
+            }
+        }
+
+        .cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: auto;
+            margin-bottom: 15lvh;
+
+            .buttonContainer {
+                position: relative;
+
+                border: none;
+                padding: 0;
+                background: none;
+
+                cursor: pointer;
+
+                overflow: hidden;
+
+                .slider {
+                    position: relative;
+
+                    .face {
+                        padding: 0.5em 0.75em;
+
+                        font-size: 1.5rem;
+                        width: 100%;
+
+                        background: var(--color-success);
+
+                        p {
+                            font-weight: 500;
+                            text-align: center;
+                            background: none;
+                        }
+
+                        &:nth-of-type(2) {
+                            position: absolute;
+                            top: 0;
+                            left: 100%;
+
+                            background: var(--color-black);
+
+                            p {
+                                color: var(--color-white);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .description {
+                margin-top: 2lvh;
+                p {
+                    font-size: 1.25rem;
+                    font-weight: 400;
+                    font-family: var(--font-serif);
+
+                    text-align: center;
+                    opacity: 0.75;
+                    line-height: 1.75;
+                }
+            }
+        }
+    }
+}
+
+section.segway {
+    padding-inline: 1.5lvh;
+
+    background-color: var(--color-primary-700);
+
+    overflow: hidden;
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+        background-color: var(--color-primary-50);
+
+        padding-top: 10lvh;
+
+        h2 {
+            font-size: 3.3rem;
+            font-weight: 300;
+            font-family: var(--font-serif);
+            text-align: center;
+            line-height: 1.25;
+
+            max-width: min(90%, 40rem);
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-family: var(--font-serif);
+            text-align: center;
+            line-height: 1.5;
+
+            max-width: min(90%, 50rem);
+
+            margin-top: 2.5rem;
+        }
+
+        svg {
+            height: 3.5rem;
+            width: 3.5rem;
+
+            margin-block: 6lvh;
+
+            fill: var(--color-black);
+        }
+    }
+}
