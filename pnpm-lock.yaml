@@ -29,6 +29,9 @@ dependencies:
   framer-motion:
     specifier: ^10.16.4
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
+  locomotive-scroll:
+    specifier: 5.0.0-beta.8
+    version: 5.0.0-beta.8
   next:
     specifier: ^14.0.0
     version: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
@@ -302,6 +305,10 @@ packages:
   /@rushstack/eslint-patch@1.5.1:
     resolution: {integrity: sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==}
     dev: true
+
+  /@studio-freight/lenis@1.0.12:
+    resolution: {integrity: sha512-iN3JQ6qJVc+L7vh8NjlDibw9dvjjifvlJ+s0UAkfwty+vW9MJxRfszb5X/eAhcbDLZW6MlvjRHoH9WSQH3J8eA==}
+    dev: false
 
   /@swc/helpers@0.5.2:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
@@ -1863,6 +1870,13 @@ packages:
     dependencies:
       p-locate: 5.0.0
     dev: true
+
+  /locomotive-scroll@5.0.0-beta.8:
+    resolution: {integrity: sha512-4Nq12voKr5719aaySZg3FX/gQKQIAaAC4NkBiU27aKEKFnYcTeOB1r8VO5bGpEIOGQo94wsiJQNZuRb3TsxjHA==}
+    engines: {node: '>=17'}
+    dependencies:
+      '@studio-freight/lenis': 1.0.12
+    dev: false
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
