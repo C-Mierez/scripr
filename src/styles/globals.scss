@@ -57,6 +57,7 @@ html {
 
     --color-background: var(--color-primary-50);
     --color-text: var(--color-black);
+    --color-shadow: #08090c23;
 
     /* -------------------------------- Gradients ------------------------------- */
     --gradient-normal: linear-gradient(130deg, var(--color-background), var(--color-primary-700), var(--color-accent-300));
@@ -107,7 +108,12 @@ body {
     --padding-vertical: 1rem;
     --padding-button: 0.75em 1em;
 
-    --border-radius-main: 4rem;
+    --border-radius-main: 6lvh;
+
+    --shadow-blur: 1.5rem;
+    --shadow-spread: 0.5rem;
+    --box-shadow: 0 0 var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    --margin-shadow: calc(var(--shadow-blur) + var(--shadow-spread));
 
     --width-main-responsive: min(var(--width-main-content), calc(100vw - 2 * var(--padding-side)));
     --width-main-responsive-bigger: min(var(--width-main-content-bigger), calc(100vw - 2 * var(--padding-side)));
@@ -125,6 +131,12 @@ body {
 
     overflow-x: hidden;
 }
+
+// @media (max-width: 768px) {
+//     body {
+//         --border-radius-main: 2rem;
+//     }
+// }
 
 a {
     color: inherit;
