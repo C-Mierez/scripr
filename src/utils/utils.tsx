@@ -32,3 +32,12 @@ export const splitWordIntoSpan = (word: string, spanRefs?: React.MutableRefObjec
     });
     return letters;
 };
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                     CSS                                    */
+/* ////////////////////////////////////////////////////////////////////////// */
+// Receives an undisclosed amount of CSS variable names and returns a string of their concatenation to use as className.
+// CSS variable names can be undefined.
+export function CSSVariables(...cssVariables: (string | undefined)[]) {
+    return cssVariables.filter((cssVariable) => cssVariable !== undefined).join(" ");
+}
