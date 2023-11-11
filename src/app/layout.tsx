@@ -1,6 +1,6 @@
 import "~/styles/globals.scss";
 
-import { Inconsolata, Cinzel, Roboto_Serif, Archivo, Cinzel_Decorative } from "next/font/google";
+import { Playfair_Display, Cinzel, Roboto_Serif, Playfair_Display_SC, Cinzel_Decorative } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -10,9 +10,9 @@ const roboto = Roboto_Serif({
     variable: "--font-roboto",
 });
 
-const inconsolata = Inconsolata({
+const playfair_Display = Playfair_Display({
     subsets: ["latin"],
-    variable: "--font-inconsolata",
+    variable: "--font-playfair_display",
 });
 
 const cinzel = Cinzel({
@@ -26,7 +26,8 @@ const cinzelDecorative = Cinzel_Decorative({
     variable: "--font-cinzel-decorative",
 });
 
-const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
+const playfair_Display_SC_400 = Playfair_Display_SC({ weight: "400", subsets: ["latin"], variable: "--font-playfair_display_SC_400" });
+const playfair_Display_SC_700 = Playfair_Display_SC({ weight: "700", subsets: ["latin"], variable: "--font-playfair_display_SC_700" });
 
 export const metadata = {
     title: "Scripr",
@@ -37,7 +38,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={`${inconsolata.variable} ${archivo.variable} ${cinzel.variable} ${roboto.variable} ${cinzelDecorative.variable} `}>
+            <body
+                className={`${playfair_Display.variable} ${playfair_Display_SC_400.variable} ${playfair_Display_SC_700.variable} ${cinzel.variable} ${roboto.variable} ${cinzelDecorative.variable} `}
+            >
                 <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
             </body>
         </html>

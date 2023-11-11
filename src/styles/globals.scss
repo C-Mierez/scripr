@@ -4,8 +4,6 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
-    font-family: var(--font-serif), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
 }
 
 html {
@@ -73,9 +71,10 @@ body {
     /* ////////////////////////////////////////////////////////////////////////// */
     /*                                    Fonts                                   */
     /* ////////////////////////////////////////////////////////////////////////// */
-    --font-mono: var(--font-inconsolata), monospace;
-    --font-sans: var(--font-archivo), sans-serif;
-    --font-serif: var(--font-roboto), serif;
+    --font-header: var(--font-playfair_display), serif;
+    --font-header-alt-400: var(--font-playfair_display_SC_400), serif;
+    --font-header-alt-700: var(--font-playfair_display_SC_700), serif;
+    --font-body: var(--font-roboto), sans-serif;
     --font-brand: var(--font-cinzel), serif;
     --font-brand-alt: var(--font-cinzel-decorative), serif;
 
@@ -154,14 +153,11 @@ body {
     background: var(--color-background);
     color: var(--color-text);
 
+    font-family: var(--font-body), Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+        sans-serif;
+
     overflow-x: hidden;
 }
-
-// @media (max-width: 768px) {
-//     body {
-//         --border-radius-main: 2rem;
-//     }
-// }
 
 a {
     color: inherit;
@@ -172,10 +168,13 @@ li {
     list-style-type: none;
 }
 
-h1,
+h1 {
+    font-family: var(--font-header-alt-400), serif;
+}
+
 h2,
 h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-header), serif;
 }
 
 /* input,
