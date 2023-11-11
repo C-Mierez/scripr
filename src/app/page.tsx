@@ -5,8 +5,6 @@ export default async function Home() {
     return (
         <main className={css.main}>
             <HeroSection />
-            <section className={css.placeholder}></section>
-            <section className={css.placeholder}></section>
         </main>
     );
 }
