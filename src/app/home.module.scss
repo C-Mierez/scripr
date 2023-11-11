@@ -30,16 +30,11 @@ main.main {
         z-index: 0;
     }
     .stickyWrapper {
-        --sectionNegativeMarginBottom: calc(var(--border-radius-main) * -1 - var(--margin-shadow));
+        --sectionNegativeMarginBottom: calc(var(--border-radius-main) * -1 - var(--margin-shadow-bottom));
         --headerPadding: calc(var(--sectionNegativeMarginBottom) * -1 + 5rem) 0 5rem 0;
 
         position: relative;
         z-index: 1;
-
-        header {
-            position: sticky;
-            bottom: 0;
-        }
     }
 }
 
@@ -340,14 +335,14 @@ section.segway {
         border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
         background-color: var(--color-primary-100);
 
-        box-shadow: var(--box-shadow);
+        box-shadow: var(--box-shadow-bottom);
 
-        margin-bottom: var(--margin-shadow);
+        margin-bottom: var(--margin-shadow-bottom);
 
         padding-top: 10lvh;
 
         h2 {
-            @include font-header-small;
+            @include font-header-medium;
 
             text-align: center;
 
@@ -355,7 +350,7 @@ section.segway {
         }
 
         p {
-            @include font-subheader;
+            @include font-subheader-medium;
 
             text-align: center;
 
@@ -376,6 +371,9 @@ section.segway {
 }
 
 header.features {
+    position: sticky;
+    bottom: 0;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -389,7 +387,7 @@ header.features {
     }
 
     p {
-        @include font-subheader;
+        @include font-subheader-medium;
 
         text-align: center;
 
@@ -404,9 +402,278 @@ header.features {
 section.features {
     position: relative;
 
-    height: 100lvh;
+    min-height: 100lvh;
     width: 100%;
+
     background: var(--color-primary-50);
 
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    padding-bottom: var(--padding-section);
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
+
+    box-shadow: var(--box-shadow-bottom);
+
     z-index: 19;
+
+    .stickyGrid {
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+
+        width: var(--width-main-responsive-bigger);
+
+        margin-inline: auto;
+
+        header {
+            position: sticky;
+            top: var(--sticky-top-header);
+
+            h1 {
+                @include font-header-medium;
+                font-weight: var(--fw-bold);
+            }
+            h2 {
+                @include font-header-medium;
+                margin-top: var(--margin-top-header-small);
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+
+            gap: 1rem;
+
+            // padding-left: 2rem;
+
+            .feature {
+                position: relative;
+
+                display: flex;
+                flex-direction: row;
+                gap: var(--padding-element);
+
+                padding-block: var(--padding-element);
+
+                &:first-of-type::before {
+                    position: absolute;
+                    content: "";
+                    top: 0;
+                    left: 0;
+                    height: 1px;
+                    width: 100%;
+
+                    background: var(--color-black);
+                    opacity: 0.1;
+                }
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    bottom: 0;
+                    left: 0;
+                    height: 1px;
+                    width: 100%;
+
+                    background: var(--color-black);
+                    opacity: 0.1;
+                }
+
+                .data {
+                    h3 {
+                        @include font-header-small;
+                    }
+
+                    p {
+                        @include font-body;
+                    }
+                }
+
+                .image {
+                    // TODO: Replace this with an actual image of the feature
+                    div {
+                        aspect-ratio: 16 / 9;
+                        height: 15rem;
+                        background: var(--color-primary-100);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Stats Section                               */
+/* ////////////////////////////////////////////////////////////////////////// */
+.stickyBackdrop {
+    position: sticky;
+    top: -25vh;
+    bottom: -25vh;
+
+    display: flex;
+    flex-direction: column;
+    background: var(--color-success);
+    min-height: 150vh;
+    padding-block: 25vh;
+}
+
+header.stats {
+    // position: sticky;
+    // bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+
+    padding: var(--headerPadding);
+    // padding-top: calc(-1 * var(--sectionNegativeMarginBottom));
+
+    z-index: 18;
+
+    h1 {
+        @include font-header-medium;
+        font-size: var(--fs-5);
+    }
+
+    p {
+        font-size: var(--fs-10);
+        font-weight: var(--fw-regular);
+        font-family: var(--font-body);
+
+        text-align: center;
+    }
+}
+
+section.stats {
+    // position: sticky;
+    // top: 0;
+
+    width: 100%;
+
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    padding-bottom: var(--padding-section);
+
+    z-index: 18;
+
+    .grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        width: var(--width-main-responsive-bigger);
+
+        margin-inline: auto;
+        padding-block: var(--padding-element);
+
+        gap: calc(2 * var(--padding-element));
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: var(--color-white);
+            opacity: 0.1;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: var(--padding-element);
+
+            background: hsl(220, 22%, 92%, 10%);
+
+            h2 {
+                font-family: var(--font-header);
+                font-size: var(--fs-2);
+                font-weight: var(--fw-regular);
+                text-align: center;
+            }
+
+            p {
+                font-family: var(--font-body);
+                font-size: var(--fs-6);
+                font-weight: var(--fw-medium);
+                text-align: center;
+            }
+        }
+    }
+
+    .disclaimer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+
+        width: var(--width-main-responsive-bigger);
+        margin-inline: auto;
+
+        p {
+            @include font-tiny;
+        }
+    }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                               Pricing Section                              */
+/* ////////////////////////////////////////////////////////////////////////// */
+header.pricing {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: var(--padding-section);
+
+    border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+
+    box-shadow: var(--box-shadow-top);
+
+    background: var(--color-primary-50);
+
+    h1 {
+        @include font-header;
+    }
+
+    h2 {
+        @include font-subheader;
+
+        text-align: center;
+
+        max-width: var(--width-container-medium);
+
+        margin-top: var(--margin-top-subheader);
+    }
+
+    z-index: 18;
+}
+
+section.pricing {
+    position: relative;
+
+    width: 100%;
+    min-height: 100lvh;
+
+    background: var(--color-primary-50);
+
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    padding-bottom: var(--padding-section);
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
+
+    z-index: 18;
 }

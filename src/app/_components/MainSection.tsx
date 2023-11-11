@@ -6,19 +6,111 @@ export default function MainSection(props: { padding: MotionValue<string> }) {
         <motion.div className={css.stickyWrapper} style={{ paddingInline: props.padding }}>
             <SegwaySection />
             <FeaturesSection />
+            <StatsSection />
+            <PricingSection />
         </motion.div>
     );
 }
 
+function PricingSection() {
+    return (
+        <>
+            <header className={css.pricing}>
+                <h1 className={css.headerDecorated}>Pricing</h1>
+                <h2>Choose a plan that suits your needs</h2>
+            </header>
+            <section className={css.pricing}></section>
+        </>
+    );
+}
+
+function StatsSection() {
+    const stats: StatsCardData[] = [
+        { label: "Assets Tracked", value: "45+" },
+        { label: "Existing Records", value: "1k" },
+        { label: "Total Value", value: "$600k" },
+    ];
+    return (
+        <div className={css.stickyBackdrop}>
+            <header className={css.stats}>
+                <h1>WITH MORE THAN</h1>
+                <p>2</p>
+                <h1>SATISFIED CLIENTS</h1>
+            </header>
+            <section className={css.stats}>
+                <div className={css.grid}>
+                    {stats.map((stat, index) => (
+                        <StatsCard key={`stat_${index}`} label={stat.label} value={stat.value} />
+                    ))}
+                </div>
+                <div className={css.disclaimer}>
+                    <p>{"* (Not real values, please don't sue)"}</p>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+type StatsCardData = {
+    label: string;
+    value: string;
+};
+
+function StatsCard(props: StatsCardData) {
+    return (
+        <div className={css.stat}>
+            <p>{props.value}</p>
+            <h2>{props.label}</h2>
+        </div>
+    );
+}
+
 function FeaturesSection() {
+    const features: FeatureData[] = [
+        { title: "Track", description: "Follow the state of all your open positions with live and manual price tracking." },
+        { title: "Organize", description: "Keep every kind of asset or operation in its place, as your see fit." },
+        { title: "Link", description: "Connect operations, investments, expenses and income to each other." },
+        { title: "Analyze", description: "Exploit your data to make better decisions and improve your finances." },
+    ];
     return (
         <>
             <header className={css.features}>
                 <h1 className={css.headerDecorated}>Features</h1>
                 <p>We have a wide variety of functionality and financial instruments at your disposal to make your accounting easier.</p>
             </header>
-            <section className={css.features}></section>;
+            <section className={css.features}>
+                <div className={css.stickyGrid}>
+                    <header>
+                        <h1>Plenty of tools</h1>
+                        <h2>at your disposal</h2>
+                    </header>
+                    <div className={css.content}>
+                        {features.map((feature, index) => (
+                            <FeatureElement key={`feature_${index}`} title={feature.title} description={feature.description} />
+                        ))}
+                    </div>
+                </div>
+            </section>
         </>
+    );
+}
+
+type FeatureData = {
+    title: string;
+    description: string;
+};
+
+function FeatureElement(props: FeatureData) {
+    return (
+        <div className={css.feature}>
+            <div className={css.image}>
+                <div />
+            </div>
+            <div className={css.data}>
+                <h3>{props.title}</h3>
+                <p>{props.description}</p>
+            </div>
+        </div>
     );
 }
 
