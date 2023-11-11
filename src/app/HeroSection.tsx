@@ -35,7 +35,7 @@ export default function HeroSection() {
 
     /* ------------------------------- Slogan Anim ------------------------------ */
     const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-    const opacity = useTransform(scrollYProgress, [0.4, 0.8], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0]);
     const translateY = useTransform(scrollYProgress, [0.4, 1], ["0%", "20%"]);
 
     return (

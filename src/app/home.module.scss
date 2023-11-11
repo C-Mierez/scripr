@@ -1,3 +1,5 @@
+@import "~/styles/mixins";
+
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                            Placeholder Sections                            */
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -110,17 +112,6 @@ section.hero {
                 opacity: 0.4;
             }
 
-            // &::after {
-            //     position: absolute;
-            //     content: "";
-            //     top: 0;
-            //     left: 0;
-            //     height: 70%;
-            //     width: 100%;
-
-            //     // background: linear-gradient(180deg, #e6e9efff 70%, #e6e9ef00 100%);
-            //     background: linear-gradient(180deg, #e6e9ef00, #e6e9efff 40%, #e6e9efff 70%, #e6e9ef00 100%);
-            // }
             &::after {
                 position: absolute;
                 content: "";
@@ -148,10 +139,10 @@ section.hero {
             }
 
             .name {
-                font-size: 1rem;
+                text-align: center;
                 font-weight: bold;
                 font-family: var(--font-brand);
-                font-size: 1.25rem;
+                font-size: var(--font-step-0);
                 line-height: 1;
 
                 text-transform: uppercase;
@@ -171,8 +162,13 @@ section.hero {
 
             margin-top: 18lvh;
 
+            @include mobile {
+                margin-top: 10lvh;
+            }
+
             p:nth-child(1) {
-                font-size: 8rem;
+                text-align: center;
+                font-size: var(--font-step-8);
                 font-weight: 700;
                 font-family: var(--font-brand);
 
@@ -181,12 +177,21 @@ section.hero {
                 span {
                     font-family: var(--font-brand-alt);
                 }
+
+                @include mobile {
+                    font-size: var(--font-step-6);
+                }
             }
 
             p:nth-child(2) {
-                font-size: 2.5rem;
+                text-align: center;
+                font-size: var(--font-step-3);
                 font-weight: 500;
                 font-family: var(--font-serif);
+
+                @include mobile {
+                    font-size: var(--font-step-1);
+                }
             }
 
             &::before {
@@ -201,6 +206,10 @@ section.hero {
                 background: linear-gradient(180deg, #e6e9ef00 0%, #e6e9efff 50%, #e6e9efff 60%, #e6e9ef00 100%);
 
                 z-index: -1;
+
+                @include mobile {
+                    background: linear-gradient(180deg, #e6e9ef00 0%, #e6e9efff 50%, #e6e9ef00 100%);
+                }
             }
         }
 
@@ -230,7 +239,7 @@ section.hero {
                     .face {
                         padding: 0.5em 0.75em;
 
-                        font-size: 1.5rem;
+                        font-size: var(--font-step-1);
                         width: 100%;
 
                         background: var(--color-success);
@@ -259,7 +268,7 @@ section.hero {
             .description {
                 margin-top: 2lvh;
                 p {
-                    font-size: 1.25rem;
+                    font-size: var(--font-step-0);
                     font-weight: 400;
                     font-family: var(--font-serif);
 
@@ -348,6 +357,10 @@ header.features {
         font-family: var(--font-serif);
         font-weight: 200;
         font-size: 6rem;
+
+        @include mobile {
+            font-size: 4rem;
+        }
     }
 
     z-index: 19;
