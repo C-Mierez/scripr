@@ -1,4 +1,4 @@
-import HeroSection from "./HeroSection";
+import HeroSection from "./_components/HeroSection";
 import css from "./home.module.scss";
 
 export default async function Home() {

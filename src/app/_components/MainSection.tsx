@@ -1,5 +1,5 @@
 import { MotionValue, motion, useTransform } from "framer-motion";
-import css from "./home.module.scss";
+import css from "../home.module.scss";
 
 export default function MainSection(props: { padding: MotionValue<string> }) {
     return (

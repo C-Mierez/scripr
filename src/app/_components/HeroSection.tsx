@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import ButtonCTA from "./ButtonCTA";
-import css from "./home.module.scss";
+import css from "../home.module.scss";
 import { useEffect, useRef } from "react";
 import MainSection from "./MainSection";
 

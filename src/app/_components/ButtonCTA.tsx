@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import css from "./home.module.scss";
+import css from "../home.module.scss";
 import { motion } from "framer-motion";
 import { bezierEase, mediumDuration } from "~/utils/animations";
 
