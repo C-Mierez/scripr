@@ -116,6 +116,12 @@ body {
     /* Step 8: 77.40px → 119.21px */
     --fs-8: clamp(4.8375rem, 3.9286rem + 4.5446vw, 7.4506rem);
 
+    /* Step 9: 92.88px → 149.01px */
+    --fs-9: clamp(5.805rem, 4.5848rem + 6.1011vw, 9.3131rem);
+
+    /* Step 10: 111.45px → 186.26px */
+    --fs-10: clamp(6.9656rem, 5.3393rem + 8.1315vw, 11.6413rem);
+
     /* ------------------------------ Font Weights ------------------------------ */
     --fw-light: 350;
     --fw-regular: 400;
@@ -131,27 +137,32 @@ body {
 
     --margin-top: calc(var(--height-header) * 2);
     --margin-bottom: 5vh;
+    --margin-top-header-small: 0.5rem;
     --margin-top-subheader: 2rem;
+
+    --sticky-top-header: 40lvh;
 
     --height-header: 4.5rem;
     --padding-header: 1.2rem;
 
     --padding-side: var(--padding-header);
-    --padding-vertical: 1rem;
+    --padding-element: 2rem;
     --padding-button: 0.75em 1em;
+    --padding-section: 10rem;
 
     --border-radius-main: 6lvh;
 
-    --shadow-blur: 1.5rem;
-    --shadow-spread: 0.5rem;
-    --box-shadow: 0 0 var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
-    --margin-shadow: calc(var(--shadow-blur) + var(--shadow-spread));
+    --shadow-blur: 1rem;
+    --shadow-spread: 0.1rem;
+    --box-shadow-top: 0 calc(-1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    --box-shadow-bottom: 0 calc(var(--shadow-blur) + var(--shadow-spread)) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    --margin-shadow-bottom: calc(2 * (var(--shadow-blur) + var(--shadow-spread)));
 
     --width-main-responsive: min(var(--width-main-content), calc(100vw - 2 * var(--padding-side)));
     --width-main-responsive-bigger: min(var(--width-main-content-bigger), calc(100vw - 2 * var(--padding-side)));
     --width-container-medium: min(90%, 50rem);
     --width-main-content: 1200px;
-    --width-main-content-bigger: 1600px;
+    --width-main-content-bigger: 1450px;
     --padding-main-content: calc((100vw - var(--width-main-content)) * 0.5);
 
     /* ////////////////////////////////////////////////////////////////////////// */
