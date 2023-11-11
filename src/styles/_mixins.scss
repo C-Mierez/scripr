@@ -1,3 +1,6 @@
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Media Queries                               */
+/* ////////////////////////////////////////////////////////////////////////// */
 @mixin mobile {
     @media (max-width: 768px) {
         @content;
@@ -10,6 +13,37 @@
     }
 }
 
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                 Type Scales                                */
+/* ////////////////////////////////////////////////////////////////////////// */
+@mixin font-header {
+    font-family: var(--font-header-alt-400);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-7);
+    line-height: var(--font-line-height-header);
+
+    @include mobile {
+        font-size: var(--fs-6);
+    }
+}
+
+@mixin font-header-small {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header);
+    line-height: var(--font-line-height-header);
+}
+
+@mixin font-subheader {
+    font-size: var(--fs-1);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-subheader);
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                  Scrollbar                                 */
+/* ////////////////////////////////////////////////////////////////////////// */
 @mixin scrollbarColor($scrollbarBackgroundColor, $scrollbarThumbColor, $width, $widthProperty) {
     &::-webkit-scrollbar {
         width: $width;
@@ -24,22 +58,5 @@
     @supports (scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor) {
         scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor;
         scrollbar-width: $widthProperty;
-    }
-}
-
-@mixin animationCursorFlicker {
-    @keyframes cursorFlicker {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 1;
-        }
-        75% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 0;
-        }
     }
 }

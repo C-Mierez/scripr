@@ -43,6 +43,43 @@ main.main {
     }
 }
 
+/* --------------------------- Header Decorations --------------------------- */
+.headerDecorated {
+    --margin: -0.3em;
+    --width: 0.12em;
+    --height: calc(2 * var(--width));
+    --color: var(--color-black);
+
+    position: relative;
+}
+
+.headerDecorated::before {
+    position: absolute;
+    content: "";
+    top: calc(50% - var(--height) / 2);
+    left: var(--margin);
+
+    height: var(--height);
+    width: var(--width);
+    border-radius: 0 var(--width) var(--width) 0;
+
+    background: var(--color);
+}
+
+.headerDecorated::after {
+    position: absolute;
+    content: "";
+
+    top: calc(50% - var(--height) / 2);
+    right: var(--margin);
+
+    height: var(--height);
+    width: var(--width);
+    border-radius: var(--width) 0 0 var(--width);
+
+    background: var(--color);
+}
+
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                Hero Section                                */
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -140,9 +177,9 @@ section.hero {
 
             .name {
                 text-align: center;
-                font-weight: bold;
+                font-weight: var(--fw-bold);
                 font-family: var(--font-brand);
-                font-size: var(--font-step-0);
+                font-size: var(--fs-0);
                 line-height: 1;
 
                 text-transform: uppercase;
@@ -166,31 +203,31 @@ section.hero {
                 margin-top: 10lvh;
             }
 
-            p:nth-child(1) {
+            h1 {
                 text-align: center;
-                font-size: var(--font-step-8);
-                font-weight: 700;
-                font-family: var(--font-brand);
+                text-transform: uppercase;
 
-                // text-shadow: 0 0 0.1rem var(--color-black);
+                font-size: var(--fs-8);
+                font-weight: var(--fw-bold);
+                font-family: var(--font-header-alt-700);
 
                 span {
                     font-family: var(--font-brand-alt);
                 }
 
                 @include mobile {
-                    font-size: var(--font-step-6);
+                    font-size: var(--fs-6);
                 }
             }
 
-            p:nth-child(2) {
+            h2 {
                 text-align: center;
-                font-size: var(--font-step-3);
-                font-weight: 500;
-                font-family: var(--font-serif);
+                font-size: var(--fs-3);
+                font-weight: var(--fw-medium);
+                font-family: var(--font-body);
 
                 @include mobile {
-                    font-size: var(--font-step-1);
+                    font-size: var(--fs-1);
                 }
             }
 
@@ -239,13 +276,13 @@ section.hero {
                     .face {
                         padding: 0.5em 0.75em;
 
-                        font-size: var(--font-step-1);
+                        font-size: var(--fs-1);
                         width: 100%;
 
                         background: var(--color-success);
 
                         p {
-                            font-weight: 500;
+                            font-weight: var(--fw-medium);
                             text-align: center;
                             background: none;
                         }
@@ -266,15 +303,16 @@ section.hero {
             }
 
             .description {
-                margin-top: 2lvh;
+                margin-top: 1.5rem;
+
                 p {
-                    font-size: var(--font-step-0);
-                    font-weight: 400;
-                    font-family: var(--font-serif);
+                    font-size: var(--fs-0);
+                    font-weight: var(--fw-regular);
+                    font-family: var(--font-body);
+                    line-height: var(--font-line-height-body);
 
                     text-align: center;
-                    opacity: 0.75;
-                    line-height: 1.75;
+                    opacity: 0.5;
                 }
             }
         }
@@ -286,9 +324,6 @@ section.hero {
 /* ////////////////////////////////////////////////////////////////////////// */
 section.segway {
     position: relative;
-    // padding-inline: 1.5lvh;
-
-    // background-color: var(--color-primary-700);
 
     overflow: hidden;
 
@@ -303,7 +338,7 @@ section.segway {
         justify-content: center;
 
         border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
-        background-color: var(--color-primary-50);
+        background-color: var(--color-primary-100);
 
         box-shadow: var(--box-shadow);
 
@@ -312,25 +347,21 @@ section.segway {
         padding-top: 10lvh;
 
         h2 {
-            font-size: 3.3rem;
-            font-weight: 300;
-            font-family: var(--font-serif);
+            @include font-header-small;
+
             text-align: center;
-            line-height: 1.25;
 
             max-width: min(90%, 40rem);
         }
 
         p {
-            font-size: 1.5rem;
-            font-weight: 400;
-            font-family: var(--font-serif);
+            @include font-subheader;
+
             text-align: center;
-            line-height: 1.5;
 
-            max-width: min(90%, 50rem);
+            max-width: var(--width-container-medium);
 
-            margin-top: 2.5rem;
+            margin-top: var(--margin-top-subheader);
         }
 
         svg {
@@ -351,26 +382,31 @@ header.features {
 
     padding: var(--headerPadding);
 
-    background: var(--color-success);
+    background: var(--color-primary-50);
 
     h1 {
-        font-family: var(--font-serif);
-        font-weight: 200;
-        font-size: 6rem;
+        @include font-header;
+    }
 
-        @include mobile {
-            font-size: 4rem;
-        }
+    p {
+        @include font-subheader;
+
+        text-align: center;
+
+        max-width: var(--width-container-medium);
+
+        margin-top: var(--margin-top-subheader);
     }
 
     z-index: 19;
 }
+
 section.features {
     position: relative;
 
     height: 100lvh;
     width: 100%;
-    background: var(--color-success);
+    background: var(--color-primary-50);
 
     z-index: 19;
 }

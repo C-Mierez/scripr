@@ -41,10 +41,10 @@ export default function HeroSection() {
     return (
         <div ref={heroSectionRef} className={css.heroWrapper}>
             <motion.section className={css.hero} style={{ paddingInline: padding, paddingTop: padding }}>
-                <div className={css.background}></div>
+                <div className={css.background} />
                 <motion.div className={css.cardArea} style={{ borderTopLeftRadius: borderRadius, borderTopRightRadius: borderRadius }}>
                     <div className={css.backgroundGrid}>
-                        <motion.div className={css.grid} style={{ backgroundSize }}></motion.div>
+                        <motion.div className={css.grid} style={{ backgroundSize }} />
                     </div>
                     <div className={css.branding}>
                         <div className={css.logo}>
@@ -66,10 +66,8 @@ export default function HeroSection() {
                         <p className={css.name}>SCRIPR</p>
                     </div>
                     <motion.div className={css.slogan} style={{ opacity, translateY }}>
-                        <motion.p style={{ scale }}>
-                            <span>A</span>ll your Finance<span>S</span>
-                        </motion.p>
-                        <motion.p style={{ scale }}>in one single place</motion.p>
+                        <motion.h1 style={{ scale }}>All your Finances</motion.h1>
+                        <motion.h2 style={{ scale }}>in one single place</motion.h2>
                     </motion.div>
                     <CTA></CTA>
                 </motion.div>
