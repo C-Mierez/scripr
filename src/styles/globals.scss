@@ -78,7 +78,7 @@ body {
     --font-brand: var(--font-cinzel), serif;
     --font-brand-alt: var(--font-cinzel-decorative), serif;
 
-    --font-line-height-body: 1.75;
+    --font-line-height-body: 1.5;
     --font-line-height-header: 1.15;
     --font-line-height-subheader: 1.5;
 
@@ -156,11 +156,13 @@ body {
     --shadow-spread: 0.1rem;
     --box-shadow-top: 0 calc(-1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
     --box-shadow-bottom: 0 calc(var(--shadow-blur) + var(--shadow-spread)) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    --box-shadow-small: 0 calc(0.1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
     --margin-shadow-bottom: calc(2 * (var(--shadow-blur) + var(--shadow-spread)));
 
     --width-main-responsive: min(var(--width-main-content), calc(100vw - 2 * var(--padding-side)));
     --width-main-responsive-bigger: min(var(--width-main-content-bigger), calc(100vw - 2 * var(--padding-side)));
     --width-container-medium: min(90%, 50rem);
+    --width-container-small: min(90%, 40rem);
     --width-main-content: 1200px;
     --width-main-content-bigger: 1450px;
     --padding-main-content: calc((100vw - var(--width-main-content)) * 0.5);
@@ -176,11 +178,6 @@ body {
         sans-serif;
 
     overflow-x: hidden;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
 }
 
 li {
