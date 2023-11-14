@@ -1,0 +1,182 @@
+@import "~/styles/mixins";
+
+form.contactForm {
+    position: relative;
+
+    padding-block: var(--padding-side) calc(var(--padding-side) * 2);
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+
+        height: 1px;
+        width: 100%;
+
+        background: var(--color-black);
+        opacity: 0.1;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+
+        height: 1px;
+        width: 100%;
+
+        background: var(--color-black);
+        opacity: 0.1;
+    }
+}
+
+.fields {
+    --rowGap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-column-gap: calc(var(--padding-element) * 2);
+    grid-row-gap: var(--rowGap);
+    grid-template-areas:
+        "subject subject name surname"
+        "message message email phone"
+        "message message button button";
+
+    width: 100%;
+}
+
+.textfield {
+    --innerPadding: 1rem;
+    --fontSize: var(--fs-0);
+    --shrinkFactor: 0.8;
+    --padding-top: calc(var(--fontSize));
+
+    position: relative;
+
+    padding-top: var(--padding-top);
+    // height: fit-content;
+}
+
+.textfield input,
+.textfield textarea {
+    width: 100%;
+    height: calc(var(--fontSize) + var(--innerPadding) * 2);
+    padding: var(--innerPadding);
+
+    border: none;
+    border-bottom: 2px solid var(--color-success);
+
+    color: var(--color-black);
+    background: none;
+
+    resize: none;
+
+    font-size: var(--fontSize);
+    font-family: var(--font-body);
+    font-weight: var(--fw-regular);
+
+    transition: background-color 0.2s var(--animation-function-bezier), color 0.2s var(--animation-function-bezier);
+}
+
+.textfield .label {
+    position: absolute;
+    top: calc(var(--padding-top) * 2);
+
+    height: var(--fontSize);
+
+    font-size: var(--fontSize);
+    color: var(--color-black);
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    transition: 0.2s var(--animation-function-bezier);
+}
+
+.textfield input:valid ~ .label,
+.textfield textarea:valid ~ .label {
+    top: -0.5rem;
+    font-size: calc(var(--fontSize) * var(--shrinkFactor));
+    font-weight: var(--fw-medium);
+    color: var(--color-black);
+}
+
+.textfield input:focus ~ .label,
+.textfield textarea:focus ~ .label {
+    top: -0.5rem;
+    font-size: calc(var(--fontSize) * var(--shrinkFactor));
+    font-weight: var(--fw-bold);
+    color: var(--color-success);
+    opacity: 1;
+}
+
+.textfield input:valid,
+.textfield textarea:valid {
+    background: transparent;
+    color: var(--color-black);
+    outline: none;
+}
+
+.textfield input:focus,
+.textfield textarea:focus {
+    background: var(--color-success);
+    color: var(--color-white);
+    outline: none;
+}
+
+.textfield:first-child {
+    grid-area: subject;
+}
+
+.textarea {
+    position: relative;
+    --size: calc(2 * (var(--fontSize) + var(--innerPadding) * 2 + var(--rowGap)));
+    grid-area: message;
+}
+
+.textarea textarea {
+    height: var(--size);
+}
+
+.textarea .label {
+    position: absolute;
+    top: calc(var(--size) - var(--padding-top));
+
+    height: var(--fontSize);
+
+    font-size: var(--fontSize);
+    color: var(--color-black);
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    transition: 0.2s var(--animation-function-bezier);
+}
+
+.submit {
+    grid-area: button;
+    border: none;
+
+    background: var(--color-success);
+
+    @include font-button;
+    color: var(--color-white);
+
+    margin-top: 1rem;
+}
+
+@media (max-width: 750px) {
+    .fields {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "name"
+            "surname"
+            "email"
+            "phone"
+            "message";
+
+        width: 100%;
+    }
+}
