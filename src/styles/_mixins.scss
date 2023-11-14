@@ -34,10 +34,24 @@
     line-height: var(--font-line-height-header);
 }
 
+@mixin font-header-regular {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header);
+    line-height: var(--font-line-height-subheader);
+}
+
 @mixin font-header-small {
     font-size: var(--fs-1);
     font-weight: var(--fw-bold);
     font-family: var(--font-header-alt-700);
+    line-height: var(--font-line-height-subheader);
+}
+
+@mixin font-header-tiny {
+    font-size: var(--fs-0);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header-alt-400);
     line-height: var(--font-line-height-subheader);
 }
 
@@ -55,8 +69,22 @@
     line-height: var(--font-line-height-subheader);
 }
 
+@mixin font-subheader-tiny {
+    font-size: var(--fs--1);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-subheader);
+}
+
 @mixin font-body {
     font-size: var(--fs-0);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-body);
+}
+
+@mixin font-small {
+    font-size: var(--fs--1);
     font-weight: var(--fw-light);
     font-family: var(--font-body);
     line-height: var(--font-line-height-body);
@@ -65,6 +93,13 @@
 @mixin font-tiny {
     font-size: var(--fs--2);
     font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-body);
+}
+
+@mixin font-button {
+    font-size: var(--fs-0);
+    font-weight: var(--fw-medium);
     font-family: var(--font-body);
     line-height: var(--font-line-height-body);
 }
