@@ -4,6 +4,7 @@ import { useRef } from "react";
 import css from "./parallaxReviews.module.scss";
 import useDimensions from "~/hooks/useDimensions";
 import { useScroll, useTransform, motion } from "framer-motion";
+import SVGComponent from "../svg/SVG";
 
 export default function ParallaxReviews() {
     const reviews: ReviewData[] = [
@@ -108,17 +109,9 @@ function ReviewCard({ title, review, rating }: ReviewData) {
             <p>{review}</p>
             <div className={css.rating}>
                 {Array.from({ length: 5 }, (_, i) => (
-                    <svg
-                        key={`star ${title}_${i}`}
-                        className={i < rating ? css.filled : ""}
-                        width="27"
-                        height="25"
-                        viewBox="0 0 27 25"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path d="M13.5 0L16.5309 9.32827H26.3393L18.4042 15.0935L21.4351 24.4217L13.5 18.6565L5.5649 24.4217L8.59584 15.0935L0.660737 9.32827H10.4691L13.5 0Z" />
-                    </svg>
+                    <div key={`star ${title}_${i}`} className={i < rating ? css.filled : ""}>
+                        <SVGComponent.RatingStar />
+                    </div>
                 ))}
             </div>
         </div>

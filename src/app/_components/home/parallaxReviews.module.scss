@@ -113,11 +113,11 @@
                     min-width: 1.5rem;
                     fill: var(--color-black);
                     opacity: 0.5;
+                }
 
-                    &.filled {
-                        fill: var(--color-success);
-                        opacity: 1;
-                    }
+                .filled svg {
+                    fill: var(--color-success);
+                    opacity: 1;
                 }
             }
         }
