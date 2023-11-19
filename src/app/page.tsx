@@ -1,4 +1,4 @@
-import HeroSection from "./_components/HeroSection";
+import HeroSection from "./_components/home/section/HeroSection";
 import MainSection from "./_components/MainSection";
 import css from "./home.module.scss";
 
