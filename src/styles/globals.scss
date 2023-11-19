@@ -133,6 +133,8 @@ body {
     /* ////////////////////////////////////////////////////////////////////////// */
     --animation-delay: 0.5s;
     --animation-duration: 1s;
+    --animation-duration-medium: 0.5s;
+    --animation-duration-short: 0.2s;
     --animation-function-bezier: cubic-bezier(0.76, 0, 0.24, 1);
 
     --margin-top: calc(var(--height-header) * 2);
