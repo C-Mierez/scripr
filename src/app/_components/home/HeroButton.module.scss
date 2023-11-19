@@ -1,0 +1,41 @@
+@import "~/styles/mixins";
+
+.buttonContainer {
+    all: unset;
+    position: relative;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    .slider {
+        position: relative;
+
+        .face {
+            padding: 0.5em 0.75em;
+
+            font-size: var(--fs-1);
+            width: 100%;
+
+            background: var(--color-success);
+
+            p {
+                font-weight: var(--fw-medium);
+                text-align: center;
+                background: none;
+            }
+
+            &:nth-of-type(2) {
+                position: absolute;
+                top: 0;
+                left: 100%;
+
+                background: var(--color-black);
+
+                p {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+}

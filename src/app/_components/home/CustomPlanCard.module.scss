@@ -1,0 +1,153 @@
+@import "~/styles/mixins";
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background: var(--color-black);
+    opacity: 0.1;
+    margin-block: calc(var(--padding-element) * 0.25);
+}
+
+.customPlanCard {
+    --color: var(--color-white);
+    --background: var(--color-primary-500);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: min(100%, 25rem);
+    box-shadow: var(--box-shadow-small);
+
+    background: var(--color-white);
+
+    @include mobile {
+        min-height: var(--minSize);
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+
+        padding-inline: var(--padding-element);
+        padding-block: calc(var(--padding-element) * 0.25);
+
+        background: var(--background);
+
+        h2 {
+            @include font-header-tiny;
+            text-align: center;
+            color: var(--color);
+        }
+    }
+
+    .body {
+        position: relative;
+        width: 100%;
+
+        padding: var(--padding-element);
+        padding-top: calc(var(--padding-element) * 0.5);
+
+        @include mobile {
+            padding: calc(var(--padding-element) * 0.5);
+        }
+
+        & > * {
+            z-index: 0;
+        }
+
+        h1 {
+            @include font-subheader-tiny;
+            text-transform: uppercase;
+            color: var(--background);
+        }
+
+        .priceRow {
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+
+            padding-block: calc(var(--padding-element) * 0.25);
+
+            background: var(--color-white);
+            z-index: 1;
+
+            .dollar {
+                font-size: var(--fs-0);
+                font-weight: var(--fw-regular);
+                font-family: var(--font-body);
+            }
+
+            .price {
+                font-size: var(--fs-5);
+                font-weight: var(--fw-regular);
+                font-family: var(--font-body);
+                line-height: 0.75;
+
+                padding-right: 0.5rem;
+
+                @include mobile {
+                    font-size: var(--fs-8);
+                }
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+
+                flex: 1 1 auto;
+                width: 100%;
+
+                font-size: var(--fs--1);
+                font-weight: var(--fw-regular);
+                font-family: var(--font-body);
+                line-height: 1.5;
+
+                & > *:last-child {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        h3 {
+            @include font-small;
+            color: var(--color-black);
+            opacity: 0.5;
+        }
+    }
+
+    .footer {
+        margin-top: auto;
+        padding: var(--padding-element);
+        width: 100%;
+
+        button {
+            @include font-button;
+            font-weight: var(--fw-regular);
+
+            width: 100%;
+            padding-inline: var(--padding-element);
+            padding-block: calc(var(--padding-element) * 0.25);
+            border: none;
+
+            background: var(--background);
+            color: var(--color);
+
+            @include mobile {
+                font-size: var(--fs-1);
+            }
+
+            &:hover {
+                background: var(--color);
+                color: var(--background);
+            }
+        }
+    }
+}

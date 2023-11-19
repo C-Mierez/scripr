@@ -1,0 +1,36 @@
+/* --------------------------- Header Decorations --------------------------- */
+.headerDecorated {
+    --margin: -0.3em;
+    --width: 0.12em;
+    --height: calc(2 * var(--width));
+    --color: var(--color-black);
+
+    position: relative;
+}
+
+.headerDecorated::before {
+    position: absolute;
+    content: "";
+    top: calc(50% - var(--height) / 2);
+    left: var(--margin);
+
+    height: var(--height);
+    width: var(--width);
+    border-radius: 0 var(--width) var(--width) 0;
+
+    background: var(--color);
+}
+
+.headerDecorated::after {
+    position: absolute;
+    content: "";
+
+    top: calc(50% - var(--height) / 2);
+    right: var(--margin);
+
+    height: var(--height);
+    width: var(--width);
+    border-radius: var(--width) 0 0 var(--width);
+
+    background: var(--color);
+}
