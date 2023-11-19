@@ -159,13 +159,13 @@ body {
     --box-shadow-small: 0 calc(0.1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
     --margin-shadow-bottom: calc(2 * (var(--shadow-blur) + var(--shadow-spread)));
 
-    --width-main-responsive: min(var(--width-main-content), calc(100vw - 2 * var(--padding-side)));
-    --width-main-responsive-bigger: min(var(--width-main-content-bigger), calc(100vw - 2 * var(--padding-side)));
-    --width-container-medium: min(90%, 50rem);
-    --width-container-small: min(90%, 40rem);
-    --width-main-content: 1200px;
-    --width-main-content-bigger: 1450px;
-    --padding-main-content: calc((100vw - var(--width-main-content)) * 0.5);
+    --width-min: 85%;
+    --width-main-content: 75rem;
+    --width-main-content-bigger: 90rem;
+    --width-container-main: min(var(--width-min), var(--width-main-content));
+    --width-container-main-bigger: min(var(--width-min), var(--width-main-content-bigger));
+    --width-container-medium: min(var(--width-min), 50rem);
+    --width-container-small: min(var(--width-min), 40rem);
 
     /* ////////////////////////////////////////////////////////////////////////// */
     /*                                    Body                                    */
