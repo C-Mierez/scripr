@@ -1,0 +1,154 @@
+@import "~/styles/mixins";
+
+.valueSlider {
+    all: unset;
+    display: block;
+    margin-top: 0.75rem;
+
+    h4 {
+        @include font-small;
+        font-weight: var(--fw-bold);
+        text-transform: uppercase;
+        color: var(--color-success);
+    }
+
+    .labelRow {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.5ch;
+
+        @include font-small;
+        color: var(--color-black);
+
+        label {
+            opacity: 0.5;
+
+            span {
+                @include font-body;
+                font-weight: var(--fw-bold);
+
+                &.maxed {
+                    @include font-small;
+                    font-weight: var(--fw-bold);
+                }
+                opacity: 1;
+            }
+        }
+    }
+
+    input[type="range"] {
+        --height: 2rem;
+        --sliderHeight: 5px;
+        all: unset;
+        height: var(--height);
+        width: 100%;
+
+        margin-block: calc(var(--padding-element) * 0.25);
+        transition: 0.2s var(--animation-function-bezier);
+    }
+
+    input[type="range"]:focus {
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        all: unset;
+        transition: 0.2s var(--animation-function-bezier);
+        width: 100%;
+        height: var(--sliderHeight);
+
+        transition: 0.2s ease;
+        background: var(--color-success);
+        border-radius: 1px;
+        border: 0px solid #000000;
+
+        cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        transition: 0.2s var(--animation-function-bezier);
+        height: calc(var(--height) * 0.5);
+        width: calc(var(--height) * 0.5);
+
+        border: 2px solid var(--color-success);
+        border-radius: var(--height);
+        margin-top: calc(var(--height) * -0.187);
+
+        background: var(--color-white);
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+        transition: 0.2s var(--animation-function-bezier);
+        background: var(--color-success);
+    }
+    input[type="range"]::-moz-range-track {
+        transition: 0.2s var(--animation-function-bezier);
+        width: 100%;
+        height: var(--sliderHeight);
+
+        border-radius: 1px;
+
+        background: var(--color-success);
+        cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        transition: 0.2s var(--animation-function-bezier);
+        height: calc(var(--height) * 0.5);
+        width: calc(var(--height) * 0.5);
+
+        border: 2px solid var(--color-success);
+        border-radius: var(--height);
+
+        background: var(--color-white);
+        cursor: pointer;
+    }
+
+    input[type="range"]::-ms-track {
+        transition: 0.2s var(--animation-function-bezier);
+        width: 100%;
+        height: var(--sliderHeight);
+
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+
+        cursor: pointer;
+    }
+    input[type="range"]::-ms-fill-lower {
+        background: var(--color-success);
+        border: 0px solid #000000;
+        border-radius: 2px;
+        box-shadow: 0px 0px 0px #000000;
+    }
+    input[type="range"]::-ms-fill-upper {
+        background: var(--color-success);
+        border: 0px solid #000000;
+        border-radius: 2px;
+        box-shadow: 0px 0px 0px #000000;
+    }
+    input[type="range"]::-ms-thumb {
+        transition: 0.2s var(--animation-function-bezier);
+        margin-top: 1px;
+        box-shadow: 0px 0px 0px #000000;
+        border: 1px solid var(--color-success);
+        height: 18px;
+        width: 18px;
+        border-radius: var(--height);
+        background: var(--color-white);
+        cursor: pointer;
+    }
+    input[type="range"]:focus::-ms-fill-lower {
+        background: var(--color-success);
+    }
+    input[type="range"]:focus::-ms-fill-upper {
+        background: var(--color-success);
+    }
+
+    /* ------------------------- Animations and Effects ------------------------- */
+    input[type="range"]::-webkit-slider-thumb:hover,
+    input[type="range"]::-webkit-slider-thumb:active {
+        background-color: var(--color-primary-500);
+        scale: 1.3;
+    }
+}

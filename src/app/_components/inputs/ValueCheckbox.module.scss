@@ -1,0 +1,76 @@
+@import "~/styles/mixins";
+
+.valueCheckbox {
+    all: unset;
+    display: block;
+    margin-top: 0.75rem;
+
+    h4 {
+        @include font-small;
+        font-weight: var(--fw-bold);
+        text-transform: uppercase;
+        color: var(--color-success);
+    }
+
+    .labelRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1ch;
+
+        @include font-small;
+        color: var(--color-black);
+
+        label {
+            opacity: 0.5;
+        }
+
+        input[type="checkbox"] {
+            --size: var(--fs-0);
+            all: unset;
+            display: grid;
+            place-content: center;
+
+            width: var(--size);
+            height: var(--size);
+            aspect-ratio: 1;
+
+            border: 1px solid var(--color-primary-500);
+            background: var(--color-white);
+            transition: 0.2s var(--animation-function-bezier);
+
+            cursor: pointer;
+
+            &:hover {
+                translate: 0 -10%;
+                opacity: 0.75;
+            }
+
+            &::before {
+                content: "";
+                width: 0.65em;
+                height: 0.65em;
+
+                scale: 0;
+                transition: 0.2s var(--animation-function-bezier);
+
+                box-shadow: inset 1em 1em var(--color-success);
+                transform-origin: bottom left;
+                clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            }
+
+            &:checked {
+                border: 2px solid var(--color-success);
+
+                &::before {
+                    scale: 1;
+                }
+
+                &:hover {
+                    translate: 0 -10%;
+                    opacity: 0.75;
+                }
+            }
+        }
+    }
+}
