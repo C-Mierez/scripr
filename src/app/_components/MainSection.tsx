@@ -1,19 +1,14 @@
-"use client";
-
-import { useState } from "react";
-import { CSSVariables } from "~/utils/utils";
-
 import css from "../home.module.scss";
 import ContactForm from "./home/ContactForm";
 import ParallaxReviews from "./home/ParallaxReviews";
-import SVGComponent from "./svg/SVG";
-import IconComponent from "./svg/Icon";
-import SegwaySection from "./home/section/SegwaySection";
-import FeaturesSection from "./home/section/FeaturesSection";
-import StatsSection from "./home/section/StatsSection";
-import PricingSection from "./home/section/PricingSection";
 import ComparisonSection from "./home/section/ComparisonSection";
+import ContactSegwaySection from "./home/section/ContactSegwaySection";
 import FAQSection from "./home/section/FAQSection";
+import FeaturesSection from "./home/section/FeaturesSection";
+import PricingSection from "./home/section/PricingSection";
+import SegwaySection from "./home/section/SegwaySection";
+import StatsSection from "./home/section/StatsSection";
+import SVGComponent from "./svg/SVG";
 
 export default function MainSection() {
     return (
@@ -170,16 +165,5 @@ function Rating() {
                 </li>
             ))}
         </ul>
-    );
-}
-
-function ContactSegwaySection() {
-    return (
-        <>
-            <header className={css.contactSegway}>
-                <h1>Got any more questions?</h1>
-                <h2>Or perhaps you just want to say Hi?</h2>
-            </header>
-        </>
     );
 }

@@ -24,45 +24,6 @@ main.main {
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
-/*                               Contact Segway                               */
-/* ////////////////////////////////////////////////////////////////////////// */
-header.contactSegway {
-    position: sticky;
-    bottom: var(--sectionNegativeMarginBottom);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: var(--headerPadding);
-
-    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
-
-    box-shadow: var(--box-shadow-top);
-
-    margin-bottom: var(--sectionNegativeMarginBottom);
-
-    background: var(--color-primary-700);
-
-    z-index: 16;
-
-    h1 {
-        @include font-header-medium;
-        font-weight: var(--fw-bold);
-        margin-top: 15vh;
-        color: var(--color-white);
-    }
-
-    h2 {
-        @include font-subheader-medium;
-        margin-top: 1rem;
-        margin-bottom: 15vh;
-        color: var(--color-white);
-    }
-}
-
-/* ////////////////////////////////////////////////////////////////////////// */
 /*                               Contact Section                              */
 /* ////////////////////////////////////////////////////////////////////////// */
 header.contact {
