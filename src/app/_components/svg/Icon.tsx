@@ -30,8 +30,8 @@ function UnsupportedIcon() {
 /* ////////////////////////////////////////////////////////////////////////// */
 function ExpandDropdown() {
     return (
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M56 5.64L50.36 0L28 22.36L5.64 0L0 5.64L22.36 28L0 50.36L5.64 56L28 33.64L50.36 56L56 50.36L33.64 28L56 5.64Z" />
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.9884 0.390103L32.0122 0.390103V32.0119L0.390426 32.0119V39.9881L32.0122 39.9881V71.6099L39.9884 71.6099L39.9884 39.9881H71.6102V32.0119H39.9884L39.9884 0.390103Z" />
         </svg>
     );
 }
