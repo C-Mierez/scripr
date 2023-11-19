@@ -4,3 +4,5 @@ export const mediumDuration = 0.5;
 export const duration = 0.8;
 
 export const transition = { duration, bezierEase };
+
+export const layoutTransition = { duration: shortDuration, bezierEase };
