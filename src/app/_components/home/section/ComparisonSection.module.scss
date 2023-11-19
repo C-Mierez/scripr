@@ -150,7 +150,6 @@ section.comparison {
 
         & :nth-child(1) {
             grid-area: first;
-            padding-left: var(--padding-element);
 
             @include mobile {
                 padding-left: 0;
@@ -231,9 +230,12 @@ section.comparison {
             font-size: var(--fontSize);
             font-weight: var(--fw-light);
 
+            margin-left: var(--padding-element);
+
             @include mobile {
                 justify-content: center;
                 padding-block: calc(var(--padding-element) * 0.5);
+                margin-left: 0;
             }
         }
     }
