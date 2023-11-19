@@ -44,7 +44,7 @@
         width: 100%;
 
         margin-block: calc(var(--padding-element) * 0.25);
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
     }
 
     input[type="range"]:focus {
@@ -53,11 +53,11 @@
 
     input[type="range"]::-webkit-slider-runnable-track {
         all: unset;
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         width: 100%;
         height: var(--sliderHeight);
 
-        transition: 0.2s ease;
+        transition: var(--animation-duration-short) ease;
         background: var(--color-success);
         border-radius: 1px;
         border: 0px solid #000000;
@@ -65,7 +65,7 @@
         cursor: pointer;
     }
     input[type="range"]::-webkit-slider-thumb {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         height: calc(var(--height) * 0.5);
         width: calc(var(--height) * 0.5);
 
@@ -78,11 +78,11 @@
         cursor: pointer;
     }
     input[type="range"]:focus::-webkit-slider-runnable-track {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         background: var(--color-success);
     }
     input[type="range"]::-moz-range-track {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         width: 100%;
         height: var(--sliderHeight);
 
@@ -93,7 +93,7 @@
     }
 
     input[type="range"]::-moz-range-thumb {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         height: calc(var(--height) * 0.5);
         width: calc(var(--height) * 0.5);
 
@@ -105,7 +105,7 @@
     }
 
     input[type="range"]::-ms-track {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         width: 100%;
         height: var(--sliderHeight);
 
@@ -128,7 +128,7 @@
         box-shadow: 0px 0px 0px #000000;
     }
     input[type="range"]::-ms-thumb {
-        transition: 0.2s var(--animation-function-bezier);
+        transition: var(--animation-duration-short) var(--animation-function-bezier);
         margin-top: 1px;
         box-shadow: 0px 0px 0px #000000;
         border: 1px solid var(--color-success);
