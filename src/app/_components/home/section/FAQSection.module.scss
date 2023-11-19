@@ -1,0 +1,261 @@
+@import "~/styles/mixins";
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                 FAQ Section                                */
+/* ////////////////////////////////////////////////////////////////////////// */
+section.faq {
+    position: relative;
+    padding-block: var(--padding-section);
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+    box-shadow: var(--box-shadow-bottom);
+
+    background: var(--color-primary-50);
+
+    z-index: 18;
+
+    @include mobile {
+        padding-block: calc(var(--padding-section) * 0.5) var(--padding-section);
+    }
+
+    .stickyGrid {
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+
+        width: var(--width-container-main-bigger);
+
+        margin-inline: auto;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+            align-items: center;
+        }
+
+        header {
+            position: sticky;
+            top: var(--sticky-top-header);
+
+            @include mobile {
+                position: relative;
+                top: 0;
+                text-align: center;
+                margin-bottom: var(--padding-element);
+            }
+
+            h1 {
+                @include font-header-medium;
+                font-weight: var(--fw-bold);
+            }
+            h2 {
+                @include font-header-medium;
+                margin-top: var(--margin-top-header-small);
+            }
+        }
+
+        .cardContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                  FAQ Card                                  */
+/* ////////////////////////////////////////////////////////////////////////// */
+.faqCard {
+    padding: calc(var(--padding-element) * 0.5);
+    border-bottom: 1px solid var(--color-black);
+
+    overflow: hidden;
+
+    transition: scale var(--animation-duration-short) var(--animation-function-bezier),
+        box-shadow var(--animation-duration-short) var(--animation-function-bezier);
+
+    // z-index: 0;
+
+    @include mobile {
+        transition: scale none, box-shadow none;
+        &:hover {
+            box-shadow: unset;
+            scale: unset;
+            z-index: 100;
+        }
+
+        &.open:hover {
+            box-shadow: unset;
+            scale: unset;
+            z-index: 100;
+        }
+    }
+
+    &:nth-child(even) {
+        background-color: var(--color-primary-50);
+    }
+    &:nth-child(odd) {
+        background-color: var(--color-primary-100);
+    }
+
+    &:hover {
+        box-shadow: var(--box-shadow-small);
+        scale: 1.02;
+        z-index: 100;
+
+        @include mobile {
+            box-shadow: none;
+            scale: none;
+            z-index: 100;
+        }
+    }
+
+    &.open:hover {
+        box-shadow: none;
+        scale: 1;
+        z-index: 100;
+
+        @include mobile {
+            box-shadow: none;
+            scale: none;
+            z-index: 100;
+        }
+    }
+
+    .header {
+        --fontSize: var(--fs-1);
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--padding-element);
+
+        padding-block: var(--padding-element);
+        width: 100%;
+
+        cursor: pointer;
+
+        @include mobile {
+            gap: calc(var(--padding-element) * 0.5);
+            padding-block: calc(var(--padding-element) * 0.5);
+        }
+
+        .icon {
+            aspect-ratio: 1;
+            height: calc(var(--fontSize) * 0.85);
+            width: calc(var(--fontSize) * 0.85);
+
+            rotate: 0deg;
+
+            transition: rotate var(--animation-duration-short) var(--animation-function-bezier);
+
+            &.open {
+                rotate: 45deg;
+            }
+
+            svg {
+                aspect-ratio: 1;
+                height: 100%;
+                width: 100%;
+                fill: var(--color-black);
+                opacity: 0.25;
+            }
+        }
+
+        h3 {
+            font-size: var(--fontSize);
+            font-weight: var(--fw-light);
+            font-family: var(--font-body);
+        }
+    }
+
+    .answer {
+        padding-bottom: var(--padding-element);
+
+        overflow: hidden;
+
+        @include mobile {
+            padding-bottom: calc(var(--padding-element) * 0.5);
+        }
+
+        p {
+            @include font-body;
+            opacity: 0.75;
+            overflow: hidden;
+        }
+
+        &.open {
+            min-height: auto;
+        }
+    }
+}
+
+// .faqCard {
+//     background: var(--color-primary-100);
+
+//     margin-bottom: var(--padding-element);
+
+//     &:last-child {
+//         margin-bottom: 0;
+//     }
+//     .header {
+//         --fontSize: var(--fs-1);
+
+//         display: flex;
+//         flex-direction: row;
+//         align-items: center;
+//         justify-content: space-between;
+//         gap: var(--padding-element);
+
+//         padding: var(--padding-element);
+
+//         @include mobile {
+//             gap: calc(var(--padding-element) * 0.5);
+//             padding: calc(var(--padding-element) * 0.5);
+//         }
+
+//         .icon {
+//             rotate: 45deg;
+//             svg {
+//                 height: calc(var(--fontSize) * 0.75);
+//                 width: calc(var(--fontSize) * 0.75);
+//                 fill: var(--color-black);
+//                 opacity: 0.25;
+//             }
+//         }
+
+//         h3 {
+//             font-size: var(--fontSize);
+//             font-weight: var(--fw-light);
+//             font-family: var(--font-body);
+//         }
+//     }
+
+//     .answer {
+//         padding: var(--padding-element);
+//         padding-top: 0;
+
+//         min-height: 0;
+
+//         overflow: hidden;
+
+//         transition: min-height 0.3s var(--animation-function-bezier);
+
+//         @include mobile {
+//             padding: calc(var(--padding-element) * 0.5);
+//             padding-top: 0;
+//         }
+
+//         p {
+//             @include font-body;
+//             opacity: 0.75;
+//         }
+
+//         &.open {
+//             min-height: auto;
+//         }
+//     }
+// }
