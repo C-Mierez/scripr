@@ -1,0 +1,214 @@
+@import "~/styles/mixins";
+
+.heroWrapper {
+    position: relative;
+    z-index: 0;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Hero Section                                */
+/* ////////////////////////////////////////////////////////////////////////// */
+.heroScrollSpacer {
+    height: 100lvh;
+    width: 100%;
+
+    margin-bottom: -100lvh;
+}
+
+section.hero {
+    position: sticky;
+    top: 0;
+
+    height: 100lvh; // Assume the margin between sections will create enough spacing between to avoid bad looks on mobile
+    width: 100%;
+
+    .outerBackground {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background-color: var(--color-primary-700);
+
+        z-index: -1;
+    }
+
+    .innerCard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+        width: 100%;
+
+        border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+
+        // background-color: var(--color-primary-50);
+
+        overflow: hidden;
+
+        .gridBackgroundWrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            height: 100%;
+            width: 100%;
+
+            z-index: -1;
+
+            background-color: var(--color-primary-50);
+
+            .gridBackground {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+
+                height: 100%;
+                width: 100%;
+
+                background: url("~/public/perspectiveGrid.svg") center / 100% 100% no-repeat;
+
+                opacity: 0.4;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                height: 70%;
+                width: 100%;
+
+                background: linear-gradient(180deg, #e6e9ef00 20%, #e6e9efff 100%);
+                // background: linear-gradient(180deg, #e6e9ef00, #e6e9efff 40%, #e6e9efff 70%, #e6e9ef00 100%);
+            }
+        }
+
+        .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding-block: 1.5rem;
+
+            .logo svg {
+                height: 2.5rem;
+                fill: var(--color-black);
+
+                @include mobile {
+                    height: 1.5rem;
+                }
+            }
+
+            .name {
+                text-align: center;
+                font-weight: var(--fw-bold);
+                font-family: var(--font-brand);
+                font-size: var(--fs-0);
+                line-height: 1;
+
+                text-transform: uppercase;
+
+                color: var(--color-black);
+                opacity: 0.5;
+
+                @include mobile {
+                    font-size: var(--fs--1);
+                }
+            }
+        }
+
+        .slogan {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 18lvh;
+
+            @include mobile {
+                margin-top: 10lvh;
+            }
+
+            h1 {
+                text-align: center;
+                text-transform: uppercase;
+
+                font-size: var(--fs-8);
+                font-weight: var(--fw-bold);
+                font-family: var(--font-header-alt-700);
+
+                span {
+                    font-family: var(--font-brand-alt);
+                }
+
+                @include mobile {
+                    font-size: var(--fs-6);
+                }
+            }
+
+            h2 {
+                text-align: center;
+                font-size: var(--fs-3);
+                font-weight: var(--fw-medium);
+                font-family: var(--font-body);
+
+                @include mobile {
+                    font-size: var(--fs-1);
+                }
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: -50%;
+                left: 0;
+
+                height: 200%;
+                width: 100%;
+
+                background: linear-gradient(180deg, #e6e9ef00 0%, #e6e9efff 50%, #e6e9efff 60%, #e6e9ef00 100%);
+
+                z-index: -1;
+
+                @include mobile {
+                    background: linear-gradient(180deg, #e6e9ef00 0%, #e6e9efff 50%, #e6e9ef00 100%);
+                }
+            }
+        }
+
+        .cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: auto;
+            margin-bottom: 15lvh;
+
+            .description {
+                margin-top: 1.5rem;
+
+                p {
+                    font-size: var(--fs-0);
+                    font-weight: var(--fw-regular);
+                    font-family: var(--font-body);
+                    line-height: var(--font-line-height-body);
+
+                    text-align: center;
+                    opacity: 0.5;
+
+                    @include mobile {
+                        font-size: var(--fs--1);
+                    }
+                }
+            }
+        }
+    }
+}
