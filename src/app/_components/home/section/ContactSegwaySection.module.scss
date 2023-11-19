@@ -13,12 +13,10 @@ header.contactSegway {
     justify-content: center;
 
     padding: var(--headerPadding);
+    margin-bottom: var(--sectionNegativeMarginBottom);
 
     border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
-
     box-shadow: var(--box-shadow-top);
-
-    margin-bottom: var(--sectionNegativeMarginBottom);
 
     background: var(--color-primary-700);
 
@@ -29,6 +27,9 @@ header.contactSegway {
         font-weight: var(--fw-bold);
         margin-top: 15vh;
         color: var(--color-white);
+        text-align: center;
+
+        width: var(--width-container-main-bigger);
     }
 
     h2 {
@@ -36,5 +37,8 @@ header.contactSegway {
         margin-top: 1rem;
         margin-bottom: 15vh;
         color: var(--color-white);
+        text-align: center;
+
+        width: var(--width-container-main-bigger);
     }
 }
