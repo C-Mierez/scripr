@@ -1,4 +1,5 @@
 import css from "../home.module.scss";
+import sharedCss from "../_components/home/shared.module.scss";
 import ContactForm from "./home/ContactForm";
 import ParallaxReviews from "./home/ParallaxReviews";
 import ComparisonSection from "./home/section/ComparisonSection";
@@ -9,6 +10,7 @@ import PricingSection from "./home/section/PricingSection";
 import SegwaySection from "./home/section/SegwaySection";
 import StatsSection from "./home/section/StatsSection";
 import SVGComponent from "./svg/SVG";
+import ContactSection from "./home/section/ContactSection";
 
 export default function MainSection() {
     return (
@@ -20,7 +22,7 @@ export default function MainSection() {
             <ComparisonSection />
             <FAQSection />
             <ContactSegwaySection />
-            {/* <ContactSection /> */}
+            <ContactSection />
             {/* <AboutSection /> */}
             {/* <EndSection /> */}
             {/* <Footer /> */}
@@ -109,61 +111,5 @@ function AboutSection() {
                 </h1>
             </section>
         </>
-    );
-}
-
-function ContactSection() {
-    return (
-        <>
-            <header className={css.contact}>
-                <h1 className={sharedCss.headerDecorated}>Reach Out</h1>
-                <p>We would love to hear from you.</p>
-            </header>
-            <section className={css.contact}>
-                <ContactForm />
-                <div className={css.rowMain}>
-                    <div className={css.callout}>
-                        <h1>We are always looking to improve our service.</h1>
-                        <p>If you have any suggestions, feedback or questions, please do not hesitate to send us a message!</p>
-                    </div>
-                    <div className={css.rate}>
-                        <h2>Feel free to rate us</h2>
-                        <Rating />
-                    </div>
-                </div>
-                <div className={css.rowSmall}>
-                    <p>Come on. We swear we don't bite.</p>
-                    <ul className={css.socials}>
-                        <li>
-                            <SVGComponent.GitHubLogo />
-                        </li>
-                        <li>
-                            <SVGComponent.XLogo />
-                        </li>
-                    </ul>
-                </div>
-                <div className={css.reviewSegway}>
-                    <h1>Still not sure?</h1>
-                    <p>See what other users think about us</p>
-                </div>
-                <ParallaxReviews />
-                <div className={css.endLogo}>
-                    <SVGComponent.ScriprLogo />
-                </div>
-            </section>
-            <div className={css.parallaxSection}></div>
-        </>
-    );
-}
-
-function Rating() {
-    return (
-        <ul className={css.rating}>
-            {[...Array(5)].map((_, index) => (
-                <li key={`rating_${index}`}>
-                    <SVGComponent.RatingStar />
-                </li>
-            ))}
-        </ul>
     );
 }

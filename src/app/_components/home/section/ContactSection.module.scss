@@ -1,0 +1,93 @@
+@import "~/styles/mixins";
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                               Contact Section                              */
+/* ////////////////////////////////////////////////////////////////////////// */
+header.contact {
+    position: sticky;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: var(--headerPadding);
+
+    background: var(--color-primary-50);
+
+    z-index: 14;
+
+    h1 {
+        @include font-header;
+        word-break: keep-all;
+        white-space: nowrap;
+
+        @include mobile {
+            font-size: var(--fs-5);
+        }
+    }
+
+    p {
+        @include font-subheader-medium;
+
+        text-align: center;
+
+        max-width: var(--width-container-medium);
+
+        margin-top: var(--margin-top-subheader);
+    }
+}
+
+section.contact {
+    position: relative;
+
+    width: 100%;
+
+    background: var(--color-primary-50);
+
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
+
+    z-index: 14;
+
+    .reviewSegway {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 70lvh;
+        width: 100%;
+
+        h1 {
+            @include font-header-medium;
+            font-weight: var(--fw-bold);
+        }
+
+        p {
+            @include font-subheader;
+            margin-top: 1rem;
+        }
+    }
+
+    .endLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: var(--padding-section);
+        svg {
+            height: 3.5rem;
+            width: 3.5rem;
+            fill: var(--color-black);
+        }
+    }
+}
+
+.parallaxSection {
+    // border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    // margin-bottom: var(--sectionNegativeMarginBottom);
+    z-index: 14;
+}
