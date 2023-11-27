@@ -23,9 +23,9 @@ export default function MainSection() {
             <FAQSection />
             <ContactSegwaySection />
             <ContactSection />
-            {/* <AboutSection /> */}
-            {/* <EndSection /> */}
-            {/* <Footer /> */}
+            <AboutSection />
+            <EndSection />
+            <Footer /> 
         </div>
     );
 }
