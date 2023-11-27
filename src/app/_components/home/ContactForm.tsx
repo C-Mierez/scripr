@@ -1,7 +1,7 @@
 "use client";
 
 import { CSSVariables } from "~/utils/utils";
-import css from "./ContactForm.module.scss";
+import css from "./contactForm.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
