@@ -14,7 +14,7 @@ export default function ContactForm() {
                 <TextField label={"Email"} description="You can reach me at" required={true} />
                 <TextField label={"Phone"} description="or at" required={false} />
                 <TextArea label={"Your Message"} description="" required={true} />
-                <RatingField label={"Stars"} description="I would also like to leave a rating of" required={true} />
+                <RatingField label={"Stars"} description="I would like to leave a rating of" required={true} />
                 <button className={css.submit}>Submit</button>
             </div>
         </form>
@@ -26,15 +26,17 @@ export function TextField(props: { label: string; description: string; required:
         <div className={css.fieldRow}>
             <p>{props.description}</p>
             <div className={css.textfield}>
-                <input type="text" required={props.required} placeholder={`${props.label}${props.required ? "*" : ""}`} />
+                <input
+                    type="text"
+                    required={props.required}
+                    placeholder={`${props.label}${props.required ? "*" : ""}`}
+                />
             </div>
         </div>
     );
 }
 
 export function TextArea(props: { label: string; description: string; required: boolean }) {
-    // const [value, setValue] = useState("");
-
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -59,9 +61,23 @@ function RatingField(props: { label: string; description: string; required: bool
     return (
         <div className={css.fieldRow}>
             <p>{props.description}</p>
-            {Array.from({ length: 5 }).map((_, i) => (
-                <input type="radio" name={`rating${props.label}`} className={CSSVariables(css.ratingField)} />
-            ))}
+            <div className={css.ratingRow}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                    <>
+                        <input
+                            type="radio"
+                            id={`star${i}`}
+                            name={`rating${props.label}`}
+                            onChange={(e) => {
+                                e.preventDefault();
+                            }}
+                            className={CSSVariables(css.ratingField)}
+                        />
+                        <label htmlFor={`star${i}`} />
+                    </>
+                ))}
+            </div>
+            <p>&nbsp;stars.</p>
         </div>
     );
 }

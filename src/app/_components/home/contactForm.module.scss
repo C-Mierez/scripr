@@ -71,6 +71,12 @@ form.contactForm {
 
         width: max-content;
         white-space: nowrap;
+
+        &:last-child {
+            @include mobile {
+                display: none;
+            }
+        }
     }
 }
 
@@ -87,6 +93,7 @@ form.contactForm {
 .textarea {
     display: grid;
     position: relative;
+    margin-left: 0;
     --size: calc((var(--fontSize) + var(--innerPadding) * 2));
     // height: var(--size);
 
@@ -123,7 +130,8 @@ form.contactForm {
     line-height: var(--font-line-height-header);
 
     transition: background-color var(--animation-duration-short) var(--animation-function-bezier),
-        color var(--animation-duration-short) var(--animation-function-bezier), padding-left var(--animation-duration-short) var(--animation-function-bezier),
+        color var(--animation-duration-short) var(--animation-function-bezier),
+        padding-left var(--animation-duration-short) var(--animation-function-bezier),
         height var(--animation-duration-short) var(--animation-function-bezier);
 }
 
@@ -145,7 +153,8 @@ form.contactForm {
     font-weight: var(--fw-regular);
 
     transition: background-color var(--animation-duration-short) var(--animation-function-bezier),
-        color var(--animation-duration-short) var(--animation-function-bezier), padding-left var(--animation-duration-short) var(--animation-function-bezier),
+        color var(--animation-duration-short) var(--animation-function-bezier),
+        padding-left var(--animation-duration-short) var(--animation-function-bezier),
         height var(--animation-duration-short) var(--animation-function-bezier);
 }
 
@@ -180,17 +189,119 @@ form.contactForm {
 }
 
 .ratingField {
+    height: var(--fontSize);
+}
+
+.ratingRow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 1rem;
+
+    margin-left: var(--left);
+
+    border: none;
+    border-bottom: 2px solid var(--color-success);
     width: 100%;
-    height: calc(var(--fontSize));
+
+    @include mobile {
+        margin-left: 0;
+    }
+}
+
+.ratingRow:not(:checked) > input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+.ratingRow:checked > input {
+    visibility: visible;
+}
+
+.ratingRow:not(:checked) > label {
+    position: relative;
+    // float: right;
+    // width: 1em;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+    font-size: var(--fontSize);
+
+    color: var(--color-black);
+    opacity: 0.1;
+
+    cursor: pointer;
+}
+
+.ratingRow:not(:checked) > label:before {
+    content: "★";
+    height: calc(var(--fontSize) * 1.5);
+    width: calc(var(--fontSize) * 1.5);
+    font-size: calc(var(--fontSize) * 1.5);
+    // line-height: 1;
+}
+.ratingRow > input:checked ~ label {
+    color: var(--color-success);
+    opacity: 1;
+}
+.ratingRow:not(:checked) > label:hover,
+.ratingRow:not(:checked) > label:hover ~ label {
+    color: var(--color-success);
+    opacity: 1;
+}
+.ratingRow > input:checked + label:hover,
+.ratingRow > input:checked + label:hover ~ label,
+.ratingRow > input:checked ~ label:hover,
+.ratingRow > input:checked ~ label:hover ~ label,
+.ratingRow > label:hover ~ input:checked ~ label {
+    color: var(--color-success);
+    opacity: 1;
+    filter: brightness(1.1);
 }
 
 .submit {
+    position: relative;
+
+    padding: 0.5rem;
+    margin-block: 2rem;
+
     border: none;
     border-bottom: 2px solid var(--color-success);
-    padding: 0.5rem;
     background: none;
 
     font-family: var(--font-body);
     font-size: var(--fs-3);
     color: var(--color-success);
+
+    transition: color var(--animation-duration-short) var(--animation-function-bezier);
+
+    overflow: hidden;
+
+    @include mobile {
+        font-size: var(--fs-2);
+    }
+}
+
+.submit::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-success);
+
+    transition: top var(--animation-duration-short) var(--animation-function-bezier);
+
+    z-index: -1;
+}
+
+.submit:hover {
+    color: var(--color-white);
+}
+
+.submit:hover::before {
+    top: 0;
 }
