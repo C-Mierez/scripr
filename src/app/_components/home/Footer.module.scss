@@ -1,0 +1,43 @@
+@import "~/styles/mixins";
+
+footer.footer {
+    position: sticky;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-block: calc(var(--padding-section) * 0.5) var(--padding-element);
+
+    z-index: 9;
+
+    background: linear-gradient(var(--color-primary-700), var(--color-primary-800));
+    color: var(--color-white);
+
+    .brand {
+        svg {
+            height: 18lvh;
+        }
+        padding-bottom: calc(var(--padding-element) * 0.5);
+    }
+
+    .separator {
+        height: 1px;
+        width: var(--width-container-main-bigger);
+
+        background: var(--color-accent-500);
+        opacity: 0.5;
+    }
+
+    .legals {
+        p {
+            @include font-tiny;
+
+            padding-top: calc(var(--padding-element) * 0.5);
+            color: var(--color-accent-500);
+            opacity: 0.5;
+        }
+    }
+}
