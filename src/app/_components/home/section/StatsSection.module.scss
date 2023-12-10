@@ -16,7 +16,7 @@ section.stats {
     align-items: center;
     justify-content: flex-end;
 
-    min-height: calc(150dvh + var(--sectionNegativeMarginBottom) * -1);
+    min-height: calc(150lvh + var(--sectionNegativeMarginBottom) * -1);
     width: 100%;
 
     border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
@@ -34,7 +34,7 @@ section.stats {
         align-items: center;
         justify-content: center;
 
-        min-height: 100dvh;
+        min-height: 100lvh;
         width: 100%;
 
         .clients {
