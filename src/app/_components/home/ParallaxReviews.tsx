@@ -1,75 +1,13 @@
 "use client";
-
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import css from "./parallaxReviews.module.scss";
 import useDimensions from "~/hooks/useDimensions";
-import { useScroll, useTransform, motion } from "framer-motion";
+
 import SVGComponent from "../svg/SVG";
+import css from "./parallaxReviews.module.scss";
+import { Content } from "~/utils/data";
 
 export default function ParallaxReviews() {
-    const reviews: ReviewData[] = [
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Affordable",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-        {
-            title: "Great service!",
-            review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
-            rating: 5,
-        },
-    ];
-
     const parallaxRef = useRef(null);
 
     const { height } = useDimensions();
@@ -87,7 +25,7 @@ export default function ParallaxReviews() {
         <section ref={parallaxRef} className={css.parallaxReviews}>
             {Array.from({ length: 4 }, (_, i) => (
                 <motion.div key={i} className={css.column} style={{ y: yValues[i] }}>
-                    {reviews.map((review, i) => (
+                    {Content.Reviews.ReviewCardData.map((review, i) => (
                         <ReviewCard key={i} {...review} />
                     ))}
                 </motion.div>
@@ -96,7 +34,7 @@ export default function ParallaxReviews() {
     );
 }
 
-type ReviewData = {
+export type ReviewData = {
     title: string;
     review: string;
     rating: number;

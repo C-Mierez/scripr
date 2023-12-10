@@ -61,6 +61,14 @@
 
         z-index: 1;
 
+        &:nth-child(2),
+        &:nth-child(4),
+        &:nth-child(3) {
+            @include mobile {
+                display: none;
+            }
+        }
+
         .reviewCard {
             position: relative;
             width: 100%;
