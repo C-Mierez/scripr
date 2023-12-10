@@ -1,4 +1,5 @@
 import { FAQCardData } from "~/app/_components/home/FAQCard";
+import { ReviewData } from "~/app/_components/home/ParallaxReviews";
 import { TableGroupData } from "~/app/_components/home/section/ComparisonSection";
 import { FeatureData } from "~/app/_components/home/section/FeaturesSection";
 import { PlanCardData } from "~/app/_components/home/section/PricingSection";
@@ -10,7 +11,10 @@ export const LandingHeaderContentMobile = "Developer Auditor Developer Auditor D
 export const Content = {
     Features: {
         FeatureData: [
-            { title: "Track", description: "Follow the state of all your open positions with live and manual price tracking." },
+            {
+                title: "Track",
+                description: "Follow the state of all your open positions with live and manual price tracking.",
+            },
             { title: "Organize", description: "Keep every kind of asset or operation in its place, as your see fit." },
             { title: "Link", description: "Connect operations, investments, expenses and income to each other." },
             { title: "Analyze", description: "Exploit your data to make better decisions and improve your finances." },
@@ -123,5 +127,69 @@ export const Content = {
                 answer: "Yes, you can cancel your subscription at any time. You will still have access to your account until the end of your billing period.",
             },
         ] as FAQCardData[],
+    },
+    Reviews: {
+        ReviewCardData: [
+            {
+                title: "Mediocre at best",
+                review: "Not impressed with Scripr's limited capabilities. The promised linking between records is cumbersome, and the app lacks depth for serious investors. Needs major enhancements.",
+                rating: 3,
+            },
+            {
+                title: "My savior!",
+                review: "Scripr rescued my finances! Its seamless tracking and budgeting features turned chaos into clarity. A must for savvy investors.",
+                rating: 5,
+            },
+            {
+                title: "User-Friendly Marvel",
+                review: "As a finance newbie, Scripr made tracking investments a breeze. The intuitive interface and excellent support demystified the financial world for me.",
+                rating: 5,
+            },
+            {
+                title: "Affordability Master",
+                review: "Scripr keeps my budget in check without breaking the bank. Affordable plans and priceless peace of mind. A few glitches, but nothing major.",
+                rating: 4,
+            },
+            {
+                title: "Confusing linking",
+                review: "Linking transactions felt like a maze. Scripr needs a simpler process. Customer support was responsive, but the confusion overshadowed the experience.",
+                rating: 2,
+            },
+            {
+                title: "Investor's Haven",
+                review: "Scripr is a financial haven! Tracking investments seamlessly with linked records is a game-changer. Support is top-notch. Worth every penny.",
+                rating: 5,
+            },
+            {
+                title: "Cloudy connectivity",
+                review: "Scripr's cloud sync sometimes lags. A hiccup for a globetrotter like me. Sorting it out with support, but the occasional lag is a dampener.",
+                rating: 3,
+            },
+            {
+                title: "Budget bliss",
+                review: "Scripr revolutionized my budgeting game. Connecting expenses and investments flawlessly. The pricing is reasonable, and the support is golden.",
+                rating: 5,
+            },
+            {
+                title: "Crypto saviour!",
+                review: "Scripr handles crypto transactions like a pro! A paradise for crypto enthusiasts. The ability to link crypto and traditional investments is a genius move.",
+                rating: 5,
+            },
+            {
+                title: "Help needed",
+                review: "Scripr overwhelmed me. Maybe too many features for a financial novice like me. Support tried, but I still feel lost in the app's complexities.",
+                rating: 2,
+            },
+            {
+                title: "Savings champ!",
+                review: "Scripr turned me into a savings champion! The expense tracking is meticulous, and the investment insights are a goldmine. A financial ally worth every star.",
+                rating: 4,
+            },
+            {
+                title: "Great service!",
+                review: "I had a great experience with this company. They were very professional and did an excellent job. I highly recommend them!",
+                rating: 5,
+            },
+        ] as ReviewData[],
     },
 };
