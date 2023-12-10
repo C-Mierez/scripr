@@ -18,24 +18,13 @@ export default function ContactSection() {
                     <h1>Still not sure?</h1>
                     <p>See what other users think about us</p>
                 </div>
+
                 <ParallaxReviews />
+
                 <div className={css.endLogo}>
                     <SVGComponent.ScriprLogo />
                 </div>
             </section>
-            <div className={css.parallaxSection}></div>
         </>
-    );
-}
-
-function Rating() {
-    return (
-        <ul className={css.rating}>
-            {[...Array(5)].map((_, index) => (
-                <li key={`rating_${index}`}>
-                    <SVGComponent.RatingStar />
-                </li>
-            ))}
-        </ul>
     );
 }

@@ -63,11 +63,13 @@ section.contact {
         h1 {
             @include font-header-medium;
             font-weight: var(--fw-bold);
+            text-align: center;
         }
 
         p {
             @include font-subheader;
             margin-top: 1rem;
+            text-align: center;
         }
     }
 
@@ -86,8 +88,5 @@ section.contact {
 }
 
 .parallaxSection {
-    // border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
-
-    // margin-bottom: var(--sectionNegativeMarginBottom);
     z-index: 14;
 }
