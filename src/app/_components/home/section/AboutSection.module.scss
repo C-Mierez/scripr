@@ -1,0 +1,159 @@
+@import "~/styles/mixins";
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                About Section                               */
+/* ////////////////////////////////////////////////////////////////////////// */
+header.about {
+    position: sticky;
+    bottom: 0;
+
+    z-index: 13;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: var(--headerPadding);
+
+    background: var(--color-primary-700);
+    color: var(--color-white);
+
+    &::before {
+        content: "";
+        padding-top: var(--padding-section);
+    }
+
+    h1 {
+        @include font-header;
+    }
+
+    p {
+        @include font-subheader-medium;
+        font-weight: var(--fw-light);
+
+        text-align: center;
+
+        max-width: var(--width-container-medium);
+
+        margin-top: var(--margin-top-subheader);
+    }
+}
+
+section.about {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10vh;
+
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+
+    margin-bottom: var(--sectionNegativeMarginBottom);
+
+    padding-bottom: var(--padding-section);
+
+    background: var(--color-primary-700);
+    color: var(--color-white);
+
+    z-index: 13;
+
+    .timelineGrid {
+        display: grid;
+        grid-template-columns: 8fr 1fr 8fr;
+        grid-template-rows: 1fr;
+        align-items: start;
+        justify-items: center;
+
+        width: var(--width-container-main-bigger);
+        margin-inline: auto;
+
+        @include mobile {
+            grid-template-columns: 0px 3px 1fr;
+        }
+
+        .timeline {
+            width: min(90%, 3px);
+            height: 100%;
+            background-color: var(--color-white);
+        }
+
+        .timelineContent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: calc(var(--padding-element) * 4);
+
+            padding-block: calc(var(--padding-element) * 4);
+            padding-left: calc(var(--padding-element) * 2);
+
+            @include mobile {
+                padding-left: calc(var(--padding-element));
+                padding-block: calc(var(--padding-element));
+            }
+        }
+    }
+
+    .textScroller {
+        padding-block: var(--padding-element);
+        padding-inline: var(--padding-element);
+        margin-block: var(--padding-element);
+
+        background: var(--color-primary-600);
+
+        @include mobile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding-inline: 0;
+        }
+
+        h3 {
+            @include font-header;
+            font-size: var(--fs-8);
+
+            @include mobile {
+                font-size: var(--fs-5);
+            }
+        }
+    }
+
+    h1 {
+        position: relative;
+        @include font-header-medium;
+        margin-block: var(--padding-section);
+        max-width: var(--width-container-small);
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    h2 {
+        position: relative;
+        @include font-subheader-medium;
+        font-weight: var(--fw-light);
+
+        text-align: center;
+
+        max-width: var(--width-container-small);
+
+        margin-top: var(--margin-top-subheader);
+    }
+
+    p {
+        @include font-body;
+        font-weight: var(--fw-light);
+        text-align: start;
+    }
+
+    .progressBar {
+        position: absolute;
+        bottom: -0.75em;
+        left: 35%;
+
+        width: 30%;
+        height: 3px;
+
+        background: var(--color-white);
+    }
+}
