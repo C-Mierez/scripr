@@ -4,6 +4,7 @@ import { CSSVariables } from "~/utils/utils";
 import css from "./contactForm.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import React from "react";
 
 export default function ContactForm() {
     return (
@@ -63,7 +64,7 @@ function RatingField(props: { label: string; description: string; required: bool
             <p>{props.description}</p>
             <div className={css.ratingRow}>
                 {Array.from({ length: 5 }).map((_, i) => (
-                    <>
+                    <React.Fragment key={`rating${i}`}>
                         <input
                             type="radio"
                             id={`star${i}`}
@@ -74,7 +75,7 @@ function RatingField(props: { label: string; description: string; required: bool
                             className={CSSVariables(css.ratingField)}
                         />
                         <label htmlFor={`star${i}`} />
-                    </>
+                    </React.Fragment>
                 ))}
             </div>
             <p>&nbsp;stars.</p>
