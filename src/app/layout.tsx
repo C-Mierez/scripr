@@ -4,6 +4,7 @@ import { Playfair_Display, Cinzel, Roboto_Serif, Playfair_Display_SC, Cinzel_Dec
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import Header from "./_components/header/Header";
 
 const roboto = Roboto_Serif({
     subsets: ["latin"],
@@ -26,8 +27,16 @@ const cinzelDecorative = Cinzel_Decorative({
     variable: "--font-cinzel-decorative",
 });
 
-const playfair_Display_SC_400 = Playfair_Display_SC({ weight: "400", subsets: ["latin"], variable: "--font-playfair_display_SC_400" });
-const playfair_Display_SC_700 = Playfair_Display_SC({ weight: "700", subsets: ["latin"], variable: "--font-playfair_display_SC_700" });
+const playfair_Display_SC_400 = Playfair_Display_SC({
+    weight: "400",
+    subsets: ["latin"],
+    variable: "--font-playfair_display_SC_400",
+});
+const playfair_Display_SC_700 = Playfair_Display_SC({
+    weight: "700",
+    subsets: ["latin"],
+    variable: "--font-playfair_display_SC_700",
+});
 
 export const metadata = {
     title: "Scripr",
@@ -41,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body
                 className={`${playfair_Display.variable} ${playfair_Display_SC_400.variable} ${playfair_Display_SC_700.variable} ${cinzel.variable} ${roboto.variable} ${cinzelDecorative.variable} `}
             >
+                <Header />
                 <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
             </body>
         </html>

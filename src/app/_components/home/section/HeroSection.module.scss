@@ -87,41 +87,6 @@ section.hero {
             }
         }
 
-        .branding {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            padding-block: 1.5rem;
-
-            .logo svg {
-                height: 2.5rem;
-                fill: var(--color-black);
-
-                @include mobile {
-                    height: 1.5rem;
-                }
-            }
-
-            .name {
-                text-align: center;
-                font-weight: var(--fw-bold);
-                font-family: var(--font-brand);
-                font-size: var(--fs-0);
-                line-height: 1;
-
-                text-transform: uppercase;
-
-                color: var(--color-black);
-                opacity: 0.5;
-
-                @include mobile {
-                    font-size: var(--fs--1);
-                }
-            }
-        }
-
         .slogan {
             position: relative;
 

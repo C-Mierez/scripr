@@ -1,3 +1,5 @@
+@import "~/styles/mixins";
+
 * {
     padding: 0;
     margin: 0;
@@ -58,7 +60,12 @@ html {
     --color-shadow: #08090c23;
 
     /* -------------------------------- Gradients ------------------------------- */
-    --gradient-normal: linear-gradient(130deg, var(--color-background), var(--color-primary-700), var(--color-accent-300));
+    --gradient-normal: linear-gradient(
+        130deg,
+        var(--color-background),
+        var(--color-primary-700),
+        var(--color-accent-300)
+    );
 
     --gradient-light: linear-gradient(130deg, var(--color-primary-700), var(--color-accent-300));
 
@@ -156,18 +163,27 @@ body {
 
     --shadow-blur: 1rem;
     --shadow-spread: 0.1rem;
-    --box-shadow-top: 0 calc(-1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
-    --box-shadow-bottom: 0 calc(var(--shadow-blur) + var(--shadow-spread)) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
-    --box-shadow-small: 0 calc(0.1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    --box-shadow-top: 0 calc(-1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur) var(--shadow-spread)
+        var(--color-shadow);
+    --box-shadow-bottom: 0 calc(var(--shadow-blur) + var(--shadow-spread)) var(--shadow-blur) var(--shadow-spread)
+        var(--color-shadow);
+    --box-shadow-small: 0 calc(0.1 * (var(--shadow-blur) + var(--shadow-spread))) var(--shadow-blur)
+        var(--shadow-spread) var(--color-shadow);
     --margin-shadow-bottom: calc(2 * (var(--shadow-blur) + var(--shadow-spread)));
 
     --width-min: 85%;
     --width-main-content: 75rem;
     --width-main-content-bigger: 90rem;
+    --width-header: calc(var(--width-main-content-bigger) + 2 * var(--border-radius-main));
     --width-container-main: min(var(--width-min), var(--width-main-content));
     --width-container-main-bigger: min(var(--width-min), var(--width-main-content-bigger));
+    --width-container-header: min(100%, var(--width-header));
     --width-container-medium: min(var(--width-min), 50rem);
     --width-container-small: min(var(--width-min), 40rem);
+
+    @include mobile {
+        --border-radius-main: 3lvh;
+    }
 
     /* ////////////////////////////////////////////////////////////////////////// */
     /*                                    Body                                    */
@@ -176,8 +192,8 @@ body {
     background: var(--color-background);
     color: var(--color-text);
 
-    font-family: var(--font-body), Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
+    font-family: var(--font-body), Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+        Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
     overflow-x: hidden;
 }
