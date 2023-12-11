@@ -45,6 +45,9 @@ export default function Header() {
                         <li>
                             <a href="#">About</a>
                         </li>
+                        <li>
+                            <a href="#">Get Started</a>
+                        </li>
                     </ul>
                     <div className={css.foot}>
                         <p>{"hello@scripr.com"}</p>
