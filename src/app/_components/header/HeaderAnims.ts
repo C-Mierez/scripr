@@ -1,5 +1,5 @@
 import { Variants } from "framer-motion";
-import { delay, transition } from "~/utils/animations";
+import { staggerDelay, transition } from "~/utils/animations";
 
 export const menuHeightVariants: Variants = {
     initial: {
@@ -9,24 +9,22 @@ export const menuHeightVariants: Variants = {
         height: "auto",
         transition,
     },
-    exit: {
+    exit: ({ length }) => ({
         height: 0,
-        transition,
-    },
+        transition: { ...transition, delay: staggerDelay * length },
+    }),
 };
-
-export type VariantDelayParams = { index: number; length: number };
 
 export const menuNavLinksVariants: Variants = {
     initial: {
         translateY: "100%",
     },
-    enter: ({ index, length }: VariantDelayParams) => ({
+    enter: ({ index, length, globalDelay }) => ({
         translateY: "0%",
-        transition: { ...transition, delay: index * delay },
+        transition: { ...transition, delay: globalDelay + index * staggerDelay },
     }),
-    exit: ({ index, length }: VariantDelayParams) => ({
+    exit: ({ index, length }) => ({
         translateY: "100%",
-        transition: { ...transition, delay: (length - index) * delay },
+        transition: { ...transition, delay: (length - index) * staggerDelay },
     }),
 };
