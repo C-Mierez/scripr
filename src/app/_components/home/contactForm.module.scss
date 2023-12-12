@@ -131,7 +131,7 @@ form.contactForm {
 
     transition: background-color var(--animation-duration-short) var(--animation-function-bezier),
         color var(--animation-duration-short) var(--animation-function-bezier),
-        padding-left var(--animation-duration-short) var(--animation-function-bezier),
+        padding-left var(--animation-duration-medium) var(--animation-function-bezier),
         height var(--animation-duration-short) var(--animation-function-bezier);
 }
 
@@ -154,14 +154,14 @@ form.contactForm {
 
     transition: background-color var(--animation-duration-short) var(--animation-function-bezier),
         color var(--animation-duration-short) var(--animation-function-bezier),
-        padding-left var(--animation-duration-short) var(--animation-function-bezier),
+        padding-left var(--animation-duration-medium) var(--animation-function-bezier),
         height var(--animation-duration-short) var(--animation-function-bezier);
 }
 
 .textfield input::placeholder,
 .textfield textarea::placeholder {
     font-size: var(--fontSize);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-regular);
     line-height: 1;
     color: var(--color-success);
     opacity: 1;
@@ -275,7 +275,7 @@ form.contactForm {
     font-size: var(--fs-3);
     color: var(--color-success);
 
-    transition: color var(--animation-duration-short) var(--animation-function-bezier);
+    transition: color var(--animation-duration-medium) var(--animation-function-bezier);
 
     overflow: hidden;
 
@@ -293,7 +293,7 @@ form.contactForm {
     width: 100%;
     background-color: var(--color-success);
 
-    transition: top var(--animation-duration-short) var(--animation-function-bezier);
+    transition: top var(--animation-duration-medium) var(--animation-function-bezier);
 
     z-index: -1;
 }

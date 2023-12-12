@@ -38,8 +38,8 @@ export default function PricingSection() {
                         <div className={css.deal}>
                             <h2>A plan for everyone</h2>
                             <p>
-                                We ensure every customer gets pricing that aligns to their budget and business needs. Consult with our sales team to assist you
-                                with choosing the best options for you.
+                                We ensure every customer gets pricing that aligns to their budget and business needs.
+                                Consult with our sales team to assist you with choosing the best options for you.
                             </p>
                             <button>Contact Sales</button>
                         </div>
@@ -58,29 +58,35 @@ export default function PricingSection() {
                         <header>
                             <h1>Transparency</h1>
                             <h2>Life is too short to spend it negotiating</h2>
-                            <p>Our pricing is transparent and self-serve for all of plans, so you can save time and get back to your finances.</p>
+                            <p>
+                                Our pricing is transparent and self-serve for all of plans, so you can save time and get
+                                back to your finances.
+                            </p>
                         </header>
                         <ul>
                             <li>
                                 <IconComponent.SavingsIcon />
                                 <h3>Affordable</h3>
                                 <p>
-                                    Your most important resource is time and runway. This is always top of mind when we develop new features and invest in our
-                                    infrastructure.
+                                    Your most important resource is time and runway. This is always top of mind when we
+                                    develop new features and invest in our infrastructure.
                                 </p>
                             </li>
                             <li>
                                 <IconComponent.ConsistencyIcon />
                                 <h3>Consistent</h3>
                                 <p>
-                                    If you exceed your plan, you won't get hit with punitive overages. With our forgiveness policy, we won't charge actions done
-                                    by accident.
+                                    If you exceed your plan, you won't get hit with punitive overages. With our
+                                    forgiveness policy, we won't charge actions done by accident.
                                 </p>
                             </li>
                             <li>
                                 <IconComponent.TargetIcon />
                                 <h3>Simple</h3>
-                                <p>We know that you know that pricing is painful. We will never throw a curveball at you.</p>
+                                <p>
+                                    We know that you know that pricing is painful. We will never throw a curveball at
+                                    you.
+                                </p>
                             </li>
                         </ul>
                     </div>

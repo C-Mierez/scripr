@@ -11,7 +11,7 @@ export const menuHeightVariants: Variants = {
     },
     exit: ({ length }) => ({
         height: 0,
-        transition: { ...transition, delay: staggerDelay * length },
+        transition: { ...transition, delay: staggerDelay * (length + 1) },
     }),
 };
 

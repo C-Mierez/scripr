@@ -20,7 +20,7 @@ header.header {
         border-bottom-left-radius: var(--border-radius-main);
         border-bottom-right-radius: var(--border-radius-main);
 
-        border: 2px solid var(--color-black);
+        border: 1px solid var(--color-black);
         border-top: none;
         background: var(--color-primary-50);
 
@@ -99,10 +99,8 @@ header.header {
             justify-content: flex-end;
             gap: 2rem;
 
-            & > :not(:last-child) {
-                @include mobile {
-                    display: none;
-                }
+            @include mobile {
+                display: none;
             }
         }
 
@@ -119,37 +117,44 @@ header.header {
 
                     width: 100%;
 
-                    overflow: hidden;
+                    span {
+                        display: block;
+                        overflow: hidden;
+                    }
+
                     /* ------------------------- Pseudo Element borders ------------------------- */
-                    &:not(:last-child)::before {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        right: 0;
+                    &:not(:last-child) {
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            right: 0;
 
-                        width: 0%;
-                        height: 1px;
+                            width: 0%;
+                            height: 1px;
 
-                        background: var(--color-black);
-                        transition: all var(--animation-duration) var(--animation-function-bezier);
-                    }
-                    &:not(:last-child)::after {
-                        content: "";
-                        position: absolute;
-                        bottom: -1px;
-                        left: 0;
-
-                        width: 0%;
-                        height: 1px;
-
-                        background: var(--color-black);
-                        transition: all var(--animation-duration) var(--animation-function-bezier);
-                    }
-
-                    &:hover {
-                        &::before,
+                            background: var(--color-black);
+                            transition: width var(--animation-duration) var(--animation-function-bezier);
+                        }
                         &::after {
-                            width: 100%;
+                            content: "";
+                            position: absolute;
+                            bottom: -1px;
+                            left: 0;
+
+                            width: 0%;
+                            height: 1px;
+
+                            background: var(--color-black);
+                            transition: width var(--animation-duration) var(--animation-function-bezier);
+                        }
+
+                        &:hover,
+                        &.active {
+                            &::before,
+                            &::after {
+                                width: 100%;
+                            }
                         }
                     }
 
