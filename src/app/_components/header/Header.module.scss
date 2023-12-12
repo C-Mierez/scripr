@@ -42,9 +42,14 @@ header.header {
             border: none;
         }
 
+        .links li {
+            overflow: hidden;
+        }
+
         /* ---------------------- Styling for Button and Links ---------------------- */
         button,
         .links li a {
+            display: block;
             @include font-small;
             font-weight: var(--fw-medium);
 

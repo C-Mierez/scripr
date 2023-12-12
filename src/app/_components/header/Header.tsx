@@ -3,10 +3,24 @@
 import { useState } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, motion } from "framer-motion";
-import { transition } from "~/utils/animations";
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { VariantDelayParams, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 
 export default function Header() {
+    const navLinks = [
+        {
+            name: "Pricing",
+            href: "#",
+        },
+        {
+            name: "Contact",
+            href: "#",
+        },
+        {
+            name: "Get Started",
+            href: "#",
+        },
+    ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -24,15 +38,25 @@ export default function Header() {
                     <p className={css.name}>SCRIPR</p>
                 </div>
                 <ul className={css.links}>
-                    <li>
-                        <a href="#">Pricing</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                    <li>
-                        <a href="#">Launch</a>
-                    </li>
+                    {navLinks.map((link, index) => (
+                        <li key={`navItem${index}`}>
+                            <AnimatePresence mode="wait">
+                                {!isMenuOpen && (
+                                    <motion.a
+                                        key={`navLink${index}`}
+                                        href={link.href}
+                                        variants={menuNavLinksVariants}
+                                        initial="initial"
+                                        animate="enter"
+                                        exit="exit"
+                                        custom={{ index, length: navLinks.length } as VariantDelayParams}
+                                    >
+                                        {link.name}
+                                    </motion.a>
+                                )}
+                            </AnimatePresence>
+                        </li>
+                    ))}
                 </ul>
                 <AnimatePresence>{isMenuOpen && <Menu />}</AnimatePresence>
             </nav>
@@ -81,17 +105,3 @@ function Menu() {
         </motion.div>
     );
 }
-
-const menuHeightVariants = {
-    initial: {
-        height: 0,
-    },
-    enter: {
-        height: "auto",
-        transition,
-    },
-    exit: {
-        height: 0,
-        transition,
-    },
-};
