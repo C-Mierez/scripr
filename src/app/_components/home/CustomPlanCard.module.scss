@@ -17,7 +17,8 @@
     align-items: flex-start;
 
     width: min(100%, 25rem);
-    box-shadow: var(--box-shadow-small);
+    // box-shadow: var(--box-shadow-small);
+    border: 1px solid var(--color-black);
 
     background: var(--color-white);
 
