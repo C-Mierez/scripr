@@ -130,24 +130,48 @@
         width: 100%;
 
         button {
+            position: relative;
+
             @include font-button;
-            font-weight: var(--fw-regular);
+            font-weight: var(--fw-medium);
 
             width: 100%;
             padding-inline: var(--padding-element);
             padding-block: calc(var(--padding-element) * 0.25);
             border: none;
 
-            background: var(--background);
+            background: var(--color-success);
             color: var(--color);
+
+            z-index: 1;
+
+            transition: color var(--animation-duration-medium) var(--animation-function-bezier);
 
             @include mobile {
                 font-size: var(--fs-1);
             }
 
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                height: 100%;
+                width: 100%;
+
+                background: var(--background);
+                z-index: -1;
+
+                transition: height var(--animation-duration-medium) var(--animation-function-bezier);
+            }
+
             &:hover {
-                background: var(--color);
-                color: var(--background);
+                color: var(--color-white);
+
+                &::before {
+                    height: 0%;
+                }
             }
         }
     }

@@ -14,12 +14,14 @@ export default function SliderButton({ label, href }: { label: string; href: str
             href={href}
             onPointerEnter={() => {
                 setIsActive(true);
+                console.log("Hello");
             }}
             onClick={() => {
                 setIsActive(true);
             }}
             onPointerLeave={() => {
                 setIsActive(false);
+                console.log("Bye");
             }}
         >
             <motion.div
