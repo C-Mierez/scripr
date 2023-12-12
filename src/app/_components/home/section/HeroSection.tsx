@@ -4,8 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import css from "./HeroSection.module.scss";
-import SVGComponent from "../../svg/SVG";
-import HeroButton from "../HeroButton";
+import SliderButton from "../../SliderButton";
 
 export default function HeroSection() {
     // Locomotive Scroll Initialization
@@ -58,7 +57,7 @@ export default function HeroSection() {
                         <motion.h2 style={{ opacity, scale }}>in one single place</motion.h2>
                     </motion.div>
                     <div className={css.cta}>
-                        <HeroButton />
+                        <SliderButton label="Get Started" href="#" />
                         <div className={css.description}>
                             <p>Billed annually. Only 5$ a month.</p>
                             <p>Join us now. Cancel any time.</p>

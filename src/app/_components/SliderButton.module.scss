@@ -27,10 +27,10 @@
 
             &:nth-of-type(2) {
                 position: absolute;
-                top: 0;
-                left: 100%;
+                top: 100%;
+                left: 0%;
 
-                background: var(--color-black);
+                background: var(--color-primary-700);
 
                 p {
                     color: var(--color-white);
