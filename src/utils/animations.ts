@@ -6,7 +6,7 @@ export const shortDuration = 0.3;
 export const mediumDuration = 0.5;
 export const duration = 0.8;
 
-export const delay = 0.1;
+export const staggerDelay = 0.05;
 
 export const transition = { duration: duration, ease: bezierEase } as Transition;
 
