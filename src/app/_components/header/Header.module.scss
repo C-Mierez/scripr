@@ -118,6 +118,12 @@ header.header {
                     position: relative;
 
                     width: 100%;
+
+                    span {
+                        display: block;
+                        overflow: hidden;
+                    }
+
                     /* ------------------------- Pseudo Element borders ------------------------- */
                     &:not(:last-child)::before {
                         content: "";

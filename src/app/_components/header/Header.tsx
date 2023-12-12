@@ -3,8 +3,8 @@
 import { useState } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, Variants, motion } from "framer-motion";
-import { VariantDelayParams, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
+import { AnimatePresence, motion } from "framer-motion";
+import { menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 
 export default function Header() {
     const navLinks = [
@@ -21,6 +21,7 @@ export default function Header() {
             href: "#",
         },
     ];
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -49,7 +50,7 @@ export default function Header() {
                                         initial="initial"
                                         animate="enter"
                                         exit="exit"
-                                        custom={{ index, length: navLinks.length } as VariantDelayParams}
+                                        custom={{ index, length: navLinks.length, globalDelay: 0.5 }}
                                     >
                                         {link.name}
                                     </motion.a>
@@ -58,37 +59,72 @@ export default function Header() {
                         </li>
                     ))}
                 </ul>
-                <AnimatePresence>{isMenuOpen && <Menu />}</AnimatePresence>
+                <AnimatePresence mode="wait">{isMenuOpen && <Menu isMenuOpen={isMenuOpen} />}</AnimatePresence>
             </nav>
         </header>
     );
 }
 
-function Menu() {
+function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
+    const menuItems = [
+        {
+            name: "Home",
+            href: "#",
+        },
+        {
+            name: "Features",
+            href: "#",
+        },
+        {
+            name: "Pricing",
+            href: "#",
+        },
+        {
+            name: "Contact",
+            href: "#",
+        },
+        {
+            name: "FAQ",
+            href: "#",
+        },
+        {
+            name: "About",
+            href: "#",
+        },
+        {
+            name: "Get Started",
+            href: "#",
+        },
+    ];
     return (
-        <motion.div className={css.menu} variants={menuHeightVariants} initial="initial" animate="enter" exit="exit">
+        <motion.div
+            className={css.menu}
+            variants={menuHeightVariants}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            custom={{ length: menuItems.length }}
+        >
             <ul className={css.menuList}>
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">Features</a>
-                </li>
-                <li>
-                    <a href="#">Pricing</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Get Started</a>
-                </li>
+                {menuItems.map((item, index) => (
+                    <li key={`menuItem${index}`}>
+                        {isMenuOpen && (
+                            <span>
+                                <motion.a
+                                    key={`menuItemLink${index}`}
+                                    href={item.href}
+                                    variants={menuNavLinksVariants}
+                                    initial="initial"
+                                    animate="enter"
+                                    exit="exit"
+                                    custom={{ index, length: menuItems.length, globalDelay: 0 }}
+                                >
+                                    {item.name}
+                                </motion.a>
+                            </span>
+                        )}
+                    </li>
+                ))}
             </ul>
             <div className={css.foot}>
                 <p>{"hello@scripr.com"}</p>
