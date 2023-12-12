@@ -42,6 +42,7 @@ header.header {
             border: none;
         }
 
+        /* ---------------------- Styling for Button and Links ---------------------- */
         button,
         .links li a {
             @include font-small;
@@ -51,12 +52,34 @@ header.header {
             text-decoration: none;
             white-space: nowrap;
 
-            &:hover {
-                opacity: 1;
-            }
-
             @include mobile {
                 font-size: var(--fs--1);
+            }
+        }
+
+        /* -------------------- Styling for Button and ListItems -------------------- */
+        button,
+        .links li {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+
+                width: 0;
+                height: 1px;
+
+                background: var(--color-black);
+
+                transition: width var(--animation-duration-medium) var(--animation-function-bezier);
+            }
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
             }
         }
 

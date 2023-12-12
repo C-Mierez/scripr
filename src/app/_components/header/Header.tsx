@@ -16,7 +16,7 @@ export default function Header() {
     return (
         <header className={css.header}>
             <nav className={css.nav}>
-                <button onClick={toggleMenu}>Close</button>
+                <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
                 <div className={css.branding}>
                     <div className={css.logo}>
                         <SVGComponent.ScriprLogo />
