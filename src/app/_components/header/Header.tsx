@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useIsPresent, usePresence } from "framer-motion";
 import { menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 
 export default function Header() {
@@ -96,6 +96,18 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
             href: "#",
         },
     ];
+    const isPresent = useIsPresent();
+    const [activeItem, setActiveItem] = useState(-1);
+    const defaultActive = 0;
+
+    useEffect(() => {
+        if (isPresent) {
+            setActiveItem(0);
+        } else {
+            setActiveItem(-1);
+        }
+    }, [isPresent]);
+
     return (
         <motion.div
             className={css.menu}
@@ -107,7 +119,16 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
         >
             <ul className={css.menuList}>
                 {menuItems.map((item, index) => (
-                    <li key={`menuItem${index}`}>
+                    <li
+                        key={`menuItem${index}`}
+                        className={activeItem === index ? css.active : ""}
+                        onPointerEnter={() => {
+                            setActiveItem(index);
+                        }}
+                        onPointerLeave={() => {
+                            setActiveItem(defaultActive);
+                        }}
+                    >
                         {isMenuOpen && (
                             <span>
                                 <motion.a
