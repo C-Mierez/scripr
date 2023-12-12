@@ -99,10 +99,8 @@ header.header {
             justify-content: flex-end;
             gap: 2rem;
 
-            & > :not(:last-child) {
-                @include mobile {
-                    display: none;
-                }
+            @include mobile {
+                display: none;
             }
         }
 

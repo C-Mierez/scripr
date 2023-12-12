@@ -125,6 +125,9 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
                         onPointerEnter={() => {
                             setActiveItem(index);
                         }}
+                        onClick={() => {
+                            setActiveItem(index);
+                        }}
                         onPointerLeave={() => {
                             setActiveItem(defaultActive);
                         }}
