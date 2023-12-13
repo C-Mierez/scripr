@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import Header from "./_components/header/Header";
+import { Providers } from "./Providers";
 
 const roboto = Roboto_Serif({
     subsets: ["latin"],
@@ -50,8 +51,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body
                 className={`${playfair_Display.variable} ${playfair_Display_SC_400.variable} ${playfair_Display_SC_700.variable} ${cinzel.variable} ${roboto.variable} ${cinzelDecorative.variable} `}
             >
-                <Header />
-                <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
+                <Providers>
+                    <Header />
+                    <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
+                    {/* <LenisScroller /> */}
+                </Providers>
             </body>
         </html>
     );

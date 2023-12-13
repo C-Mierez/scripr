@@ -1,28 +1,12 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 import css from "./HeroSection.module.scss";
 import SliderButton from "../../SliderButton";
 
 export default function HeroSection() {
-    // Locomotive Scroll Initialization
-    useEffect(() => {
-        (async () => {
-            const LocomotiveScroll = (await import("locomotive-scroll")).default;
-            new LocomotiveScroll({
-                lenisOptions: {
-                    lerp: 0.08,
-                    touchMultiplier: 0.05,
-                    smoothTouch: false,
-                },
-            });
-        })().catch((e) => {
-            console.log(e);
-        });
-    }, []);
-
     const heroSectionRef = useRef(null);
 
     const { scrollYProgress } = useScroll({ target: heroSectionRef });
