@@ -17,10 +17,14 @@ export default function EndSection() {
                 <p>{"hello@scripr.com"}</p>
                 <ul>
                     <li>
-                        <SVGComponent.GitHubLogo />
+                        <a href="https://github.com/C-Mierez/scripr" target="_blank">
+                            <SVGComponent.GitHubLogo />
+                        </a>
                     </li>
                     <li>
-                        <SVGComponent.XLogo />
+                        <a href="https://twitter.com/CMierez_" target="_blank">
+                            <SVGComponent.XLogo />
+                        </a>
                     </li>
                 </ul>
             </div>
