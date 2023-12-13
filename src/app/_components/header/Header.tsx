@@ -3,18 +3,20 @@
 import { useEffect, useState } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, motion, useIsPresent, usePresence } from "framer-motion";
+import { AnimatePresence, motion, useIsPresent } from "framer-motion";
 import { menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
+import { AnchorIDs } from "~/utils/data";
+import { useLenis } from "@studio-freight/react-lenis";
 
 export default function Header() {
     const navLinks = [
         {
             name: "Pricing",
-            href: "#",
+            href: `#${AnchorIDs.Features}`,
         },
         {
             name: "Contact",
-            href: "#",
+            href: `#${AnchorIDs.About}`,
         },
         {
             name: "Get Started",
@@ -23,6 +25,7 @@ export default function Header() {
     ];
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const lenis = useLenis();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -32,7 +35,12 @@ export default function Header() {
         <header className={css.header}>
             <nav className={css.nav}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
-                <div className={css.branding}>
+                <div
+                    className={css.branding}
+                    onClick={() => {
+                        lenis.scrollTo(0);
+                    }}
+                >
                     <div className={css.logo}>
                         <SVGComponent.ScriprLogo />
                     </div>
@@ -51,6 +59,7 @@ export default function Header() {
                                         animate="enter"
                                         exit="exit"
                                         custom={{ index, length: navLinks.length, globalDelay: 0.5 }}
+                                        onClick={() => {}}
                                     >
                                         {link.name}
                                     </motion.a>

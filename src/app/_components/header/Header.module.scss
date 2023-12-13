@@ -267,6 +267,10 @@ header.header {
 
     padding-block: 1rem;
 
+    & > * {
+        cursor: pointer;
+    }
+
     .logo svg {
         height: 2.5rem;
         fill: var(--color-black);
@@ -288,8 +292,16 @@ header.header {
         color: var(--color-black);
         opacity: 0.5;
 
+        transition: opacity var(--animation-duration-medium) var(--animation-function-bezier);
+
         @include mobile {
             font-size: var(--fs--1);
+        }
+    }
+
+    &:hover {
+        .name {
+            opacity: 1;
         }
     }
 }
