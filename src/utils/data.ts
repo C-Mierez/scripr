@@ -5,8 +5,13 @@ import { FeatureData } from "~/app/_components/home/section/FeaturesSection";
 import { PlanCardData } from "~/app/_components/home/section/PricingSection";
 import { StatsCardData } from "~/app/_components/home/section/StatsSection";
 
-export const LandingHeaderContentFull = "Auditor  -  Developer  -  Engineer  - ";
-export const LandingHeaderContentMobile = "Developer Auditor Developer Auditor Developer Auditor Developer Auditor";
+export const AnchorIDs = {
+    Features: "features",
+    Pricing: "pricing",
+    Contact: "contact",
+    FAQ: "faq",
+    About: "about",
+};
 
 export const Content = {
     Features: {
