@@ -117,6 +117,8 @@ header.header {
 
                     width: 100%;
 
+                    cursor: pointer;
+
                     span {
                         display: block;
                         overflow: hidden;
@@ -149,7 +151,7 @@ header.header {
                             transition: width var(--animation-duration) var(--animation-function-bezier);
                         }
 
-                        &:hover,
+                        // &:hover,
                         &.active {
                             &::before,
                             &::after {
@@ -229,6 +231,10 @@ header.header {
                     }
                 }
 
+                & > * {
+                    cursor: pointer;
+                }
+
                 p,
                 a {
                     @include font-tiny;
@@ -251,7 +257,6 @@ header.header {
                         height: 1rem;
                         width: 1rem;
                         fill: var(--color-black);
-                        opacity: 0.75;
                     }
                 }
             }

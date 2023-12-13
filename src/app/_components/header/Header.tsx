@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, motion, useIsPresent } from "framer-motion";
-import { menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
+import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { headerBrandingVariants, menuHeightVariants, menuNavLinksVariants, headerVariants } from "./HeaderAnims";
 import { AnchorIDs } from "~/utils/data";
 import { useLenis } from "@studio-freight/react-lenis";
+import useDimensions from "~/hooks/useDimensions";
 
 export default function Header() {
     const navLinks = [
@@ -25,27 +26,71 @@ export default function Header() {
     ];
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    /* ---------------------------- Header Animations --------------------------- */
+    const [collapseBranding, setCollapseBranding] = useState(false);
+    const [collapseHeader, setCollapseHeader] = useState(true);
+    const { scrollY } = useScroll();
+    const { height } = useDimensions();
+    const showBrandingThreshold = height * 0.2;
+    const showHeaderThreshold = height;
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        // If Menu is open, ignore changes
+        if (isMenuOpen) return;
+
+        const prev = scrollY.getPrevious();
+
+        /* --------------------------- Branding Thresholds -------------------------- */
+        if (collapseBranding && latest < showBrandingThreshold) {
+            setCollapseBranding(false);
+        } else if (!collapseBranding && latest > showBrandingThreshold) {
+            setCollapseBranding(true);
+        }
+        /* ---------------------------- Header Thresholds --------------------------- */
+        if (latest > showHeaderThreshold) {
+            if (collapseHeader && prev > latest) {
+                setCollapseHeader(false);
+            } else if (!collapseHeader && prev < latest) {
+                setCollapseHeader(true);
+            }
+        } else if (!collapseHeader && latest <= showHeaderThreshold) {
+            setCollapseHeader(true);
+        }
+    });
+    /* ---------------------------------- Lenis --------------------------------- */
     const lenis = useLenis();
 
+    /* ------------------------------- Menu Toggle ------------------------------ */
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <header className={css.header}>
+        <motion.header
+            className={css.header}
+            /* ------------------------------ FramerMotion ------------------------------ */
+            variants={headerVariants}
+            initial="initial"
+            animate={collapseHeader ? "collapse" : "expanded"}
+        >
             <nav className={css.nav}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
-                <div
+                <motion.div
                     className={css.branding}
                     onClick={() => {
                         lenis.scrollTo(0);
                     }}
+                    /* ------------------------------ FramerMotion ------------------------------ */
+                    variants={headerBrandingVariants}
+                    initial="initial"
+                    animate={collapseBranding ? "collapse" : "expanded"}
                 >
                     <div className={css.logo}>
                         <SVGComponent.ScriprLogo />
                     </div>
                     <p className={css.name}>SCRIPR</p>
-                </div>
+                </motion.div>
                 <ul className={css.links}>
                     {navLinks.map((link, index) => (
                         <li key={`navItem${index}`}>
@@ -68,13 +113,22 @@ export default function Header() {
                         </li>
                     ))}
                 </ul>
-                <AnimatePresence mode="wait">{isMenuOpen && <Menu isMenuOpen={isMenuOpen} />}</AnimatePresence>
+                <AnimatePresence mode="wait">
+                    {isMenuOpen && (
+                        <Menu
+                            isMenuOpen={isMenuOpen}
+                            callback={() => {
+                                setIsMenuOpen(false);
+                            }}
+                        />
+                    )}
+                </AnimatePresence>
             </nav>
-        </header>
+        </motion.header>
     );
 }
 
-function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
+function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => void }) {
     const menuItems = [
         {
             name: "Home",
@@ -132,10 +186,15 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
                         key={`menuItem${index}`}
                         className={activeItem === index ? css.active : ""}
                         onPointerEnter={() => {
-                            setActiveItem(index);
+                            if (isPresent) {
+                                setActiveItem(index);
+                            } else {
+                                setActiveItem(-1);
+                            }
                         }}
                         onClick={() => {
                             setActiveItem(index);
+                            callback();
                         }}
                         onPointerLeave={() => {
                             setActiveItem(defaultActive);
@@ -145,7 +204,7 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
                             <span>
                                 <motion.a
                                     key={`menuItemLink${index}`}
-                                    href={item.href}
+                                    // href={item.href}
                                     variants={menuNavLinksVariants}
                                     initial="initial"
                                     animate="enter"
@@ -164,10 +223,14 @@ function Menu({ isMenuOpen }: { isMenuOpen?: boolean }) {
                 <p>All your finances, in one single place.™</p>
                 <ul>
                     <li>
-                        <SVGComponent.GitHubLogo />
+                        <a href="https://github.com/C-Mierez/scripr" target="_blank">
+                            <SVGComponent.GitHubLogo />
+                        </a>
                     </li>
                     <li>
-                        <SVGComponent.XLogo />
+                        <a href="https://twitter.com/CMierez_" target="_blank">
+                            <SVGComponent.XLogo />
+                        </a>
                     </li>
                 </ul>
             </div>

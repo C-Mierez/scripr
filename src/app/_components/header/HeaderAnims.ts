@@ -1,6 +1,35 @@
 import { Variants } from "framer-motion";
 import { staggerDelay, transition } from "~/utils/animations";
 
+export const headerBrandingVariants: Variants = {
+    initial: {
+        translateY: "125%",
+        transition,
+    },
+    collapse: {
+        translateY: "0%",
+        transition,
+    },
+    expanded: {
+        translateY: "125%",
+        transition,
+    },
+};
+
+export const headerVariants: Variants = {
+    initial: {
+        translateY: "-100%",
+    },
+    collapse: {
+        translateY: "-100%",
+        transition,
+    },
+    expanded: {
+        translateY: "0%",
+        transition,
+    },
+};
+
 export const menuHeightVariants: Variants = {
     initial: {
         height: 0,
