@@ -8,6 +8,8 @@ import { headerBrandingVariants, menuHeightVariants, menuNavLinksVariants, heade
 import { AnchorIDs } from "~/utils/data";
 import { useLenis } from "@studio-freight/react-lenis";
 import useDimensions from "~/hooks/useDimensions";
+import { ContactEmail } from "../../../utils/data";
+import ClickableContactEmail from "../ClickableContactEmail";
 
 export default function Header() {
     const navLinks = [
@@ -231,7 +233,7 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
                 ))}
             </ul>
             <div className={css.foot}>
-                <p>{"hello@scripr.com"}</p>
+                <ClickableContactEmail />
                 <p>All your finances, in one single place.™</p>
                 <ul>
                     <li>

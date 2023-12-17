@@ -5,6 +5,8 @@ import { FeatureData } from "~/app/_components/home/section/FeaturesSection";
 import { PlanCardData } from "~/app/_components/home/section/PricingSection";
 import { StatsCardData } from "~/app/_components/home/section/StatsSection";
 
+export const ContactEmail = "hello@scripr.com";
+
 export const AnchorIDs = {
     Home: "home",
     Features: "features",
