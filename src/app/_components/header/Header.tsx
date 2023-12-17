@@ -13,15 +13,15 @@ export default function Header() {
     const navLinks = [
         {
             name: "Pricing",
-            href: `#${AnchorIDs.Features}`,
+            href: `#${AnchorIDs.Pricing}`,
         },
         {
             name: "Contact",
-            href: `#${AnchorIDs.About}`,
+            href: `#${AnchorIDs.Contact}`,
         },
         {
             name: "Get Started",
-            href: "#",
+            href: "/",
         },
     ];
 
@@ -104,7 +104,11 @@ export default function Header() {
                                         animate="enter"
                                         exit="exit"
                                         custom={{ index, length: navLinks.length, globalDelay: 0.5 }}
-                                        onClick={() => {}}
+                                        onClick={() => {
+                                            if (link.href.startsWith("#")) {
+                                                lenis.scrollTo(link.href);
+                                            }
+                                        }}
                                     >
                                         {link.name}
                                     </motion.a>
@@ -132,33 +136,35 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
     const menuItems = [
         {
             name: "Home",
-            href: "#",
+            href: `#${AnchorIDs.Home}`,
         },
         {
             name: "Features",
-            href: "#",
+            href: `#${AnchorIDs.Features}`,
         },
         {
             name: "Pricing",
-            href: "#",
+            href: `#${AnchorIDs.Pricing}`,
         },
         {
             name: "Contact",
-            href: "#",
+            href: `#${AnchorIDs.Contact}`,
         },
         {
             name: "FAQ",
-            href: "#",
+            href: `#${AnchorIDs.FAQ}`,
         },
         {
             name: "About",
-            href: "#",
+            href: `#${AnchorIDs.About}`,
         },
         {
             name: "Get Started",
-            href: "#",
+            href: "/",
         },
     ];
+
+    const lenis = useLenis();
     const isPresent = useIsPresent();
     const [activeItem, setActiveItem] = useState(-1);
     const defaultActive = 0;
@@ -204,7 +210,13 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
                             <span>
                                 <motion.a
                                     key={`menuItemLink${index}`}
-                                    // href={item.href}
+                                    href={item.href}
+                                    onClick={() => {
+                                        if (item.href.startsWith("#")) {
+                                            lenis.scrollTo(item.href);
+                                        }
+                                    }}
+                                    /* ------------------------------ FramerMotion ------------------------------ */
                                     variants={menuNavLinksVariants}
                                     initial="initial"
                                     animate="enter"
