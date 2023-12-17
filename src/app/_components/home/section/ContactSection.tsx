@@ -3,10 +3,12 @@ import sharedCss from "../shared.module.scss";
 import ContactForm from "../ContactForm";
 import SVGComponent from "../../svg/SVG";
 import ParallaxReviews from "../ParallaxReviews";
+import { AnchorIDs } from "../../../../utils/data";
 
 export default function ContactSection() {
     return (
         <>
+            <div className={sharedCss.anchor} id={AnchorIDs.Contact} />
             <header className={css.contact}>
                 <h1 className={sharedCss.headerDecorated}>Reach Out</h1>
                 <p>We would love to hear from you.</p>

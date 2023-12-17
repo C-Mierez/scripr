@@ -1,10 +1,12 @@
 import css from "./AboutSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import { CSSVariables } from "~/utils/utils";
+import { AnchorIDs } from "../../../../utils/data";
 
 export default function AboutSection() {
     return (
         <>
+            <div className={sharedCss.anchor} id={AnchorIDs.About} />
             <header className={css.about}>
                 <h1 className={CSSVariables(sharedCss.headerDecorated, sharedCss.alt)}>About Us</h1>
                 <p>

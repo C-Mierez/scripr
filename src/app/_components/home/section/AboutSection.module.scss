@@ -18,10 +18,10 @@ header.about {
     background: var(--color-primary-700);
     color: var(--color-white);
 
-    &::before {
-        content: "";
-        padding-top: var(--padding-section);
-    }
+    // &::before {
+    //     content: "";
+    //     padding-top: var(--padding-section);
+    // }
 
     h1 {
         @include font-header;

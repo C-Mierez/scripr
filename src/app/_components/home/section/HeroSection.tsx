@@ -4,7 +4,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 import css from "./HeroSection.module.scss";
+import sharedCss from "../shared.module.scss";
 import SliderButton from "../../SliderButton";
+import { AnchorIDs } from "../../../../utils/data";
 
 export default function HeroSection() {
     const heroSectionRef = useRef(null);
@@ -25,31 +27,34 @@ export default function HeroSection() {
     const translateY = useTransform(scrollYProgress, [0, 0.8], ["0%", "20%"]);
 
     return (
-        <div ref={heroSectionRef} className={css.heroWrapper}>
-            <motion.section className={css.hero} style={{ paddingInline: padding, paddingTop: padding }}>
-                <div className={css.outerBackground} />
-                <motion.div
-                    className={css.innerCard}
-                    style={{ borderTopLeftRadius: borderRadius, borderTopRightRadius: borderRadius }}
-                >
-                    <div className={css.gridBackgroundWrapper}>
-                        <motion.div className={css.gridBackground} style={{ backgroundSize }} />
-                    </div>
-
-                    <motion.div className={css.slogan} style={{ translateY }}>
-                        <motion.h1 style={{ opacity, scale }}>All your Finances</motion.h1>
-                        <motion.h2 style={{ opacity, scale }}>in one single place</motion.h2>
-                    </motion.div>
-                    <div className={css.cta}>
-                        <SliderButton label="Get Started" href="#" />
-                        <div className={css.description}>
-                            <p>Billed annually. Only 5$ a month.</p>
-                            <p>Join us now. Cancel any time.</p>
+        <>
+            <div className={sharedCss.anchor} id={AnchorIDs.Home} />
+            <div ref={heroSectionRef} className={css.heroWrapper}>
+                <motion.section className={css.hero} style={{ paddingInline: padding, paddingTop: padding }}>
+                    <div className={css.outerBackground} />
+                    <motion.div
+                        className={css.innerCard}
+                        style={{ borderTopLeftRadius: borderRadius, borderTopRightRadius: borderRadius }}
+                    >
+                        <div className={css.gridBackgroundWrapper}>
+                            <motion.div className={css.gridBackground} style={{ backgroundSize }} />
                         </div>
-                    </div>
-                </motion.div>
-            </motion.section>
-            <div className={css.heroScrollSpacer} />
-        </div>
+
+                        <motion.div className={css.slogan} style={{ translateY }}>
+                            <motion.h1 style={{ opacity, scale }}>All your Finances</motion.h1>
+                            <motion.h2 style={{ opacity, scale }}>in one single place</motion.h2>
+                        </motion.div>
+                        <div className={css.cta}>
+                            <SliderButton label="Get Started" href="#" />
+                            <div className={css.description}>
+                                <p>Billed annually. Only 5$ a month.</p>
+                                <p>Join us now. Cancel any time.</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.section>
+                <div className={css.heroScrollSpacer} />
+            </div>
+        </>
     );
 }

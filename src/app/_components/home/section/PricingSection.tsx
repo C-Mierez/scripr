@@ -4,10 +4,12 @@ import { CSSVariables } from "~/utils/utils";
 import { Content } from "~/utils/data";
 import CustomPlanCard from "../CustomPlanCard";
 import IconComponent from "../../svg/Icon";
+import { AnchorIDs } from "../../../../utils/data";
 
 export default function PricingSection() {
     return (
         <>
+            <div className={sharedCss.anchor} id={AnchorIDs.Pricing} />
             <header className={css.pricing}>
                 <h1 className={sharedCss.headerDecorated}>Pricing</h1>
                 <h2>Choose a plan that suits you best</h2>

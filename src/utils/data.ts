@@ -6,6 +6,7 @@ import { PlanCardData } from "~/app/_components/home/section/PricingSection";
 import { StatsCardData } from "~/app/_components/home/section/StatsSection";
 
 export const AnchorIDs = {
+    Home: "home",
     Features: "features",
     Pricing: "pricing",
     Contact: "contact",
