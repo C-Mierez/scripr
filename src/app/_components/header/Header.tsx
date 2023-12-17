@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
@@ -32,6 +32,7 @@ export default function Header() {
     /* ---------------------------- Header Animations --------------------------- */
     const [collapseBranding, setCollapseBranding] = useState(false);
     const [collapseHeader, setCollapseHeader] = useState(true);
+    const collapsing = useRef(false);
     const { scrollY } = useScroll();
     const { height } = useDimensions();
     const showBrandingThreshold = height * 0.2;
@@ -53,8 +54,12 @@ export default function Header() {
         if (latest > showHeaderThreshold) {
             if (collapseHeader && prev > latest) {
                 setCollapseHeader(false);
-            } else if (!collapseHeader && prev < latest) {
-                setCollapseHeader(true);
+            } else if (!collapseHeader && !collapsing.current && prev < latest) {
+                collapsing.current = true;
+                setTimeout(() => {
+                    setCollapseHeader(true);
+                    collapsing.current = false;
+                }, 1000);
             }
         } else if (!collapseHeader && latest <= showHeaderThreshold) {
             setCollapseHeader(true);
