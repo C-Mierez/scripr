@@ -10,4 +10,4 @@ export const staggerDelay = 0.05;
 
 export const transition = { duration: duration, ease: bezierEase } as Transition;
 
-export const layoutTransition = { duration: shortDuration, bezierEase };
+export const layoutTransition = { duration: mediumDuration, bezierEase };
