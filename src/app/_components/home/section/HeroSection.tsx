@@ -7,6 +7,8 @@ import css from "./HeroSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import SliderButton from "../../SliderButton";
 import { AnchorIDs } from "../../../../utils/data";
+import { HeroSectionVariants } from "./HeroSectionAnims";
+import { defaultAnim } from "~/utils/animations";
 
 export default function HeroSection() {
     const heroSectionRef = useRef(null);
@@ -37,19 +39,27 @@ export default function HeroSection() {
                         style={{ borderTopLeftRadius: borderRadius, borderTopRightRadius: borderRadius }}
                     >
                         <div className={css.gridBackgroundWrapper}>
-                            <motion.div className={css.gridBackground} style={{ backgroundSize }} />
+                            <motion.div
+                                className={css.gridBackground}
+                                {...defaultAnim(HeroSectionVariants.GridBackground)}
+                                style={{ backgroundSize }}
+                            />
                         </div>
 
                         <motion.div className={css.slogan} style={{ translateY }}>
-                            <motion.h1 style={{ opacity, scale }}>All your Finances</motion.h1>
-                            <motion.h2 style={{ opacity, scale }}>in one single place</motion.h2>
+                            <motion.h1 {...defaultAnim(HeroSectionVariants.SloganH1)} style={{ opacity, scale }}>
+                                All your Finances
+                            </motion.h1>
+                            <motion.h2 {...defaultAnim(HeroSectionVariants.SloganH2)} style={{ opacity, scale }}>
+                                in one single place
+                            </motion.h2>
                         </motion.div>
                         <div className={css.cta}>
                             <SliderButton label="Get Started" href="#" />
-                            <div className={css.description}>
+                            <motion.div className={css.description} {...defaultAnim(HeroSectionVariants.CTADesc)}>
                                 <p>Billed annually. Only 5$ a month.</p>
                                 <p>Join us now. Cancel any time.</p>
-                            </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 </motion.section>

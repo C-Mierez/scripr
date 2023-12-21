@@ -3,7 +3,8 @@
 import { useState } from "react";
 import css from "./SliderButton.module.scss";
 import { motion } from "framer-motion";
-import { bezierEase, mediumDuration } from "~/utils/animations";
+import { bezierEase, mediumDuration, defaultAnim } from "~/utils/animations";
+import { HeroSectionVariants } from "./home/section/HeroSectionAnims";
 
 export default function SliderButton({ label, href }: { label: string; href: string }) {
     const [isActive, setIsActive] = useState(false);
@@ -14,14 +15,12 @@ export default function SliderButton({ label, href }: { label: string; href: str
             href={href}
             onPointerEnter={() => {
                 setIsActive(true);
-                console.log("Hello");
             }}
             onClick={() => {
                 setIsActive(true);
             }}
             onPointerLeave={() => {
                 setIsActive(false);
-                console.log("Bye");
             }}
         >
             <motion.div
@@ -29,9 +28,9 @@ export default function SliderButton({ label, href }: { label: string; href: str
                 animate={{ top: !isActive ? "0%" : "-100%" }}
                 transition={{ duration: mediumDuration, ease: bezierEase }}
             >
-                <div className={css.face}>
+                <motion.div className={css.face} {...defaultAnim(HeroSectionVariants.CTAButton)}>
                     <p>{label}</p>
-                </div>
+                </motion.div>
                 <div className={css.face}>
                     <p>{label}</p>
                 </div>
