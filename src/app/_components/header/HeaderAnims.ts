@@ -3,7 +3,7 @@ import { staggerDelay, transition } from "~/utils/animations";
 
 export const headerBrandingVariants: Variants = {
     initial: {
-        translateY: "125%",
+        translateY: "0%",
         transition,
     },
     collapse: {
