@@ -106,19 +106,19 @@ function TransparencySection() {
     });
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!animThird && latest > 0.7) {
+        if (!animThird && latest > 0.6) {
             setAnimFirst(true);
             setAnimSecond(true);
             setAnimThird(true);
-        } else if ((!animSecond && latest > 0.4) || (animThird && latest < 0.7)) {
+        } else if ((!animSecond && latest > 0.3) || (animThird && latest < 0.6)) {
             setAnimFirst(true);
             setAnimSecond(true);
             setAnimThird(false);
-        } else if ((!animFirst && latest > 0.1) || (animSecond && latest < 0.4)) {
+        } else if ((!animFirst && latest > 0.05) || (animSecond && latest < 0.3)) {
             setAnimFirst(true);
             setAnimSecond(false);
             setAnimThird(false);
-        } else if (!!animFirst && latest < 0.1) {
+        } else if (!!animFirst && latest < 0.05) {
             setAnimFirst(false);
             setAnimSecond(false);
             setAnimThird(false);
