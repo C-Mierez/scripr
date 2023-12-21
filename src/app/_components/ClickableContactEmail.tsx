@@ -24,7 +24,7 @@ export default function ClickableContactEmail() {
     };
 
     return (
-        <p className={isCopied ? css.clicked : css.clickable} onClick={isCopied ? null : copy}>
+        <p className={isCopied ? css.clicked : css.clickable} onClick={isCopied ? () => {} : copy}>
             {ContactEmail}
         </p>
     );
