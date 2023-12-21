@@ -44,7 +44,6 @@ section.about {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10vh;
 
     border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
 
@@ -65,16 +64,20 @@ section.about {
         justify-items: center;
 
         width: var(--width-container-main-bigger);
+        min-height: 75lvh;
         margin-inline: auto;
+
+        overflow: clip;
 
         @include mobile {
             grid-template-columns: 0px 3px 1fr;
         }
 
         .timeline {
-            width: min(90%, 3px);
+            width: min(90%, 2px);
             height: 100%;
             background-color: var(--color-white);
+            transform-origin: 0 0;
         }
 
         .timelineContent {
@@ -82,8 +85,9 @@ section.about {
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
-            gap: calc(var(--padding-element) * 4);
+            gap: calc(var(--padding-element) * 5);
 
+            height: 100%;
             padding-block: calc(var(--padding-element) * 4);
             padding-left: calc(var(--padding-element) * 2);
 
@@ -94,27 +98,55 @@ section.about {
         }
     }
 
-    .textScroller {
-        padding-block: var(--padding-element);
-        padding-inline: var(--padding-element);
-        margin-block: var(--padding-element);
+    .stickyWrapper {
+        position: relative;
 
-        background: var(--color-primary-600);
+        height: 500lvh;
 
-        @include mobile {
+        .scrollerSection {
+            position: sticky;
+            top: 0;
+
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            width: 100%;
-            padding-inline: 0;
-        }
+            gap: 20lvh;
 
-        h3 {
-            @include font-header;
-            font-size: var(--fs-8);
+            min-height: 100lvh;
+            padding-block: var(--padding-section);
 
-            @include mobile {
-                font-size: var(--fs-5);
+            .textScroller {
+                --fontSize: var(--fs-8);
+
+                height: calc(var(--padding-element) * 2 + var(--fontSize));
+                padding-block: var(--padding-element);
+                padding-inline: var(--padding-element);
+
+                background: var(--color-primary-600);
+
+                overflow: clip;
+
+                @include mobile {
+                    --fontSize: var(--fs-5);
+
+                    width: 100%;
+                    padding-inline: 0;
+                }
+
+                .scrollList {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: calc(var(--padding-element) * 2);
+                    padding-block: var(--padding-element);
+                    margin-block: calc(var(--padding-element) * -1);
+
+                    li {
+                        @include font-header;
+                        font-size: var(--fontSize) !important;
+                        line-height: 1;
+                    }
+                }
             }
         }
     }
@@ -152,7 +184,7 @@ section.about {
         left: 35%;
 
         width: 30%;
-        height: 3px;
+        height: 2px;
 
         background: var(--color-white);
     }
