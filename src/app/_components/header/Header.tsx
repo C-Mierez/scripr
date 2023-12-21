@@ -154,13 +154,14 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
             href: `#${AnchorIDs.Pricing}`,
         },
         {
-            name: "Contact",
-            href: `#${AnchorIDs.Contact}`,
-        },
-        {
             name: "FAQ",
             href: `#${AnchorIDs.FAQ}`,
         },
+        {
+            name: "Contact",
+            href: `#${AnchorIDs.Contact}`,
+        },
+
         {
             name: "About",
             href: `#${AnchorIDs.About}`,
