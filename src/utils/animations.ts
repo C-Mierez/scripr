@@ -29,6 +29,8 @@ export const defaultAnim = (variants: Variants | undefined) => {
         animate: "enter",
         exit: "exit",
         transition: transition,
+        whileInView: "inView",
+        viewport: { margin: "-20%", once: true },
         variants,
     };
 };
