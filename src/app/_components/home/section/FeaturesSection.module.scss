@@ -50,11 +50,14 @@ section.features {
 
     z-index: 19;
 
+    overflow: clip;
+
     .stickyGrid {
         position: relative;
 
         display: grid;
         grid-template-columns: 1fr 2fr;
+        column-gap: var(--padding-element);
         align-items: start;
 
         width: var(--width-container-main-bigger);
@@ -84,6 +87,17 @@ section.features {
             h2 {
                 @include font-header-medium;
                 margin-top: var(--margin-top-header-small);
+            }
+
+            .progressBar {
+                margin-top: calc(var(--padding-element) * 0.5);
+                height: 1px;
+                transform-origin: 0%;
+                background: var(--color-black);
+
+                @include mobile {
+                    display: none;
+                }
             }
         }
 

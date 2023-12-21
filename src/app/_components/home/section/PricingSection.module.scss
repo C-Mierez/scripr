@@ -48,7 +48,6 @@ section.pricing {
     align-items: center;
 
     width: 100%;
-    padding-bottom: var(--padding-section);
 
     background: var(--color-primary-50);
 
@@ -67,6 +66,8 @@ section.pricing {
         width: var(--width-container-main-bigger);
 
         padding-bottom: calc(var(--margin-top-subheader) * 2);
+
+        overflow: clip;
 
         @include mobile {
             flex-direction: column;
@@ -261,6 +262,8 @@ section.pricing {
         width: var(--width-container-main-bigger);
         margin-inline: auto;
 
+        overflow: clip;
+
         .deals {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -288,134 +291,157 @@ section.pricing {
                 opacity: 0.75;
             }
 
-            button {
-                position: relative;
+            span {
+                display: block;
+                overflow: clip;
 
-                @include font-button;
-                font-weight: var(--fw-regular);
+                button {
+                    position: relative;
 
-                padding: var(--padding-button);
-                border: none;
+                    @include font-button;
+                    font-weight: var(--fw-regular);
 
-                background: var(--color-success);
-                color: var(--color-white);
+                    padding: var(--padding-button);
+                    border: none;
 
-                z-index: 1;
+                    background: var(--color-success);
+                    color: var(--color-white);
 
-                transition: color var(--animation-duration-medium) var(--animation-function-bezier);
+                    z-index: 1;
 
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-
-                    height: 100%;
-                    width: 100%;
-
-                    background: var(--color-primary-500);
-                    z-index: -1;
-
-                    transition: height var(--animation-duration-medium) var(--animation-function-bezier);
-                }
-
-                &:hover {
-                    color: var(--color-black);
+                    transition: color var(--animation-duration-medium) var(--animation-function-bezier);
 
                     &::before {
-                        height: 0%;
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+
+                        height: 100%;
+                        width: 100%;
+
+                        background: var(--color-primary-500);
+                        z-index: -1;
+
+                        transition: height var(--animation-duration-medium) var(--animation-function-bezier);
+                    }
+
+                    &:hover {
+                        color: var(--color-black);
+
+                        &::before {
+                            height: 0%;
+                        }
                     }
                 }
             }
         }
 
-        .transparency {
-            header {
-                max-width: calc(50% - var(--padding-element));
+        .stickySection {
+            position: relative;
 
-                margin-top: calc(var(--padding-section) * 0.75);
+            height: 350lvh;
 
-                @include mobile {
-                    max-width: 100%;
-                    margin-top: calc(var(--padding-section) * 0.5);
-                }
-
-                h1 {
-                    @include font-header-regular;
-                    font-weight: var(--fw-bold);
-                    text-align: start;
-
-                    opacity: 0.25;
-
-                    @include mobile {
-                        font-size: var(--fs-1);
-                    }
-                }
-
-                h2 {
-                    @include font-header-medium;
-                    font-weight: var(--fw-medium);
-
-                    @include mobile {
-                        font-size: var(--fs-4);
-                        font-weight: var(--fw-bold);
-                    }
-                }
-
-                p {
-                    @include font-body;
-                    font-weight: var(--fw-medium);
-                    text-align: start;
-                    margin-block: 1em;
-                    opacity: 0.75;
-
-                    @include mobile {
-                        font-weight: var(--fw-regular);
-                    }
-                }
+            @include mobile {
+                height: auto;
             }
-
-            ul {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: var(--padding-element);
-
-                margin-top: calc(var(--padding-section) * 0.5);
+            .transparency {
+                position: sticky;
+                top: 0;
+                padding-top: calc(var(--padding-section) * 0.75);
+                min-height: 100lvh;
 
                 @include mobile {
-                    flex-direction: column;
-                    align-items: center;
+                    position: relative;
+                    min-height: auto;
+                    padding-bottom: calc(var(--padding-section) * 0.75);
                 }
 
-                li {
-                    flex: 1;
+                header {
+                    max-width: calc(50% - var(--padding-element));
 
-                    display: flex;
-                    flex-direction: column;
+                    @include mobile {
+                        max-width: 100%;
+                        margin-top: calc(var(--padding-section) * 0.5);
+                    }
 
-                    svg {
-                        height: 5rem;
-                        width: 5rem;
-                        fill: var(--color-primary-500);
+                    h1 {
+                        @include font-header-regular;
+                        font-weight: var(--fw-bold);
+                        text-align: start;
+
+                        opacity: 0.25;
 
                         @include mobile {
-                            height: 4rem;
-                            width: 4rem;
+                            font-size: var(--fs-1);
                         }
                     }
 
-                    h3 {
-                        @include font-header-small;
-                        margin-top: 1rem;
+                    h2 {
+                        @include font-header-medium;
+                        font-weight: var(--fw-medium);
+
+                        @include mobile {
+                            font-size: var(--fs-4);
+                            font-weight: var(--fw-bold);
+                        }
                     }
 
                     p {
                         @include font-body;
-                        font-weight: var(--fw-regular);
-                        margin-block: 0.5em;
+                        font-weight: var(--fw-medium);
+                        text-align: start;
+                        margin-block: 1em;
                         opacity: 0.75;
+
+                        @include mobile {
+                            font-weight: var(--fw-regular);
+                        }
+                    }
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    gap: var(--padding-element);
+
+                    margin-top: calc(var(--padding-section) * 0.5);
+
+                    @include mobile {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    li {
+                        flex: 1;
+
+                        display: flex;
+                        flex-direction: column;
+
+                        svg {
+                            height: 5rem;
+                            width: 5rem;
+                            fill: var(--color-primary-500);
+
+                            @include mobile {
+                                height: 4rem;
+                                width: 4rem;
+                            }
+                        }
+
+                        h3 {
+                            @include font-header-small;
+                            margin-top: 1rem;
+                        }
+
+                        p {
+                            @include font-body;
+                            font-weight: var(--fw-regular);
+                            margin-block: 0.5em;
+                            opacity: 0.75;
+                        }
                     }
                 }
             }

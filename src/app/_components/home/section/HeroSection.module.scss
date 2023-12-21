@@ -109,6 +109,8 @@ section.hero {
                 font-weight: var(--fw-bold);
                 font-family: var(--font-header-alt-700);
 
+                opacity: 0;
+
                 span {
                     font-family: var(--font-brand-alt);
                 }
@@ -123,6 +125,8 @@ section.hero {
                 font-size: var(--fs-3);
                 font-weight: var(--fw-medium);
                 font-family: var(--font-body);
+
+                opacity: 0;
 
                 @include mobile {
                     font-size: var(--fs-1);

@@ -1,9 +1,18 @@
+"use client";
+
 import { Content } from "~/utils/data";
 import css from "./FeaturesSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import { AnchorIDs } from "../../../../utils/data";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { defaultAnim, transition } from "~/utils/animations";
 
 export default function FeaturesSection() {
+    const featuresRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({ target: featuresRef, offset: ["start center", "end center"] });
+
     return (
         <>
             <div className={sharedCss.anchor} id={AnchorIDs.Features} />
@@ -15,10 +24,11 @@ export default function FeaturesSection() {
                 </p>
             </header>
             <section className={css.features}>
-                <div className={css.stickyGrid}>
+                <div ref={featuresRef} className={css.stickyGrid}>
                     <header>
                         <h1>Plenty of tools</h1>
                         <h2>at your disposal</h2>
+                        <motion.div className={css.progressBar} style={{ scaleX: scrollYProgress }} />
                     </header>
                     <div className={css.content}>
                         {Content.Features.FeatureData.map((feature, index) => (
@@ -42,7 +52,19 @@ export type FeatureData = {
 
 function FeatureElement(props: FeatureData) {
     return (
-        <div className={css.feature}>
+        <motion.div
+            className={css.feature}
+            {...defaultAnim({
+                initial: {
+                    opacity: 0,
+                    x: 100,
+                },
+                inView: {
+                    opacity: 1,
+                    x: 0,
+                },
+            })}
+        >
             <div className={css.image}>
                 <div />
             </div>
@@ -50,6 +72,6 @@ function FeatureElement(props: FeatureData) {
                 <h3>{props.title}</h3>
                 <p>{props.description}</p>
             </div>
-        </div>
+        </motion.div>
     );
 }

@@ -1,15 +1,22 @@
 "use client";
 
-import { CSSVariables } from "~/utils/utils";
-import css from "./contactForm.module.scss";
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 import React from "react";
+import { CSSVariables } from "~/utils/utils";
+
+import { defaultAnim, duration, staggerDelay, transition } from "../../../utils/animations";
+import css from "./contactForm.module.scss";
+import { isMobile } from "react-device-detect";
 
 export default function ContactForm() {
     return (
         <form className={css.contactForm}>
-            <div className={css.fields}>
+            <motion.div
+                className={css.fields}
+                /* ------------------------------ FramerMotion ------------------------------ */
+                {...defaultAnim({})}
+            >
                 <TextField label={"Name"} description="Greetings, I am" required={true} />
                 <TextField label={"Subject"} description="I am writing about" required={true} />
                 <TextField label={"Email"} description="You can reach me at" required={true} />
@@ -17,23 +24,42 @@ export default function ContactForm() {
                 <TextArea label={"Your Message"} description="" required={true} />
                 <RatingField label={"Stars"} description="I would like to leave a rating of" required={true} />
                 <button className={css.submit}>Submit</button>
-            </div>
+            </motion.div>
         </form>
     );
 }
 
 export function TextField(props: { label: string; description: string; required: boolean }) {
     return (
-        <div className={css.fieldRow}>
+        <motion.div
+            className={css.fieldRow}
+            /* ------------------------------ FramerMotion ------------------------------ */
+            {...defaultAnim({
+                initial: { opacity: 0 },
+                inView: {
+                    opacity: 1,
+                },
+            })}
+        >
             <p>{props.description}</p>
-            <div className={css.textfield}>
+            <motion.div
+                className={css.textfield}
+                /* ------------------------------ FramerMotion ------------------------------ */
+                {...defaultAnim({
+                    initial: { width: isMobile ? "100%" : "0%" },
+                    inView: {
+                        width: "100%",
+                    },
+                })}
+                transition={{ ...transition, delay: duration * 0.5 }}
+            >
                 <input
                     type="text"
                     required={props.required}
                     placeholder={`${props.label}${props.required ? "*" : ""}`}
                 />
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 }
 
@@ -42,6 +68,17 @@ export function TextArea(props: { label: string; description: string; required: 
 
     return (
         <div className={css.fieldRow}>
+            <motion.div
+                className={css.revealer}
+                /* ------------------------------ FramerMotion ------------------------------ */
+                {...defaultAnim({
+                    initial: { scaleX: 1 },
+                    inView: {
+                        scaleX: 0,
+                    },
+                })}
+                transition={{ ...transition, delay: duration * 0.5 }}
+            ></motion.div>
             <div ref={wrapperRef} className={CSSVariables(css.textfield, css.textarea)}>
                 <textarea
                     required={props.required}
@@ -60,7 +97,20 @@ export function TextArea(props: { label: string; description: string; required: 
 
 function RatingField(props: { label: string; description: string; required: boolean }) {
     return (
-        <div className={css.fieldRow}>
+        <motion.div
+            className={css.fieldRow}
+            /* ------------------------------ FramerMotion ------------------------------ */
+            {...defaultAnim({
+                initial: { opacity: 0 },
+                inView: {
+                    opacity: 1,
+                },
+            })}
+            transition={{
+                ...transition,
+                delay: duration * 0.5,
+            }}
+        >
             <p>{props.description}</p>
             <div className={css.ratingRow}>
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -74,11 +124,24 @@ function RatingField(props: { label: string; description: string; required: bool
                             }}
                             className={CSSVariables(css.ratingField)}
                         />
-                        <label htmlFor={`star${i}`} />
+                        <motion.label
+                            htmlFor={`star${i}`}
+                            /* ------------------------------ FramerMotion ------------------------------ */
+                            {...defaultAnim({
+                                inView: {
+                                    color: "var(--color-success)",
+                                    rotate: [0, 45, -25, 0],
+                                },
+                            })}
+                            transition={{
+                                ...transition,
+                                delay: duration + (5 - i) * staggerDelay,
+                            }}
+                        />
                     </React.Fragment>
                 ))}
             </div>
             <p>&nbsp;stars.</p>
-        </div>
+        </motion.div>
     );
 }

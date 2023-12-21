@@ -24,6 +24,7 @@ section.faq {
 
         display: grid;
         grid-template-columns: 1fr 2fr;
+        column-gap: var(--padding-element);
         align-items: start;
 
         width: var(--width-container-main-bigger);
@@ -54,6 +55,17 @@ section.faq {
                 @include font-header-medium;
                 margin-top: var(--margin-top-header-small);
             }
+
+            .progressBar {
+                margin-top: calc(var(--padding-element) * 0.5);
+                height: 1px;
+                transform-origin: 0%;
+                background: var(--color-black);
+
+                @include mobile {
+                    display: none;
+                }
+            }
         }
 
         .cardContainer {
@@ -73,8 +85,7 @@ section.faq {
 
     overflow: hidden;
 
-    transition: scale var(--animation-duration-short) var(--animation-function-bezier),
-        box-shadow var(--animation-duration-short) var(--animation-function-bezier);
+    transition: translate var(--animation-duration-short) var(--animation-function-bezier);
 
     // z-index: 0;
 
@@ -101,26 +112,16 @@ section.faq {
     }
 
     &:hover {
-        box-shadow: var(--box-shadow-small);
-        scale: 1.02;
-        z-index: 100;
-
-        @include mobile {
-            box-shadow: none;
-            scale: none;
-            z-index: 100;
+        @include desktop {
+            translate: -1% 0;
         }
-    }
 
-    &.open:hover {
-        box-shadow: none;
-        scale: 1;
-        z-index: 100;
-
-        @include mobile {
-            box-shadow: none;
-            scale: none;
-            z-index: 100;
+        .header {
+            .icon {
+                svg {
+                    opacity: 0.75;
+                }
+            }
         }
     }
 
@@ -129,7 +130,7 @@ section.faq {
 
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         gap: var(--padding-element);
 
@@ -150,7 +151,8 @@ section.faq {
 
             rotate: 0deg;
 
-            transition: rotate var(--animation-duration-short) var(--animation-function-bezier);
+            transition: rotate var(--animation-duration-short) var(--animation-function-bezier),
+                opacity var(--animation-duration) var(--animation-function-bezier);
 
             &.open {
                 rotate: 45deg;
@@ -162,6 +164,8 @@ section.faq {
                 width: 100%;
                 fill: var(--color-black);
                 opacity: 0.25;
+
+                transition: opacity var(--animation-duration-short) var(--animation-function-bezier);
             }
         }
 
