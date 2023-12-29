@@ -2,9 +2,9 @@
 
 import { ContactEmail } from "../../utils/data";
 import { useEffect, useState } from "react";
-import css from "./ClickableContactEmail.module.scss";
+import css from "./ClickableClipboardSmallText.module.scss";
 
-export default function ClickableContactEmail() {
+export default function ClickableClipboardSmallText() {
     const [isCopied, setIsCopied] = useState(false);
 
     useEffect(() => {

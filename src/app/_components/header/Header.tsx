@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import useDimensions from "~/hooks/useDimensions";
 import { AnchorIDs } from "~/utils/data";
 
-import ClickableContactEmail from "../ClickableContactEmail";
+import ClickableClipboardSmallText from "../ClickableClipboardSmallText";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
@@ -252,7 +252,7 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
                 ))}
             </ul>
             <div className={css.foot}>
-                <ClickableContactEmail />
+                <ClickableClipboardSmallText />
                 <p>All your finances, in one single place.™</p>
                 <ul>
                     <li>

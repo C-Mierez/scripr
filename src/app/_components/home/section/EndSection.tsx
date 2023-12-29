@@ -2,7 +2,7 @@ import css from "./EndSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import SVGComponent from "../../svg/SVG";
 import { ContactEmail } from "../../../../utils/data";
-import ClickableContactEmail from "../../ClickableContactEmail";
+import ClickableClipboardSmallText from "../../ClickableClipboardSmallText";
 
 export default function EndSection() {
     return (
@@ -16,7 +16,7 @@ export default function EndSection() {
                 <p>
                     <a href="\">Terms of Service</a> and <a href="\">Privacy Policy</a>
                 </p>
-                <ClickableContactEmail />
+                <ClickableClipboardSmallText />
                 <ul>
                     <li>
                         <a href="https://github.com/C-Mierez/scripr" target="_blank">
