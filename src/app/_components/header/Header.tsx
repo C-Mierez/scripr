@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useLenis } from "@studio-freight/react-lenis";
+import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import useDimensions from "~/hooks/useDimensions";
+import { AnchorIDs } from "~/utils/data";
+
+import ClickableContactEmail from "../ClickableContactEmail";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
-import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { headerBrandingVariants, menuHeightVariants, menuNavLinksVariants, headerVariants } from "./HeaderAnims";
-import { AnchorIDs } from "~/utils/data";
-import { useLenis } from "@studio-freight/react-lenis";
-import useDimensions from "~/hooks/useDimensions";
-import { ContactEmail } from "../../../utils/data";
-import ClickableContactEmail from "../ClickableContactEmail";
+import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 
 export default function Header() {
     const navLinks = [
@@ -76,6 +76,12 @@ export default function Header() {
     return (
         <motion.header
             className={css.header}
+            onPointerLeave={() => {
+                if (scrollY.get() < showHeaderThreshold) {
+                    setCollapseBranding(false);
+                    setCollapseHeader(true);
+                }
+            }}
             /* ------------------------------ FramerMotion ------------------------------ */
             variants={headerVariants}
             initial="initial"
@@ -83,10 +89,17 @@ export default function Header() {
         >
             <nav className={css.nav}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
+
                 <motion.div
                     className={css.branding}
                     onClick={() => {
                         lenis.scrollTo(0);
+                    }}
+                    onPointerEnter={() => {
+                        if (scrollY.get() < showHeaderThreshold) {
+                            setCollapseBranding(true);
+                            setCollapseHeader(false);
+                        }
                     }}
                     /* ------------------------------ FramerMotion ------------------------------ */
                     variants={headerBrandingVariants}
@@ -98,6 +111,7 @@ export default function Header() {
                     </div>
                     <p className={css.name}>SCRIPR</p>
                 </motion.div>
+
                 <ul className={css.links}>
                     {navLinks.map((link, index) => (
                         <li key={`navItem${index}`}>
