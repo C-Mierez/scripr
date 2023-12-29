@@ -20,44 +20,44 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "hsl(var(--tw-color-gray))",
+        input: "hsl(var(--tw-color-gray))",
+        ring: "hsl(var(--tw-color-primary-800))",
+        background: "hsl(var(--tw-color-background))",
+        foreground: "hsl(var(--tw-color-text))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--tw-color-primary-600))",
+          foreground: "hsl(var(--tw-color-primary-50))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(var(--tw-color-success))",
+          foreground: "hsl(var(--tw-color-primary-600))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(var(--tw-color-failure))",
+          foreground: "hsl(var(--tw-color-primary-50))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(var(--tw-color-primary-100))",
+          foreground: "hsl(var(--tw-color-gray))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--tw-color-success))",
+          foreground: "hsl(var(--tw-color-primary-600))",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsl(var(--tw-color-background))",
+          foreground: "hsl(var(--tw-color-primary-800))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(var(--tw-color-background)",
+          foreground: "hsl(var(--tw-color-primary-800))",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--tw-radius)",
+        md: "calc(var(--tw-radius) - 2px)",
+        sm: "calc(var(--tw-radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {

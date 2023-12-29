@@ -6,65 +6,120 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    /* ---------------------- Initial Monochromatic Palette --------------------- */
+    --color-white: hsl(210, 20%, 96%);
+    --tw-color-white: 210 20% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --color-gray: hsl(216, 11%, 82%);
+    --tw-color-gray: 216 11% 82%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+    --color-black: hsl(225, 20%, 4%);
+    --tw-color-black: 225 20% 4%;
 
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
+    --color-primary-800: hsl(220, 22%, 8%);
+    --tw-color-primary-800: 220 22% 8%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --color-primary-700: hsl(222, 21%, 12%);
+    --tw-color-primary-700: 222 21% 12%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --color-primary-600: hsl(220, 22%, 16%);
+    --tw-color-primary-600: 220 22% 16%;
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --color-primary-500: hsl(221, 22%, 19%);
+    --tw-color-primary-500: 221 22% 19%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --color-primary-100: hsl(220, 16%, 89%);
+    --tw-color-primary-100: 220 16% 89%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --color-primary-50: hsl(220, 22%, 92%);
+    --tw-color-primary-50: 220 22% 92%;
 
-    --radius: 0.5rem;
+    --color-accent-500: hsl(220, 22%, 48%);
+    --tw-color-accent-500: 220 22% 48%;
+
+    --color-accent-400: hsl(217, 21%, 60%);
+    --tw-color-accent-400: 217 21% 60%;
+
+    --color-accent-300: hsl(212, 21%, 73%);
+    --tw-color-accent-300: 212 21% 73%;
+
+    --color-accent-100: hsl(212, 21%, 88%);
+    --tw-color-accent-100: 212 21% 88%;
+
+    --color-success: hsl(160, 41%, 48%);
+    --tw-color-success: 160 41% 48%;
+
+    --color-failure: hsl(354, 50%, 48%);
+    --tw-color-failure: 354 50% 48%;
+
+    --color-background: var(--color-primary-50);
+    --tw-color-background: var(--tw-color-primary-50);
+
+    --color-text: var(--color-black);
+    --tw-color-text: var(--tw-color-black);
+
+    --color-shadow: hsla(225, 20%, 4%, 0.137);
+    --tw-color-shadow: 225 20% 4% / 0.137;
+
+    --tw-radius: 0rem;
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    --color-white: hsl(210, 20%, 96%);
+    --tw-color-white: 210 20% 96%;
 
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
+    --color-gray: hsl(216, 11%, 82%);
+    --tw-color-gray: 216 11% 82%;
 
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --color-black: hsl(225, 20%, 4%);
+    --tw-color-black: 225 20% 4%;
 
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
+    --color-primary-50: hsl(220, 22%, 8%);
+    --tw-color-primary-50: 220 22% 8%;
 
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
+    --color-primary-100: hsl(222, 21%, 12%);
+    --tw-color-primary-100: 222 21% 12%;
 
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --color-primary-500: hsl(220, 22%, 16%);
+    --tw-color-primary-500: 220 22% 16%;
 
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --color-primary-600: hsl(221, 22%, 19%);
+    --tw-color-primary-600: 221 22% 19%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
+    --color-primary-700: hsl(220, 16%, 89%);
+    --tw-color-primary-700: 220 16% 89%;
 
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --color-primary-800: hsl(220, 22%, 92%);
+    --tw-color-primary-800: 220 22% 92%;
+
+    --color-accent-100: hsl(220, 22%, 48%);
+    --tw-color-accent-100: 220 22% 48%;
+
+    --color-accent-300: hsl(217, 21%, 60%);
+    --tw-color-accent-300: 217 21% 60%;
+
+    --color-accent-400: hsl(212, 21%, 73%);
+    --tw-color-accent-400: 212 21% 73%;
+
+    --color-accent-500: hsl(212, 21%, 88%);
+    --tw-color-accent-500: 212 21% 88%;
+
+    --color-success: hsl(160, 41%, 48%);
+    --tw-color-success: 160 41% 48%;
+
+    --color-failure: hsl(354, 50%, 48%);
+    --tw-color-failure: 354 50% 48%;
+
+    --color-background: var(--color-primary-800);
+    --tw-color-background: var(--tw-color-primary-800);
+
+    --color-text: var(--color-white);
+    --tw-color-text: var(--tw-color-white);
+
+    --color-shadow: hsla(225, 20%, 4%, 0.137);
+    --tw-color-shadow: 225 20% 4% / 0.137;
+
+    --tw-radius: 0rem;
   }
 }
 
@@ -77,6 +132,9 @@
   }
 }
 
+:root {
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -86,69 +144,6 @@
 }
 
 html {
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                                   Colors                                   */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  // Put themes on top to not mess with vscode's color detection hints
-  // &[data-theme="light"] {
-  // --color-white: #f3f5f7;
-  // --color-gray: #ccd0d6;
-  // --color-black: #08090c;
-
-  // --color-primary-800: #101319;
-  // --color-primary-700: #181c25;
-  // --color-primary-600: #202632;
-  // --color-primary-500: #262d3c;
-
-  // --color-accent-500: #5f7195;
-  // --color-accent-400: #8595af;
-  // --color-accent-300: #aab8c8;
-  // --color-accent-100: #dae0e7;
-
-  // --color-success: #48ac8a;
-  // --color-failure: #b83d49;
-
-  // --color-background: var(--color-primary-800);
-  // --color-text: var(--color-white);
-  // }
-
-  /* ---------------------- Initial Monochromatic Palette --------------------- */
-  --color-white: #f3f5f7;
-  --color-gray: #ccd0d6;
-  --color-black: #08090c;
-
-  --color-primary-800: #101319;
-  --color-primary-700: #181c25;
-  --color-primary-600: #202632;
-  --color-primary-500: #262d3c;
-  --color-primary-100: #dfe2e8;
-  --color-primary-50: #e6e9ef;
-
-  --color-accent-500: #5f7195;
-  --color-accent-400: #8595af;
-  --color-accent-300: #aab8c8;
-  --color-accent-100: #dae0e7;
-
-  --color-success: #48ac8a;
-  --color-failure: #b83d49;
-
-  --color-background: var(--color-primary-50);
-  --color-text: var(--color-black);
-  --color-shadow: #08090c23;
-
-  /* -------------------------------- Gradients ------------------------------- */
-  --gradient-normal: linear-gradient(
-    130deg,
-    var(--color-background),
-    var(--color-primary-700),
-    var(--color-accent-300)
-  );
-
-  --gradient-light: linear-gradient(130deg, var(--color-primary-700), var(--color-accent-300));
-
-  --gradient-secondary: linear-gradient(130deg, var(--color-white), var(--color-accent-500));
-
-  --gradient-background: linear-gradient(130deg, var(--color-white), var(--color-background));
 }
 
 body {
