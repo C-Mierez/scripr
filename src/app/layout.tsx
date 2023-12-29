@@ -1,11 +1,9 @@
 import "~/styles/globals.scss";
-import "~/styles/globals.css";
 
 import { Playfair_Display, Cinzel, Roboto_Serif, Playfair_Display_SC, Cinzel_Decorative } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import Header from "./_components/header/Header";
 import { Providers } from "./Providers";
 
 const roboto = Roboto_Serif({
