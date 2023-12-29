@@ -161,7 +161,6 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
             name: "Contact",
             href: `#${AnchorIDs.Contact}`,
         },
-
         {
             name: "About",
             href: `#${AnchorIDs.About}`,
