@@ -16,6 +16,15 @@
     --color-black: hsl(225, 20%, 4%);
     --tw-color-black: 225 20% 4%;
 
+    --color-black-10: hsla(225, 20%, 4%, 0.1);
+    --tw-color-black-10: 225 20% 4% / 0.1;
+
+    --color-black-25: hsla(225, 20%, 4%, 0.25);
+    --tw-color-black-25: 225 20% 4% / 0.25;
+
+    --color-black-50: hsla(225, 20%, 4%, 0.5);
+    --tw-color-black-50: 225 20% 4% / 0.5;
+
     --color-primary-800: hsl(220, 22%, 8%);
     --tw-color-primary-800: 220 22% 8%;
 
@@ -74,6 +83,15 @@
     --color-black: hsl(210, 20%, 96%);
     --tw-color-black: 210 20% 96%;
 
+    --color-black-10: hsla(220, 16%, 89%, 0.1);
+    --tw-color-black-10: 225 20% 4% / 0.1;
+
+    --color-black-25: hsla(220, 16%, 89%, 0.25);
+    --tw-color-black-25: 225 20% 4% / 0.25;
+
+    --color-black-50: hsla(220, 16%, 89%, 0.5);
+    --tw-color-black-50: 225 20% 4% / 0.5;
+
     --color-primary-50: hsl(220, 22%, 8%);
     --tw-color-primary-50: 220 22% 8%;
 
@@ -130,9 +148,6 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-:root {
 }
 
 * {
