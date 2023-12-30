@@ -2,13 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import { useState } from "react";
 
 export default function Dashboard() {
   const { setTheme } = useTheme();
 
   return (
-    <main>
+    <main style={{ padding: "var(--padding-side)", display: "flex", flexDirection: "column", alignItems: "center" }}>
       Dashboard Page
       <div>
         <Button
