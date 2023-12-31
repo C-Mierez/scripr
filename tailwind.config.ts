@@ -13,6 +13,10 @@ const config = {
             },
         },
         extend: {
+            fontSize: {
+                /* -------------------------------- Overrides ------------------------------- */
+                xs: "var(--fs--2)",
+            },
             colors: {
                 border: "hsl(var(--tw-color-gray))",
                 input: "hsl(var(--tw-color-gray))",
