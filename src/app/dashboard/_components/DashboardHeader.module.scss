@@ -2,8 +2,8 @@
 
 header.header {
     --fontSize: var(--fs-0);
-    --fontSizeSmaller: var(--fs--1);
-    --navHeight: calc(var(--fontSize) + var(--padding-side) * 2);
+    --fontSizeSmaller: var(--fs--2);
+    --navHeight: calc(var(--fontSize) * 2 + var(--padding-side) * 2);
 
     position: sticky;
     top: calc(var(--navHeight) * -1);
@@ -28,10 +28,10 @@ header.header {
     nav.nav {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: stretch;
 
         height: var(--navHeight);
-        padding-inline: var(--padding-side);
+        padding: var(--padding-side);
 
         .leftNav {
             display: flex;
@@ -39,8 +39,8 @@ header.header {
             gap: var(--padding-side);
 
             svg {
-                height: calc(var(--navHeight) * 0.5);
-                width: calc(var(--navHeight) * 0.5);
+                height: calc(var(--fontSize) * 2);
+                width: calc(var(--fontSize) * 2);
                 fill: var(--color-black);
             }
 
@@ -49,6 +49,28 @@ header.header {
                 font-size: var(--fontSize);
                 font-weight: var(--fw-bold);
                 color: var(--color-black);
+            }
+
+            .button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: var(--padding-side);
+
+                height: 100%;
+
+                line-height: 1.5;
+                font-size: var(--fontSizeSmaller);
+
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                box-shadow: none;
+
+                .buttonIcon {
+                    height: var(--fontSizeSmaller);
+                    width: var(--fontSizeSmaller);
+                }
             }
         }
 
@@ -64,8 +86,8 @@ header.header {
             }
 
             span {
-                height: calc(var(--navHeight) * 0.5);
-                width: calc(var(--navHeight) * 0.5);
+                height: calc(var(--fontSize) * 1.5);
+                width: calc(var(--fontSize) * 1.5);
             }
         }
     }
@@ -98,8 +120,8 @@ header.header {
 /*                               Theme Switcher                               */
 /* -------------------------------------------------------------------------- */
 .themeIcon {
-    height: var(--fontSizeSmaller);
-    width: var(--fontSizeSmaller);
+    height: var(--fs--1);
+    width: var(--fs--1);
     fill: var(--color-black-75);
     color: var(--color-black-75);
 
