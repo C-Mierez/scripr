@@ -1,0 +1,10 @@
+.formCheckbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--padding-items);
+
+    .content {
+        display: grid;
+        gap: var(--padding-items);
+    }
+}
