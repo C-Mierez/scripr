@@ -1,0 +1,18 @@
+@import "~/styles/mixins";
+
+.scaffold {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 100svh;
+
+    background: var(--color-primary-50);
+
+    & > * {
+        padding-inline: 10vw;
+
+        @include mobile {
+            padding-inline: var(--padding-side);
+        }
+    }
+}

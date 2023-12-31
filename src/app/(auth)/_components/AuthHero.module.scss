@@ -1,0 +1,39 @@
+@import "~/styles/mixins";
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include desktop {
+        height: 80svh;
+    }
+
+    .label {
+        font-family: var(--font-header);
+        font-size: var(--fs-1);
+        font-style: italic;
+        font-weight: var(--fw-medium);
+
+        margin-bottom: 0.25em;
+
+        @include mobile {
+            font-size: var(--fs-0);
+        }
+    }
+
+    .header {
+        font-family: var(--font-header-alt-700);
+        font-size: var(--fs-7);
+    }
+
+    .subheader {
+        font-family: var(--font-body);
+        font-size: var(--fs-0);
+        line-height: var(--font-line-height-body);
+
+        margin-top: var(--padding-element);
+        // margin-bottom: var(--padding-section);
+    }
+}

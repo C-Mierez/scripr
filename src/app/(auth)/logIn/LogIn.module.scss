@@ -1,0 +1,57 @@
+@import "~/styles/mixins";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-element);
+
+    // height: 100%;
+    width: 100%;
+
+    & > h2 {
+        @include font-header-medium;
+        font-size: var(--fs-3);
+        font-weight: var(--fw-bold);
+
+        @include mobile {
+            font-size: var(--fs-2);
+        }
+    }
+
+    form {
+        flex: 1;
+    }
+
+    .foot {
+        & > p {
+            @include font-small;
+            font-weight: var(--fw-regular);
+
+            a {
+                font-weight: var(--fw-medium);
+                text-decoration: underline;
+            }
+        }
+
+        .separator {
+            height: 1px;
+            width: 100%;
+            margin-block: var(--padding-element);
+
+            background: var(--color-black-25);
+        }
+
+        .oauth {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--padding-items);
+
+            width: 100%;
+            margin-top: var(--padding-items);
+
+            & > * {
+                flex: 1;
+            }
+        }
+    }
+}
