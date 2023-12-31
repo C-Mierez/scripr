@@ -36,8 +36,8 @@ const config = {
                     foreground: "hsl(var(--tw-color-primary-50))",
                 },
                 muted: {
-                    DEFAULT: "hsl(var(--tw-color-primary-100))",
-                    foreground: "hsl(var(--tw-color-gray))",
+                    DEFAULT: "hsl(var(--tw-color-black-50))",
+                    foreground: "hsl(var(--tw-color-black-50))",
                 },
                 accent: {
                     DEFAULT: "hsl(var(--tw-color-success))",
