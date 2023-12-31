@@ -28,23 +28,23 @@ export default function DashboardHeader() {
         },
         {
             label: "Investments",
-            href: "/dashboard/investments",
+            href: "/investments",
         },
         {
             label: "Expenses",
-            href: "/dashboard/expenses",
+            href: "/expenses",
         },
         {
             label: "Income",
-            href: "/dashboard/income",
+            href: "/income",
         },
         {
             label: "Analytics",
-            href: "/dashboard/analytics",
+            href: "/analytics",
         },
         {
             label: "Example",
-            href: "/dashboard/example",
+            href: "/example",
         },
     ];
 
