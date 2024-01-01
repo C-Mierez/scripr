@@ -1,5 +1,8 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -7,18 +10,16 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import css from "./DashboardHeader.module.scss";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SVGComponent from "~/app/_components/svg/SVG";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ThemeSwitcher from "./ThemeSwitcher";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
-import { cn } from "@/lib/utils";
+import SVGComponent from "~/app/_components/svg/SVG";
+
+import css from "./DashboardHeader.module.scss";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function DashboardHeader() {
     const menuItems = [
