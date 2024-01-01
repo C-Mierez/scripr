@@ -136,10 +136,12 @@ function RightNav() {
             <p>Help</p>
             <p>Docs</p>
             <ThemeSwitcher />
-            <Avatar>
-                <AvatarImage src="https://github.com/c-mierez.png" />
-                <AvatarFallback></AvatarFallback>
-            </Avatar>
+            <a href="/logIn">
+                <Avatar>
+                    <AvatarImage src="https://github.com/c-mierez.png" />
+                    <AvatarFallback></AvatarFallback>
+                </Avatar>
+            </a>
         </div>
     );
 }
