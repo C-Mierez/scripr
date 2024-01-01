@@ -1,32 +1,32 @@
 import AuthScaffold from "../_components/AuthScaffold";
 import AuthHero from "../_components/AuthHero";
 import AuthFormWrapper from "../_components/AuthFormWrapper";
-import LogInForm from "./_components/LogInForm";
 import { Button } from "@/components/ui/button";
-import css from "./LogIn.module.scss";
+import css from "./SignUp.module.scss";
+import SignUpForm from "../logIn/_components/SignUpForm";
 
-export default function LogInPage() {
+export default function SignUpPage() {
     return (
         <AuthScaffold>
             <AuthHero
-                label="Log In"
-                header="Welcome Back!"
-                subheader="Sign into your account to access your portfolios and continue managing your finances."
+                label="Sign Up"
+                header="Begin your Journey!"
+                subheader="Create an account and join our community of people taking back control of their finances."
             />
             <AuthFormWrapper>
-                <LogIn />
+                <SignUp />
             </AuthFormWrapper>
         </AuthScaffold>
     );
 }
 
-function LogIn() {
+function SignUp() {
     return (
         <div className={css.container}>
-            <h2>Your Account</h2>
-            <LogInForm />
+            <h2>New Account</h2>
+            <SignUpForm />
             <div className={css.foot}>
-                <p>Or sign in with</p>
+                <p>Or sign up with</p>
                 <ul className={css.oauth}>
                     <li>
                         <Button variant="outline" className="w-full">
@@ -41,7 +41,7 @@ function LogIn() {
                 </ul>
                 <div className={css.separator} />
                 <p>
-                    Don't have an account? <a href="/signUp">Sign up</a>
+                    Already have an account? <a href="/logIn">Log In</a>
                 </p>
             </div>
         </div>

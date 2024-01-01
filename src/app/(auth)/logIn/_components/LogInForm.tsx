@@ -1,31 +1,35 @@
 "use client";
 
+import FormAlertFailure from "@/components/FormAlertFailure";
+import FormAlertSuccess from "@/components/FormAlertSuccess";
+import FormCheckbox from "@/components/FormCheckbox";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LogInSchema } from "schemas";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import css from "./LogInForm.module.scss";
-import { Button } from "@/components/ui/button";
-import FormAlertFailure from "@/components/FormAlertFailure";
-import FormAlertSuccess from "@/components/FormAlertSuccess";
-import { Checkbox } from "@/components/ui/checkbox";
-import FormCheckbox from "@/components/FormCheckbox";
+import { api } from "~/utils/api";
 
 interface LogInFormProps {}
 
 export default function LogInForm({}: LogInFormProps) {
+    const { isLoading, mutateAsync, data, isSuccess, isError, error } = api.auth.logIn.useMutation();
+
     const form = useForm<z.infer<typeof LogInSchema>>({
         resolver: zodResolver(LogInSchema),
         defaultValues: {
             email: "",
             password: "",
+            rememberMe: false,
         },
     });
 
     const onSubmit = (values: z.infer<typeof LogInSchema>) => {
-        console.log(values);
+        mutateAsync(values);
     };
 
     return (
@@ -39,7 +43,12 @@ export default function LogInForm({}: LogInFormProps) {
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input {...field} placeholder="YourEmail@example.com" type="email" />
+                                    <Input
+                                        {...field}
+                                        disabled={isLoading}
+                                        placeholder="YourEmail@example.com"
+                                        type="email"
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -54,22 +63,42 @@ export default function LogInForm({}: LogInFormProps) {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input {...field} placeholder="Password" type="password" />
+                                    <Input {...field} disabled={isLoading} placeholder="Password" type="password" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         );
                     }}
                 />
-                <FormAlertFailure title="Log In Failed" message="Your email or password is incorrect." />
-                <FormAlertSuccess title="Log In Successful" message="You have successfully logged in." />
-                <FormCheckbox
-                    id="terms"
-                    label="Accept terms and conditions"
-                    description="You agree to our Terms of Service and Privacy Policy."
+                <FormField
+                    control={form.control}
+                    name={"rememberMe"}
+                    render={({ field }) => {
+                        return (
+                            <FormItem>
+                                <FormControl>
+                                    <FormCheckbox
+                                        id="rememberMe"
+                                        label="Remember me"
+                                        checked={field.value}
+                                        disabled={isLoading}
+                                        onCheckedChange={(checked) => {
+                                            field.onChange(checked);
+                                        }}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        );
+                    }}
                 />
-                <FormCheckbox id="remember" label="Stay logged in" />
-                <Button type="submit">Log In</Button>
+
+                {isError && <FormAlertFailure title="Log In Failed" message={error.message} />}
+                {isSuccess && <FormAlertSuccess title="Log In Success" message={`${data.result}`} />}
+
+                <Button type="submit" disabled={isLoading}>
+                    Log In
+                </Button>
             </form>
         </Form>
     );
