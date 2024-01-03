@@ -1,5 +1,4 @@
 "use client";
-
 import FormAlertFailure from "@/components/FormAlertFailure";
 import FormAlertSuccess from "@/components/FormAlertSuccess";
 import FormCheckbox from "@/components/FormCheckbox";
@@ -7,17 +6,21 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { logIn } from "actions/auth";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { LogInSchema } from "schemas";
 import { z } from "zod";
 
 import css from "./LogInForm.module.scss";
-import { api } from "~/utils/api";
 
 interface LogInFormProps {}
 
 export default function LogInForm({}: LogInFormProps) {
-    const { isLoading, mutateAsync, data, isSuccess, isError, error } = api.auth.logIn.useMutation();
+    const [isPending, startTransition] = useTransition();
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [error, setError] = useState("");
 
     const form = useForm<z.infer<typeof LogInSchema>>({
         resolver: zodResolver(LogInSchema),
@@ -29,7 +32,23 @@ export default function LogInForm({}: LogInFormProps) {
     });
 
     const onSubmit = (values: z.infer<typeof LogInSchema>) => {
-        mutateAsync(values);
+        startTransition(() => {
+            logIn(values)
+                .then((data) => {
+                    if (data?.error) {
+                        setIsError(true);
+                        setError(data.error);
+                    }
+
+                    if (data?.success) {
+                        setIsSuccess(true);
+                    }
+                })
+                .catch((e) => {
+                    setIsError(true);
+                    setError(e);
+                });
+        });
     };
 
     return (
@@ -45,7 +64,7 @@ export default function LogInForm({}: LogInFormProps) {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        disabled={isLoading}
+                                        disabled={isPending}
                                         placeholder="YourEmail@example.com"
                                         type="email"
                                     />
@@ -63,7 +82,7 @@ export default function LogInForm({}: LogInFormProps) {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input {...field} disabled={isLoading} placeholder="Password" type="password" />
+                                    <Input {...field} disabled={isPending} placeholder="Password" type="password" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -81,7 +100,7 @@ export default function LogInForm({}: LogInFormProps) {
                                         id="rememberMe"
                                         label="Remember me"
                                         checked={field.value}
-                                        disabled={isLoading}
+                                        disabled={isPending}
                                         onCheckedChange={(checked) => {
                                             field.onChange(checked);
                                         }}
@@ -93,10 +112,12 @@ export default function LogInForm({}: LogInFormProps) {
                     }}
                 />
 
-                {isError && <FormAlertFailure title="Log In Failed" message={error.message} />}
-                {isSuccess && <FormAlertSuccess title="Log In Success" message={`${data.result}`} />}
+                {isError && <FormAlertFailure title="Log in failed" message={error} />}
+                {isSuccess && (
+                    <FormAlertSuccess title="Logged in successfully!" message={"You will soon be redirected."} />
+                )}
 
-                <Button type="submit" disabled={isLoading}>
+                <Button type="submit" disabled={isPending}>
                     Log In
                 </Button>
             </form>

@@ -13,9 +13,10 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+import { logOut } from "actions/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import SVGComponent from "~/app/_components/svg/SVG";
 
 import css from "./DashboardHeader.module.scss";
@@ -132,8 +133,21 @@ function LeftNav() {
 }
 
 function RightNav() {
+    const [isPending, startTransition] = useTransition();
+
     return (
         <div className={css.rightNav}>
+            <p>
+                <button
+                    onClick={() => {
+                        startTransition(() => {
+                            logOut();
+                        });
+                    }}
+                >
+                    Log Out
+                </button>
+            </p>
             <p>Help</p>
             <p>Docs</p>
             <ThemeSwitcher />
