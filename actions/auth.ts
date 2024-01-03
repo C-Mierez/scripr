@@ -5,6 +5,8 @@ import { AuthError } from "next-auth";
 import { LogInSchema } from "schemas";
 import { signIn, signOut } from "~/server/auth";
 import { DEFAULT_AUTHED_REDIRECT_URL } from "~/routes";
+import { CurrentOAuthProviders } from "~/server/auth.config";
+
 
 export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ error?: string; success?: boolean }> => {
     console.log("ACTION: LogIn started");
@@ -56,4 +58,13 @@ export const logOut = async () => {
     console.log("ACTION: LogOut started");
     await signOut();
     console.log("ACTION: Completed sign out");
+};
+
+/* -------------------------- Third Party Providers ------------------------- */
+export const logInOAuth = async (provider: CurrentOAuthProviders) => {
+    console.log("ACTION: LogInOAuth started");
+    await signIn(provider, {
+        callbackUrl: "/",
+    });
+    console.log("ACTION: Completed sign in");
 };
