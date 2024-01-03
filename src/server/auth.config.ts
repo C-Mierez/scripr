@@ -25,10 +25,14 @@ export default {
         },
     },
     callbacks: {
-        // TODO: Uncomment this when we have email verification
-        // async signIn({ user }) {
-        //     return await isUserVerified(db, user.id);
-        // },
+        async signIn({ user, account }) {
+            // Skip if the signIn process is done by an OAuth provider
+            // We assume that OAuth providers have already verified the user's email
+            if (account && account.provider !== "credentials") return true;
+
+            // Otherwise, make sure the user is verified
+            return await isUserVerified(db, user.id);
+        },
         async session({ session, token }) {
             if (token.sub && session.user) {
                 session.user.id = token.sub;

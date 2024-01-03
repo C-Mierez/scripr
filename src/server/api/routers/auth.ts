@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import bcrypt from "bcryptjs";
 import { SignUpSchema } from "schemas";
-import { createUser, getUserByEmail } from "~/server/db/queries";
+import { createUser, createVerificationTokenForEmail, getUserByEmail } from "~/server/db/queries";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
@@ -26,10 +26,13 @@ export const authRouter = createTRPCRouter({
             passwordSalt: generatedSalt,
             name: input.username,
         });
-        // TODO: Send verification email
+
+        // Generate a verification token for the user
+        const verificationToken = await createVerificationTokenForEmail(ctx.db, { email: input.email });
+
         return {
             success: true,
-            email: input.email,
+            email: verificationToken.email,
         };
     }),
 });

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { logIn } from "actions/auth";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { LogInSchema } from "schemas";
@@ -14,6 +13,7 @@ import { z } from "zod";
 
 import css from "./LogInForm.module.scss";
 import { useSearchParams } from "next/navigation";
+import { logIn } from "actions/auth";
 
 interface LogInFormProps {}
 
