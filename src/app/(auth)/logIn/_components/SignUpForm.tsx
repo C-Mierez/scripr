@@ -10,9 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignUpSchema } from "schemas";
 import { z } from "zod";
+import { api } from "~/utils/api";
 
 import css from "./SignUpForm.module.scss";
-import { api } from "~/utils/api";
 
 interface SignUpFormProps {}
 
@@ -150,8 +150,10 @@ export default function SignUpForm({}: SignUpFormProps) {
                     }}
                 />
 
-                {isError && <FormAlertFailure title="Sign up Failed" message={error.message} />}
-                {isSuccess && <FormAlertSuccess title="Sign up Success" message={`${data.result}`} />}
+                {isError && <FormAlertFailure title="Sign up error" message={error.message} />}
+                {isSuccess && (
+                    <FormAlertSuccess title="Signed up successfully!" message="You will soon be redirected." />
+                )}
 
                 {/* <FormCheckbox
                     id="terms"
