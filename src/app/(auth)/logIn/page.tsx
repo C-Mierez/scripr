@@ -1,8 +1,8 @@
-import AuthScaffold from "../_components/AuthScaffold";
-import AuthHero from "../_components/AuthHero";
 import AuthFormWrapper from "../_components/AuthFormWrapper";
+import AuthHero from "../_components/AuthHero";
+import AuthScaffold from "../_components/AuthScaffold";
 import LogInForm from "./_components/LogInForm";
-import { Button } from "@/components/ui/button";
+import OAuthProvider from "./_components/OAuthProviders";
 import css from "./LogIn.module.scss";
 
 export default function LogInPage() {
@@ -27,18 +27,7 @@ function LogIn() {
             <LogInForm />
             <div className={css.foot}>
                 <p>Or sign in with</p>
-                <ul className={css.oauth}>
-                    <li>
-                        <Button variant="outline" className="w-full">
-                            Google
-                        </Button>
-                    </li>
-                    <li>
-                        <Button variant="outline" className="w-full">
-                            GitHub
-                        </Button>
-                    </li>
-                </ul>
+                <OAuthProvider />
                 <div className={css.separator} />
                 <p>
                     Don't have an account? <a href="/signUp">Sign up</a>

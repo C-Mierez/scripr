@@ -41,14 +41,5 @@
 
             background: var(--color-black-25);
         }
-
-        .oauth {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--padding-items);
-
-            width: 100%;
-            margin-top: var(--padding-items);
-        }
     }
 }
