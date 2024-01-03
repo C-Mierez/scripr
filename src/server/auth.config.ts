@@ -17,6 +17,13 @@ export default {
         signIn: "/logIn",
         error: "/authError",
     },
+    events: {
+        async linkAccount({ user }) {
+            // This event is only fired on OAuth signUps, which means we can safely call this verify method
+            // OAuthed users don't have to verify their email with us
+            verifyUser(db, { id: user.id });
+        },
+    },
     callbacks: {
         // TODO: Uncomment this when we have email verification
         // async signIn({ user }) {
