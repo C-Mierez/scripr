@@ -11,12 +11,12 @@ export default function AuthError() {
             <AuthHero
                 label="Oops!"
                 header="Something went wrong."
-                subheader="An error ocurred while trying to authenticate your account.
+                subheader="
             "
             />
             <AuthFormWrapper>
                 <div className="flex flex-col items-center justify-center gap-[var(--padding-side)]">
-                    <p className="text-center text-xl">Please try again later.</p>
+                    <p className="text-center text-xl">An error ocurred while trying to authenticate your account.</p>
                     <Button asChild className="h-28 text-6xl">
                         <Link href={"logIn"}>
                             <ArrowTopLeftIcon className="h-full w-full ml-[-1rem]" />
