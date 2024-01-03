@@ -1,11 +1,13 @@
 import { z } from "zod";
 
+export const UserRoleSchema = z.enum(["user", "admin"]);
+
 export const LogInSchema = z.object({
     email: z.string().email({
         message: "Invalid email address.",
     }),
     password: z.string(), // Not limiting in case constraints change throughout time
-    rememberMe: z.boolean(),
+    rememberMe: z.boolean().optional(),
 });
 
 export const SignUpSchema = z
@@ -17,6 +19,9 @@ export const SignUpSchema = z
             .string()
             .min(6, {
                 message: "Password must be at least 6 characters long.",
+            })
+            .max(256, {
+                message: "Password is too long.",
             })
             .regex(/[a-z]/, {
                 message: "Password must contain at least one lowercase letter.",
