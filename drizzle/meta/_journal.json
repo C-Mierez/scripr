@@ -22,6 +22,20 @@
       "when": 1704251062454,
       "tag": "0002_free_scarecrow",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1704261465920,
+      "tag": "0003_lonely_colleen_wing",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1704262645325,
+      "tag": "0004_perfect_sinister_six",
+      "breakpoints": true
     }
   ]
 }

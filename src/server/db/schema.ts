@@ -13,6 +13,7 @@ import {
     primaryKey,
     pgEnum,
     serial,
+    unique,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 
@@ -84,5 +85,19 @@ export const roles = pgTable(
     },
     (role) => ({
         roleNameIndex: index("role_name_idx").on(role.name),
+    })
+);
+
+export const verificationToken = pgTable(
+    "verification_token",
+    {
+        id: uuid("id").notNull().defaultRandom().primaryKey(),
+        token: text("token").notNull().unique(),
+        email: text("email").notNull(),
+        expiresAt: timestamp("expiresAt").notNull(),
+        createdAt: timestamp("createdAt").defaultNow().notNull(),
+    },
+    (table) => ({
+        uniqueTokens: unique().on(table.token, table.email),
     })
 );
