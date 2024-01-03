@@ -1,11 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { auth } from "~/server/auth";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    const session = await auth();
     return (
         <main
             style={{ padding: "var(--padding-side)", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
-            Dashboard Page
+            {JSON.stringify(session)}
         </main>
     );
 }
