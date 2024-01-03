@@ -5,23 +5,23 @@ import Google from "next-auth/providers/google";
 import { LogInSchema } from "schemas";
 
 import { db } from "./db";
-import { getUserByEmail, getUserById } from "./db/queries";
+import { getUserByEmail, getUserById, isUserVerified, verifyUser } from "./db/queries";
 
 import type { NextAuthConfig } from "next-auth";
 import { env } from "~/env.mjs";
 
 export default {
     trustHost: true,
+    // This is where the default routes in Auth.js can be overridden or defined
+    pages: {
+        signIn: "/logIn",
+        error: "/authError",
+    },
     callbacks: {
-        async signIn({ user }) {
-            const existingUser = await getUserById(db, user.id);
-
-            if (!existingUser || !existingUser.emailVerified) {
-                return false;
-            }
-
-            return true;
-        },
+        // TODO: Uncomment this when we have email verification
+        // async signIn({ user }) {
+        //     return await isUserVerified(db, user.id);
+        // },
         async session({ session, token }) {
             if (token.sub && session.user) {
                 session.user.id = token.sub;
@@ -56,6 +56,7 @@ export default {
         },
     },
     providers: [
+        // Remember to modify CurrentOAuthProviders type below, when adding/removing providers
         Google({
             clientId: env.GOOGLE_CLIENT_ID,
             clientSecret: env.GOOGLE_CLIENT_SECRET,
@@ -88,3 +89,5 @@ export default {
         }),
     ],
 } satisfies NextAuthConfig;
+
+export type CurrentOAuthProviders = "google" | "github";

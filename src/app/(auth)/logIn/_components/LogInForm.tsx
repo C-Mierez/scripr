@@ -13,11 +13,13 @@ import { LogInSchema } from "schemas";
 import { z } from "zod";
 
 import css from "./LogInForm.module.scss";
+import { useSearchParams } from "next/navigation";
 
 interface LogInFormProps {}
 
 export default function LogInForm({}: LogInFormProps) {
     const [isPending, startTransition] = useTransition();
+    const searchParams = useSearchParams();
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState("");
@@ -50,6 +52,11 @@ export default function LogInForm({}: LogInFormProps) {
                 });
         });
     };
+
+    const urlError =
+        searchParams.get("error") === "OAuthAccountNotLinked"
+            ? "There is already an account using this email. Please log in with that account instead."
+            : "";
 
     return (
         <Form {...form}>
@@ -112,6 +119,7 @@ export default function LogInForm({}: LogInFormProps) {
                     }}
                 />
 
+                {!!urlError && <FormAlertFailure title="Log in failed" message={urlError} />}
                 {isError && <FormAlertFailure title="Log in failed" message={error} />}
                 {isSuccess && (
                     <FormAlertSuccess title="Logged in successfully!" message={"You will soon be redirected."} />

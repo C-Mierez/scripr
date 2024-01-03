@@ -9,7 +9,7 @@ export const publicRoutes = ["/"];
  * Will redirect to DEFAULT_AUTHED_REDIRECT_URL if already authenticated.
  * @type {string[]}
  */
-export const authRoutes = ["/logIn", "/signUp"];
+export const authRoutes = ["/logIn", "/signUp", "/authError"];
 
 /**
  * The prefix for API authentication routes.
