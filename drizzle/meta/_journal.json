@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1704240800266,
+      "tag": "0000_cynical_shotgun",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1704241660194,
+      "tag": "0001_square_network",
+      "breakpoints": true
+    }
+  ]
+}

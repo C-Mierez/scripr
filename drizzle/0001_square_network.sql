@@ -1,0 +1,1 @@
+ALTER TABLE "scripr_user" ALTER COLUMN "roleId" SET DEFAULT 1;
