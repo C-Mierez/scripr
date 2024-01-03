@@ -1,8 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import bcrypt from "bcryptjs";
 import { SignUpSchema } from "schemas";
-import { getUserByEmail } from "~/server/db/queries";
-import { users } from "~/server/db/schema";
+import { createUser, getUserByEmail } from "~/server/db/queries";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
@@ -21,7 +20,7 @@ export const authRouter = createTRPCRouter({
         const generatedSalt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(input.password, generatedSalt);
         // Create the new user
-        await ctx.db.insert(users).values({
+        await createUser(ctx.db, {
             email: input.email,
             passwordHash: hashedPassword,
             passwordSalt: generatedSalt,
