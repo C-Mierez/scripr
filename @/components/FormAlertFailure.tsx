@@ -14,8 +14,8 @@ export default function FormAlertFailure({ title, message }: FormAlertFailurePro
     }
 
     return (
-        <Alert>
-            <ExclamationTriangleIcon className="h-4 w-4" />
+        <Alert className="text-background bg-destructive">
+            <ExclamationTriangleIcon color="var(--color-white)" className="h-4 w-4 my-auto" />
             <AlertTitle>{title}</AlertTitle>
             <AlertDescription>{message}</AlertDescription>
         </Alert>

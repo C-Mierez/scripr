@@ -14,8 +14,8 @@ export default function FormAlertSuccess({ title, message }: FormAlertSuccessPro
     }
 
     return (
-        <Alert>
-            <CheckCircledIcon className="h-4 w-4" />
+        <Alert className="text-background bg-secondary">
+            <CheckCircledIcon color="var(--color-white)" className="h-4 w-4" />
             <AlertTitle>{title}</AlertTitle>
             <AlertDescription>{message}</AlertDescription>
         </Alert>
