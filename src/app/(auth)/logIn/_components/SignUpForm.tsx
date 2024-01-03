@@ -152,7 +152,10 @@ export default function SignUpForm({}: SignUpFormProps) {
 
                 {isError && <FormAlertFailure title="Sign up error" message={error.message} />}
                 {isSuccess && (
-                    <FormAlertSuccess title="Signed up successfully!" message="You will soon be redirected." />
+                    <FormAlertSuccess
+                        title="Signed up successfully!"
+                        message={`A confirmation email has been sent to ${data?.email}`}
+                    />
                 )}
 
                 {/* <FormCheckbox

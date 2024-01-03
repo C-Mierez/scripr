@@ -30,6 +30,7 @@ export const authRouter = createTRPCRouter({
         // TODO: Send verification email
         return {
             success: true,
+            email: input.email,
         };
     }),
 });
