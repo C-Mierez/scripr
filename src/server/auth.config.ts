@@ -1,9 +1,14 @@
-import type { NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import { LogInSchema } from "schemas";
-import { getUserByEmail, getUserById } from "./db/queries";
 import bcrypt from "bcryptjs";
+import Credentials from "next-auth/providers/credentials";
+import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
+import { LogInSchema } from "schemas";
+
 import { db } from "./db";
+import { getUserByEmail, getUserById } from "./db/queries";
+
+import type { NextAuthConfig } from "next-auth";
+import { env } from "~/env.mjs";
 
 export default {
     trustHost: true,
@@ -51,6 +56,14 @@ export default {
         },
     },
     providers: [
+        Google({
+            clientId: env.GOOGLE_CLIENT_ID,
+            clientSecret: env.GOOGLE_CLIENT_SECRET,
+        }),
+        GitHub({
+            clientId: env.GITHUB_CLIENT_ID,
+            clientSecret: env.GITHUB_CLIENT_SECRET,
+        }),
         Credentials({
             async authorize(credentials) {
                 console.log("AUTHORIZE: Authorizing credentials...", credentials);
