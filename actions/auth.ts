@@ -8,6 +8,7 @@ import { signIn, signOut } from "~/server/auth";
 import { CurrentOAuthProviders } from "~/server/auth.config";
 import { db } from "~/server/db";
 import { createVerificationTokenForEmail, getUserByEmail } from "~/server/db/queries";
+import { sendVerificationEmail } from "~/server/mail";
 
 export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ error?: string; success?: boolean }> => {
     //! Important: DISABLE NEXT.JS AUTOMATIC CACHING FROM FETCH
@@ -41,6 +42,9 @@ export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ erro
     // If the user exists but is not verified, send a new verification email
     if (!existingUser.emailVerified) {
         const newVerificationToken = await createVerificationTokenForEmail(db, { email: existingUser.email });
+
+        // Send the verification email
+        await sendVerificationEmail(newVerificationToken.email, newVerificationToken.token);
 
         return {
             error: `Email is not verified. A new verification email has been sent to ${newVerificationToken.email}`,
