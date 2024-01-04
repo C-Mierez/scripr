@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db as drizzleDB } from "./index";
-import { users, verificationToken } from "./schema";
+import { passwordResetToken, users, verificationToken } from "./schema";
 import { v4 as uuid } from "uuid";
 
 /* ---------------------------------- Utils --------------------------------- */
@@ -82,6 +82,24 @@ export const getVerificationTokenByToken = async (db: typeof drizzleDB, token: s
     try {
         const fetchedToken = await db.query.verificationToken.findFirst({
             where: eq(verificationToken.token, token),
+        });
+        return fetchedToken;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+/**
+ * Fetches the passwordResetToken associated to a token.
+ * @param db Database instance
+ * @param token The token
+ * @returns The passwordResetToken object or null if the token does not exist
+ */
+export const getPasswordResetTokenByToken = async (db: typeof drizzleDB, token: string) => {
+    try {
+        const fetchedToken = await db.query.passwordResetToken.findFirst({
+            where: eq(passwordResetToken.token, token),
         });
         return fetchedToken;
     } catch (error) {
@@ -171,4 +189,38 @@ export const createVerificationTokenForEmail = async (db: typeof drizzleDB, { em
         .returning();
 
     return newVerificationToken[0]!;
+};
+
+/**
+ * Creates a new password reset token for an email.
+ * Relies on PostgresDB generating a UUID for the new token automatically.
+ * Sets the new token expiration date to 1 hour from now.
+ * Removes any currently existing tokens associated to the email.
+ * @param db Database instance
+ * @param email The user's email
+ * @returns The new passwordResetToken
+ */
+export const createPasswordResetTokenForEmail = async (db: typeof drizzleDB, { email }: { email: string }) => {
+    // Calculate token expiration date
+    // Milliseconds
+    const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hour from now
+
+    // Remove all existing tokens associated to the email
+    // The DB should only have 1 token per email anyway, but we do this just in case
+    await db.delete(passwordResetToken).where(eq(passwordResetToken.email, email));
+
+    // Create new token UUID
+    const newToken = uuid();
+
+    // Insert new token row
+    const newPasswordResetToken = await db
+        .insert(passwordResetToken)
+        .values({
+            email,
+            expiresAt: expires,
+            token: newToken,
+        })
+        .returning();
+
+    return newPasswordResetToken[0]!;
 };
