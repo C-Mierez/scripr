@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 import { env } from "~/env.mjs";
-import { verifyRoute } from "~/routes";
+import { passwordResetVerifyRoute, verifyRoute } from "~/routes";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -20,7 +20,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-    const confirmLink = `http://localhost:3000${verifyRoute}?token=${token}`;
+    const confirmLink = `http://localhost:3000${passwordResetVerifyRoute}?token=${token}`;
 
     await resend.emails.send({
         from: "onboarding@resend.dev",

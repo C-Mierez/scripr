@@ -8,12 +8,17 @@ export const publicRoutes = ["/"];
  * Route for email verification page
  */
 export const verifyRoute = "/verify";
+
+/**
+ * Route for password reset verification page
+ */
+export const passwordResetVerifyRoute = "/reset/verify";
 /**
  * Routes that are used for authentication purposes.
  * Will redirect to DEFAULT_AUTHED_REDIRECT_URL if already authenticated.
  * @type {string[]}
  */
-export const authRoutes = ["/logIn", "/signUp", "/authError", verifyRoute, "/reset"];
+export const authRoutes = ["/logIn", "/signUp", "/authError", verifyRoute, "/reset", passwordResetVerifyRoute];
 
 /**
  * The prefix for API authentication routes.
