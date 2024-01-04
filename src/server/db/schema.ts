@@ -101,3 +101,17 @@ export const verificationToken = pgTable(
         uniqueTokens: unique().on(table.token, table.email),
     })
 );
+
+export const passwordResetToken = pgTable(
+    "password_reset_token",
+    {
+        id: uuid("id").notNull().defaultRandom().primaryKey(),
+        token: text("token").notNull().unique(),
+        email: text("email").notNull(),
+        expiresAt: timestamp("expiresAt").notNull(),
+        createdAt: timestamp("createdAt").defaultNow().notNull(),
+    },
+    (table) => ({
+        uniqueTokens: unique().on(table.token, table.email),
+    })
+);
