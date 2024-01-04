@@ -120,13 +120,23 @@ export const createUser = async (
  * @param db Database instance
  * @param id The user's ID
  */
-export const verifyUser = async (db: typeof drizzleDB, { id }: { id: string }) => {
+export const verifyUser = async (db: typeof drizzleDB, { id, newEmail }: { id: string; newEmail?: string }) => {
     await db
         .update(users)
         .set({
             emailVerified: new Date(),
+            ...(newEmail ? { email: newEmail } : {}),
         })
         .where(eq(users.id, id));
+};
+
+/**
+ * Deletes a verification token by ID.
+ * @param db Database instance
+ * @param id The token's ID
+ */
+export const deleteVerificationTokenById = async (db: typeof drizzleDB, id: string) => {
+    await db.delete(verificationToken).where(eq(verificationToken.id, id));
 };
 
 /**
