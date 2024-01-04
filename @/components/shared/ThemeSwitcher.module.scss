@@ -1,0 +1,27 @@
+/* -------------------------------------------------------------------------- */
+/*                               Theme Switcher                               */
+/* -------------------------------------------------------------------------- */
+.themeIcon {
+    height: var(--fs--1);
+    width: var(--fs--1);
+    fill: var(--color-black-75);
+    color: var(--color-black-75);
+
+    cursor: pointer;
+}
+
+.popoverContainer {
+    max-width: min-content;
+
+    .themesList {
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-items);
+
+        button {
+            width: 100%;
+
+            text-transform: capitalize;
+        }
+    }
+}

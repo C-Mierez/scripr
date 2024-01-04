@@ -20,7 +20,7 @@ import { useState, useTransition } from "react";
 import SVGComponent from "~/app/_components/svg/SVG";
 
 import css from "./DashboardHeader.module.scss";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
 
 export default function DashboardHeader() {
     const menuItems = [

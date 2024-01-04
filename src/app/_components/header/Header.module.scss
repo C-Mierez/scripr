@@ -1,313 +1,313 @@
 @import "~/styles/mixins";
 
 header.header {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  width: 100%;
-  z-index: 100;
+    width: 100%;
+    z-index: 10;
 
-  nav.nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 1rem;
+    nav.nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1rem;
 
-    width: var(--width-container-header);
-    margin-inline: auto;
-    padding-inline: var(--border-radius-main);
+        width: var(--width-container-header);
+        margin-inline: auto;
+        padding-inline: var(--border-radius-main);
 
-    border-bottom-left-radius: var(--border-radius-main);
-    border-bottom-right-radius: var(--border-radius-main);
+        border-bottom-left-radius: var(--border-radius-main);
+        border-bottom-right-radius: var(--border-radius-main);
 
-    border: 1px solid var(--color-black);
-    border-top: none;
-    background: var(--color-primary-50);
+        border: 1px solid var(--color-black);
+        border-top: none;
+        background: var(--color-primary-50);
 
-    @include mobile {
-      padding-inline: calc((100% - var(--width-min)) * 0.5);
-      gap: 0.5rem;
-    }
-
-    & > :first-child {
-      place-self: center start;
-    }
-
-    & > :last-child {
-      place-self: center end;
-    }
-
-    button {
-      background: none;
-      border: none;
-    }
-
-    .links li {
-      overflow: hidden;
-    }
-
-    /* ---------------------- Styling for Button and Links ---------------------- */
-    button,
-    .links li a {
-      display: block;
-      @include font-small;
-      font-weight: var(--fw-medium);
-
-      color: var(--color-black);
-      text-decoration: none;
-      white-space: nowrap;
-
-      @include mobile {
-        font-size: var(--fs--1);
-      }
-    }
-
-    /* -------------------- Styling for Button and ListItems -------------------- */
-    button,
-    .links li {
-      position: relative;
-
-      &:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-
-        width: 0;
-        height: 1px;
-
-        background: var(--color-black);
-
-        transition: width var(--animation-duration-medium) var(--animation-function-bezier);
-      }
-
-      &:hover {
-        &:before {
-          width: 100%;
+        @include mobile {
+            padding-inline: calc((100% - var(--width-min)) * 0.5);
+            gap: 0.5rem;
         }
-      }
-    }
 
-    button:first-child,
-    .links li:last-child a {
-      font-weight: var(--fw-bold);
-    }
+        & > :first-child {
+            place-self: center start;
+        }
 
-    ul.links {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 2rem;
+        & > :last-child {
+            place-self: center end;
+        }
 
-      @include mobile {
-        display: none;
-      }
-    }
+        button {
+            background: none;
+            border: none;
+        }
 
-    .menu {
-      grid-column: 1 / 4;
-
-      width: 100%;
-
-      overflow: hidden;
-
-      ul.menuList {
-        li {
-          position: relative;
-
-          width: 100%;
-
-          cursor: pointer;
-
-          span {
-            display: block;
+        .links li {
             overflow: hidden;
-          }
+        }
 
-          /* ------------------------- Pseudo Element borders ------------------------- */
-          &:not(:last-child) {
-            &::before {
-              content: "";
-              position: absolute;
-              top: 0;
-              right: 0;
-
-              width: 0%;
-              height: 1px;
-
-              background: var(--color-black);
-              transition: width var(--animation-duration) var(--animation-function-bezier);
-            }
-            &::after {
-              content: "";
-              position: absolute;
-              bottom: -1px;
-              left: 0;
-
-              width: 0%;
-              height: 1px;
-
-              background: var(--color-black);
-              transition: width var(--animation-duration) var(--animation-function-bezier);
-            }
-
-            // &:hover,
-            &.active {
-              &::before,
-              &::after {
-                width: 100%;
-              }
-            }
-          }
-
-          a {
-            display: inline-block;
-            width: 100%;
-            padding-block: calc(var(--padding-element) * 0.25);
-
-            @include font-header-medium;
-            font-weight: var(--fw-bold);
+        /* ---------------------- Styling for Button and Links ---------------------- */
+        button,
+        .links li a {
+            display: block;
+            @include font-small;
+            font-weight: var(--fw-medium);
 
             color: var(--color-black);
             text-decoration: none;
-            text-transform: uppercase;
-            text-align: center;
-          }
+            white-space: nowrap;
 
-          &:last-child {
-            background: var(--color-success);
-            &::before {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
+            @include mobile {
+                font-size: var(--fs--1);
+            }
+        }
 
-              width: 100%;
-              height: 100%;
+        /* -------------------- Styling for Button and ListItems -------------------- */
+        button,
+        .links li {
+            position: relative;
 
-              background: var(--color-primary-700);
-              z-index: 1;
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
 
-              transition: height var(--animation-duration-medium) var(--animation-function-bezier);
+                width: 0;
+                height: 1px;
+
+                background: var(--color-black);
+
+                transition: width var(--animation-duration-medium) var(--animation-function-bezier);
             }
 
             &:hover {
-              &::before {
-                height: 0%;
-              }
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        button:first-child,
+        .links li:last-child a {
+            font-weight: var(--fw-bold);
+        }
+
+        ul.links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 2rem;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .menu {
+            grid-column: 1 / 4;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            ul.menuList {
+                li {
+                    position: relative;
+
+                    width: 100%;
+
+                    cursor: pointer;
+
+                    span {
+                        display: block;
+                        overflow: hidden;
+                    }
+
+                    /* ------------------------- Pseudo Element borders ------------------------- */
+                    &:not(:last-child) {
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+
+                            width: 0%;
+                            height: 1px;
+
+                            background: var(--color-black);
+                            transition: width var(--animation-duration) var(--animation-function-bezier);
+                        }
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            bottom: -1px;
+                            left: 0;
+
+                            width: 0%;
+                            height: 1px;
+
+                            background: var(--color-black);
+                            transition: width var(--animation-duration) var(--animation-function-bezier);
+                        }
+
+                        // &:hover,
+                        &.active {
+                            &::before,
+                            &::after {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    a {
+                        display: inline-block;
+                        width: 100%;
+                        padding-block: calc(var(--padding-element) * 0.25);
+
+                        @include font-header-medium;
+                        font-weight: var(--fw-bold);
+
+                        color: var(--color-black);
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        text-align: center;
+                    }
+
+                    &:last-child {
+                        background: var(--color-success);
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+
+                            width: 100%;
+                            height: 100%;
+
+                            background: var(--color-primary-700);
+                            z-index: 1;
+
+                            transition: height var(--animation-duration-medium) var(--animation-function-bezier);
+                        }
+
+                        &:hover {
+                            &::before {
+                                height: 0%;
+                            }
+                        }
+
+                        a {
+                            position: relative;
+                            z-index: 2;
+                            color: var(--color-white);
+                        }
+                    }
+                }
             }
 
-            a {
-              position: relative;
-              z-index: 2;
-              color: var(--color-white);
+            .foot {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                align-items: end;
+
+                padding-block: calc(var(--padding-element) * 0.5);
+
+                border-top: 1px solid var(--color-black);
+
+                @include mobile {
+                    grid-template-columns: 1fr;
+                    place-items: center;
+                    gap: 1rem;
+                }
+
+                @include desktop {
+                    & > :first-child {
+                        place-self: start;
+                    }
+
+                    & > :last-child {
+                        place-self: end;
+                    }
+                }
+
+                & > * {
+                    cursor: pointer;
+                }
+
+                p,
+                a {
+                    @include font-tiny;
+                    color: var(--color-black);
+                    opacity: 0.75;
+                    text-align: center;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    gap: 1rem;
+
+                    svg {
+                        height: 1rem;
+                        width: 1rem;
+                        fill: var(--color-black);
+                    }
+                }
             }
-          }
         }
-      }
-
-      .foot {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        align-items: end;
-
-        padding-block: calc(var(--padding-element) * 0.5);
-
-        border-top: 1px solid var(--color-black);
-
-        @include mobile {
-          grid-template-columns: 1fr;
-          place-items: center;
-          gap: 1rem;
-        }
-
-        @include desktop {
-          & > :first-child {
-            place-self: start;
-          }
-
-          & > :last-child {
-            place-self: end;
-          }
-        }
-
-        & > * {
-          cursor: pointer;
-        }
-
-        p,
-        a {
-          @include font-tiny;
-          color: var(--color-black);
-          opacity: 0.75;
-          text-align: center;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        ul {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-          gap: 1rem;
-
-          svg {
-            height: 1rem;
-            width: 1rem;
-            fill: var(--color-black);
-          }
-        }
-      }
     }
-  }
 }
 
 .branding {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
 
-  padding-block: 1rem;
+    padding-block: 1rem;
 
-  & > * {
-    cursor: pointer;
-  }
-
-  .logo svg {
-    height: 2.5rem;
-    fill: var(--color-black);
-
-    @include mobile {
-      height: 1.5rem;
+    & > * {
+        cursor: pointer;
     }
-  }
 
-  .name {
-    text-align: center;
-    font-weight: var(--fw-bold);
-    font-family: var(--font-brand);
-    font-size: var(--fs-0);
-    line-height: 1;
+    .logo svg {
+        height: 2.5rem;
+        fill: var(--color-black);
 
-    text-transform: uppercase;
-
-    color: var(--color-black);
-    opacity: 0.5;
-
-    transition: opacity var(--animation-duration-medium) var(--animation-function-bezier);
-
-    @include mobile {
-      font-size: var(--fs--1);
+        @include mobile {
+            height: 1.5rem;
+        }
     }
-  }
 
-  &:hover {
     .name {
-      opacity: 1;
+        text-align: center;
+        font-weight: var(--fw-bold);
+        font-family: var(--font-brand);
+        font-size: var(--fs-0);
+        line-height: 1;
+
+        text-transform: uppercase;
+
+        color: var(--color-black);
+        opacity: 0.5;
+
+        transition: opacity var(--animation-duration-medium) var(--animation-function-bezier);
+
+        @include mobile {
+            font-size: var(--fs--1);
+        }
     }
-  }
+
+    &:hover {
+        .name {
+            opacity: 1;
+        }
+    }
 }

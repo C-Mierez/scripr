@@ -5,7 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { MoonIcon, QuestionMarkCircledIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
-import css from "./DashboardHeader.module.scss";
+import css from "./ThemeSwitcher.module.scss";
 import { useEffect, useState } from "react";
 
 export default function ThemeSwitcher() {
