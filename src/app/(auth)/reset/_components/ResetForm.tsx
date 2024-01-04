@@ -15,7 +15,7 @@ import css from "./ResetForm.module.scss";
 import { api } from "~/utils/api";
 
 export default function ResetForm() {
-    const { mutateAsync, isSuccess, isError, isLoading, data, error } = api.auth.resetPassword.useMutation();
+    const { mutateAsync, isSuccess, isError, isLoading, data, error } = api.auth.requestPasswordReset.useMutation();
 
     const form = useForm<z.infer<typeof ResetSchema>>({
         resolver: zodResolver(ResetSchema),
@@ -68,7 +68,7 @@ export default function ResetForm() {
                 )}
                 {isSuccess && (
                     <FormAlertSuccess
-                        title="Successfully reset password."
+                        title="Successfully requested password reset."
                         message={`A confirmation email has been sent to ${data.email}`}
                     />
                 )}
