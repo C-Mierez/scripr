@@ -1,7 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import bcrypt from "bcryptjs";
-import { SignUpSchema, VerificationTokenSchema } from "schemas";
+import { ResetSchema, SignUpSchema, VerificationTokenSchema } from "schemas";
 import {
+    createPasswordResetTokenForEmail,
     createUser,
     createVerificationTokenForEmail,
     deleteVerificationTokenById,
@@ -11,7 +12,7 @@ import {
 } from "~/server/db/queries";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { sendVerificationEmail } from "~/server/mail";
+import { sendPasswordResetEmail, sendVerificationEmail } from "~/server/mail";
 
 export const authRouter = createTRPCRouter({
     signUp: publicProcedure.input(SignUpSchema).mutation(async ({ ctx, input }) => {
@@ -84,6 +85,36 @@ export const authRouter = createTRPCRouter({
 
         return {
             email: newEmail,
+        };
+    }),
+    resetPassword: publicProcedure.input(ResetSchema).mutation(async ({ ctx, input }) => {
+        // Get the user
+        const fetchedUser = await getUserByEmail(ctx.db, input.email);
+
+        // If the user does not exist, throw an error
+        if (!fetchedUser) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "Email not found.",
+            });
+        }
+
+        // If the user is oauth or has not been verified, throw an error
+        if (!fetchedUser.passwordHash || !fetchedUser.emailVerified) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "Password reset not permitted for this email.",
+            });
+        }
+
+        // Generate a verification token for the user
+        const passwordResetToken = await createPasswordResetTokenForEmail(ctx.db, { email: input.email });
+
+        // Send the verification email
+        await sendPasswordResetEmail(passwordResetToken.email, passwordResetToken.token);
+
+        return {
+            email: fetchedUser.email,
         };
     }),
 });
