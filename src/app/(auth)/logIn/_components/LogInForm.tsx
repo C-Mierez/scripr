@@ -14,6 +14,7 @@ import { z } from "zod";
 import css from "./LogInForm.module.scss";
 import { useSearchParams } from "next/navigation";
 import { logIn } from "actions/auth";
+import Link from "next/link";
 
 interface LogInFormProps {}
 
@@ -127,6 +128,10 @@ export default function LogInForm({}: LogInFormProps) {
 
                 <Button type="submit" disabled={isPending}>
                     Log In
+                </Button>
+
+                <Button asChild variant={"link"} className="w-fit p-0 self-end text-muted" size={"default"}>
+                    <Link href={"/reset"}>Forgot your password?</Link>
                 </Button>
             </form>
         </Form>
