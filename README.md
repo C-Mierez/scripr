@@ -28,6 +28,8 @@ This is a monolithic project built primarily within Next.js 14, though extension
 - tRPC
   - Procedure definitions to be run on the server, with great client-side hooks to call them as well as full type-safety and protection.
   - Primary server interactions. Server Actions are used for simpler tasks.
+- Resend
+  - Email provider.
 
 #### Frontend
 - zod
