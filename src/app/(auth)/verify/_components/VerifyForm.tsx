@@ -6,14 +6,15 @@ import SquareLoader from "@/components/loaders/SquareLoader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { redirect, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { api } from "~/utils/api";
 
 export default function VerifyForm() {
     const [isTokenMissing, setIsTokenMissing] = useState(false);
+    const [shouldRedirect, setShouldRedirect] = useState(false);
 
-    const { isSuccess, isError, isLoading, data, error, mutateAsync } = api.auth.verifyEmail.useMutation();
+    const { isSuccess, isError, isLoading, data, error, mutateAsync } = api.auth.verifyEmail.useMutation({});
 
     const searchParams = useSearchParams();
 
@@ -27,6 +28,20 @@ export default function VerifyForm() {
 
         mutateAsync({ token });
     }, [mutateAsync]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            setTimeout(() => {
+                setShouldRedirect(true);
+            }, 3000);
+        }
+    }, [isSuccess]);
+
+    useEffect(() => {
+        if (shouldRedirect) {
+            redirect("/logIn");
+        }
+    }, [shouldRedirect]);
 
     return (
         <div className="flex flex-col items-center justify-center gap-[var(--padding-side)]">
