@@ -2,7 +2,7 @@ import AuthFormWrapper from "../_components/AuthFormWrapper";
 import AuthHero from "../_components/AuthHero";
 import AuthScaffold from "../_components/AuthScaffold";
 import OAuthProvider from "../logIn/_components/OAuthProviders";
-import SignUpForm from "../logIn/_components/SignUpForm";
+import SignUpForm from "./_components/SignUpForm";
 import css from "./SignUp.module.scss";
 
 export default function SignUpPage() {
