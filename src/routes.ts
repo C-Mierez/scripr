@@ -13,7 +13,7 @@ export const verifyRoute = "/verify";
  * Will redirect to DEFAULT_AUTHED_REDIRECT_URL if already authenticated.
  * @type {string[]}
  */
-export const authRoutes = ["/logIn", "/signUp", "/authError", verifyRoute];
+export const authRoutes = ["/logIn", "/signUp", "/authError", verifyRoute, "/reset"];
 
 /**
  * The prefix for API authentication routes.
