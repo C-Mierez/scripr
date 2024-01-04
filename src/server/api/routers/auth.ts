@@ -1,18 +1,21 @@
 import { TRPCError } from "@trpc/server";
-import bcrypt from "bcryptjs";
-import { ResetSchema, SignUpSchema, VerificationTokenSchema } from "schemas";
+import { PasswordResetSchema, ResetSchema, SignUpSchema, VerificationTokenSchema } from "schemas";
 import {
     createPasswordResetTokenForEmail,
     createUser,
     createVerificationTokenForEmail,
+    deletePasswordResetTokenById,
     deleteVerificationTokenById,
+    getPasswordResetTokenByToken,
     getUserByEmail,
     getVerificationTokenByToken,
+    updateUserPasswordById,
     verifyUser,
 } from "~/server/db/queries";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { sendPasswordResetEmail, sendVerificationEmail } from "~/server/mail";
+import { hashNewPassword } from "~/server/passwords";
 
 export const authRouter = createTRPCRouter({
     signUp: publicProcedure.input(SignUpSchema).mutation(async ({ ctx, input }) => {
@@ -26,8 +29,8 @@ export const authRouter = createTRPCRouter({
         }
         /* ------------------------------ Checks Passed ----------------------------- */
         // Hash inputted password
-        const generatedSalt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(input.password, generatedSalt);
+        const { hashedPassword, generatedSalt } = await hashNewPassword(input.password);
+
         // Create the new user
         await createUser(ctx.db, {
             email: input.email,
@@ -87,7 +90,7 @@ export const authRouter = createTRPCRouter({
             email: newEmail,
         };
     }),
-    resetPassword: publicProcedure.input(ResetSchema).mutation(async ({ ctx, input }) => {
+    requestPasswordReset: publicProcedure.input(ResetSchema).mutation(async ({ ctx, input }) => {
         // Get the user
         const fetchedUser = await getUserByEmail(ctx.db, input.email);
 
@@ -115,6 +118,52 @@ export const authRouter = createTRPCRouter({
 
         return {
             email: fetchedUser.email,
+        };
+    }),
+    resetPassword: publicProcedure.input(PasswordResetSchema).mutation(async ({ ctx, input }) => {
+        // Get the password reset token
+        const passwordResetToken = await getPasswordResetTokenByToken(ctx.db, input.token);
+
+        // If the token does not exist, throw an error
+        if (!passwordResetToken) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "Invalid password reset token.",
+            });
+        }
+
+        // Check the expiration date
+        if (new Date(passwordResetToken.expiresAt) < new Date()) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "Password reset token has expired.",
+            });
+        }
+
+        // Check that the user associated with the token exists
+        const user = await getUserByEmail(ctx.db, passwordResetToken.email);
+        if (!user) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "The email associated to this password reset token does not exist.",
+            });
+        }
+
+        // Hash inputted password
+        const { hashedPassword, generatedSalt } = await hashNewPassword(input.password);
+
+        // Update the user's password
+        await updateUserPasswordById(ctx.db, {
+            id: user.id,
+            passwordHash: hashedPassword,
+            passwordSalt: generatedSalt,
+        });
+
+        // Delete the password reset token
+        await deletePasswordResetTokenById(ctx.db, passwordResetToken.id);
+
+        return {
+            email: user.email,
         };
     }),
 });
