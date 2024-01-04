@@ -131,6 +131,25 @@ export const createUser = async (
         name,
     });
 };
+/**
+ * Updates a user's password.
+ * @param db Database instance
+ * @param id The user's ID
+ * @param passwordHash The new password hash
+ * @param passwordSalt The new password salt
+ */
+export const updateUserPasswordById = async (
+    db: typeof drizzleDB,
+    { id, passwordHash, passwordSalt }: { id: string; passwordHash: string; passwordSalt: string }
+) => {
+    await db
+        .update(users)
+        .set({
+            passwordHash,
+            passwordSalt,
+        })
+        .where(eq(users.id, id));
+};
 
 /**
  * Verifies a user by ID.
@@ -155,6 +174,15 @@ export const verifyUser = async (db: typeof drizzleDB, { id, newEmail }: { id: s
  */
 export const deleteVerificationTokenById = async (db: typeof drizzleDB, id: string) => {
     await db.delete(verificationToken).where(eq(verificationToken.id, id));
+};
+
+/**
+ * Deletes a password reset token by ID.
+ * @param db Database instance
+ * @param id The token's ID
+ */
+export const deletePasswordResetTokenById = async (db: typeof drizzleDB, id: string) => {
+    await db.delete(passwordResetToken).where(eq(passwordResetToken.id, id));
 };
 
 /**
