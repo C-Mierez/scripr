@@ -126,6 +126,7 @@ export const twoFactorToken = pgTable("two_factor_token", {
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
     token: text("token").notNull().unique(),
+    isConfirmed: boolean("isConfirmed").notNull().default(false),
     expiresAt: timestamp("expiresAt").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
 });

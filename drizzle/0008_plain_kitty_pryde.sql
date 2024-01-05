@@ -1,0 +1,1 @@
+ALTER TABLE "scripr_two_factor_token" ADD COLUMN "isConfirmed" boolean DEFAULT false NOT NULL;
