@@ -14,8 +14,10 @@ import {
     pgEnum,
     serial,
     unique,
+    boolean,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
+import { relations } from "drizzle-orm";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -53,6 +55,9 @@ export const users = pgTable("user", {
         .notNull()
         .default(1)
         .references(() => roles.id),
+    // Two Factor
+    isTwoFactorEnabled: boolean("isTwoFactorEnabled").default(false),
+    twoFactorTokenId: uuid("twoFactorTokenId").references(() => twoFactorToken.id),
 });
 
 export const accounts = pgTable(
@@ -115,3 +120,17 @@ export const passwordResetToken = pgTable(
         uniqueTokens: unique().on(table.token, table.email),
     })
 );
+
+export const twoFactorToken = pgTable("two_factor_token", {
+    id: uuid("id").notNull().defaultRandom().primaryKey(),
+    token: text("token").notNull().unique(),
+    expiresAt: timestamp("expiresAt").notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+// User -> TwoFactorToken Relation
+export const userToTwoFactorTokenRelation = relations(users, ({ one }) => ({
+    twoFactorToken: one(twoFactorToken),
+}));
+
+// TODO: Could potentially create a generic token table and make the above tables extend it instead

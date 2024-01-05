@@ -43,6 +43,13 @@
       "when": 1704399608826,
       "tag": "0005_parched_purple_man",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1704467894025,
+      "tag": "0006_talented_the_liberteens",
+      "breakpoints": true
     }
   ]
 }
