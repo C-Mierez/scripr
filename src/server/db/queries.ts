@@ -163,6 +163,24 @@ export const getTwoFactorTokenByToken = async (db: typeof drizzleDB, token: stri
         return null;
     }
 };
+
+/**
+ * Fetches the TwoFactorToken associated to a user ID.
+ * @param db Database instance
+ * @param userId The user ID
+ * @returns The TwoFactorToken object or null if the token does not exist
+ */
+export const getTwoFactorTokenByUserId = async (db: typeof drizzleDB, userId: string) => {
+    try {
+        const fetchedToken = await db.query.twoFactorToken.findFirst({
+            where: eq(twoFactorToken.userId, userId),
+        });
+        return fetchedToken;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
 /* ------------------------------- Procedures ------------------------------- */
 /**
  * Inserts a new user into the database.
@@ -205,6 +223,24 @@ export const updateUserPasswordById = async (
             passwordSalt,
         })
         .where(eq(users.id, id));
+};
+
+/**
+ * Updates a user's two factor confirmation status by token ID.
+ * @param db Database instance
+ * @param id The token's ID
+ * @param isConfirmed Whether the token has been confirmed
+ */
+export const updateTwoFactorTokenConfirmationById = async (
+    db: typeof drizzleDB,
+    { id, isConfirmed }: { id: string; isConfirmed: boolean }
+) => {
+    await db
+        .update(twoFactorToken)
+        .set({
+            isConfirmed,
+        })
+        .where(eq(twoFactorToken.id, id));
 };
 
 /**
