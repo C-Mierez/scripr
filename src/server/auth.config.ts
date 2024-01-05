@@ -5,7 +5,13 @@ import Google from "next-auth/providers/google";
 import { LogInSchema } from "schemas";
 
 import { db } from "./db";
-import { getUserByEmail, getUserById, isUserVerified, verifyUser } from "./db/queries";
+import {
+    getUserByEmail,
+    getUserById,
+    isUserTwoFactorDisabledOrConfirmed,
+    isUserVerified,
+    verifyUser,
+} from "./db/queries";
 
 import type { NextAuthConfig } from "next-auth";
 import { env } from "~/env.mjs";
@@ -30,8 +36,15 @@ export default {
             // We assume that OAuth providers have already verified the user's email
             if (account && account.provider !== "credentials") return true;
 
-            // Otherwise, make sure the user is verified
-            return await isUserVerified(db, user.id);
+            // Otherwise...
+            // Check that the user is verified
+            if (!(await isUserVerified(db, user.id))) return false;
+
+            // Check if the user has two factor authentication disabled or confirmed
+            if (!(await isUserTwoFactorDisabledOrConfirmed(db, user.id))) return false;
+
+            // User is good to go!
+            return true;
         },
         async session({ session, token }) {
             if (token.sub && session.user) {
