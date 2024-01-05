@@ -27,6 +27,32 @@ export const isUserTwoFactorEnabled = async (db: typeof drizzleDB, id: string) =
     return !!(user && user.isTwoFactorEnabled);
 };
 
+export const isUserTwoFactorDisabledOrConfirmed = async (db: typeof drizzleDB, id: string) => {
+    const user = await getUserById(db, id);
+
+    // If the user doesn't exist, return false
+    if (!user) return false;
+
+    // If two factor is disabled, return true
+    if (!user?.isTwoFactorEnabled) return true;
+
+    // If two factor is enabled, check if it's confirmed
+    const fetchedToken = await db.query.twoFactorToken.findFirst({
+        where: eq(twoFactorToken.userId, id),
+    });
+
+    // If no token is found, return false
+    if (!fetchedToken) return false;
+
+    // If token is found, check if it's expired
+    const now = new Date();
+    const expiresAt = new Date(fetchedToken.expiresAt);
+    if (now > expiresAt) return false;
+
+    // Return whether the token has been confirmed
+    return fetchedToken.isConfirmed;
+};
+
 /* --------------------------------- Queries -------------------------------- */
 /**
  * Fetches the user from the database by email.
