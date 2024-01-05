@@ -15,7 +15,7 @@ import {
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { sendPasswordResetEmail, sendVerificationEmail } from "~/server/mail";
-import { hashNewPassword } from "~/server/passwords";
+import { hashNewPassword } from "~/server/generator";
 
 export const authRouter = createTRPCRouter({
     signUp: publicProcedure.input(SignUpSchema).mutation(async ({ ctx, input }) => {

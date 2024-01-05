@@ -1,8 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db as drizzleDB } from "./index";
 import { passwordResetToken, twoFactorToken, users, verificationToken } from "./schema";
-import { v4 as uuid } from "uuid";
-import crypto from "crypto";
+import { generateExpirationDate, generateTokenCode, generateTokenUUID, generateUserUUID } from "../generator";
 
 // TODO: Optimize these queries to only SELECT the fields we need
 /* ---------------------------------- Utils --------------------------------- */
@@ -155,7 +154,7 @@ export const createUser = async (
     }: { email: string; passwordHash: string; passwordSalt: string; name: string }
 ) => {
     await db.insert(users).values({
-        id: uuid(),
+        id: await generateUserUUID(),
         email,
         passwordHash,
         passwordSalt,
@@ -237,14 +236,14 @@ export const deleteTwoFactorTokenById = async (db: typeof drizzleDB, id: string)
 export const createVerificationTokenForEmail = async (db: typeof drizzleDB, { email }: { email: string }) => {
     // Calculate token expiration date
     // Milliseconds
-    const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hour from now
+    const expires = await generateExpirationDate();
 
     // Remove all existing tokens associated to the email
     // The DB should only have 1 token per email anyway, but we do this just in case
     await db.delete(verificationToken).where(eq(verificationToken.email, email));
 
     // Create new token UUID
-    const newToken = uuid();
+    const newToken = await generateTokenUUID();
 
     // Insert new token row
     const newVerificationToken = await db
@@ -271,14 +270,14 @@ export const createVerificationTokenForEmail = async (db: typeof drizzleDB, { em
 export const createPasswordResetTokenForEmail = async (db: typeof drizzleDB, { email }: { email: string }) => {
     // Calculate token expiration date
     // Milliseconds
-    const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hour from now
+    const expires = await generateExpirationDate();
 
     // Remove all existing tokens associated to the email
     // The DB should only have 1 token per email anyway, but we do this just in case
     await db.delete(passwordResetToken).where(eq(passwordResetToken.email, email));
 
     // Create new token UUID
-    const newToken = uuid();
+    const newToken = await generateTokenUUID();
 
     // Insert new token row
     const newPasswordResetToken = await db
@@ -305,13 +304,13 @@ export const createPasswordResetTokenForEmail = async (db: typeof drizzleDB, { e
 export const createTwoFactorTokenForUserId = async (db: typeof drizzleDB, { userId }: { userId: string }) => {
     // Calculate token expiration date
     // Milliseconds
-    const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hour from now
+    const expires = await generateExpirationDate();
 
     // Remove all existing tokens associated to the user
     await db.delete(twoFactorToken).where(eq(twoFactorToken.userId, userId));
 
     // Create new token value
-    const newToken = crypto.randomInt(100_000, 999_999).toString();
+    const newToken = await generateTokenCode();
 
     // Insert new token row
     const newTwoFactorToken = await db
