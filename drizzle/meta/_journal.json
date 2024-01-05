@@ -50,6 +50,13 @@
       "when": 1704467894025,
       "tag": "0006_talented_the_liberteens",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1704480102782,
+      "tag": "0007_gray_scrambler",
+      "breakpoints": true
     }
   ]
 }

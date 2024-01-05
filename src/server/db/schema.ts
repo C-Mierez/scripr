@@ -44,7 +44,7 @@ export const posts = pgTable(
 export const users = pgTable("user", {
     id: text("id").notNull().primaryKey(),
     name: text("name"),
-    email: text("email").notNull(),
+    email: text("email").notNull().unique(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
     // Credentials
@@ -57,7 +57,6 @@ export const users = pgTable("user", {
         .references(() => roles.id),
     // Two Factor
     isTwoFactorEnabled: boolean("isTwoFactorEnabled").default(false),
-    twoFactorTokenId: uuid("twoFactorTokenId").references(() => twoFactorToken.id),
 });
 
 export const accounts = pgTable(
@@ -123,14 +122,10 @@ export const passwordResetToken = pgTable(
 
 export const twoFactorToken = pgTable("two_factor_token", {
     id: uuid("id").notNull().defaultRandom().primaryKey(),
+    userId: text("userId")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
     token: text("token").notNull().unique(),
     expiresAt: timestamp("expiresAt").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
-
-// User -> TwoFactorToken Relation
-export const userToTwoFactorTokenRelation = relations(users, ({ one }) => ({
-    twoFactorToken: one(twoFactorToken),
-}));
-
-// TODO: Could potentially create a generic token table and make the above tables extend it instead
