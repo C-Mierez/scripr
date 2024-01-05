@@ -68,7 +68,7 @@ export default function ResetForm() {
                 )}
                 {isSuccess && (
                     <FormAlertSuccess
-                        title="Successfully requested password reset."
+                        title="Successfully requested password reset"
                         message={`A confirmation email has been sent to ${data.email}`}
                     />
                 )}
