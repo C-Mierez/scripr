@@ -7,10 +7,19 @@ import { DEFAULT_AUTHED_REDIRECT_URL } from "~/routes";
 import { signIn, signOut } from "~/server/auth";
 import { CurrentOAuthProviders } from "~/server/auth.config";
 import { db } from "~/server/db";
-import { createVerificationTokenForEmail, getUserByEmail } from "~/server/db/queries";
-import { sendVerificationEmail } from "~/server/mail";
+import {
+    createTwoFactorTokenForUserId,
+    createVerificationTokenForEmail,
+    deleteTwoFactorTokenById,
+    getTwoFactorTokenByUserId,
+    getUserByEmail,
+    updateTwoFactorTokenConfirmationById,
+} from "~/server/db/queries";
+import { sendTwoFactorConfirmationEmail, sendVerificationEmail } from "~/server/mail";
 
-export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ error?: string; success?: boolean }> => {
+export const logIn = async (
+    values: z.infer<typeof LogInSchema>
+): Promise<{ error?: string; success?: boolean; twoFactorExpected?: boolean }> => {
     //! Important: DISABLE NEXT.JS AUTOMATIC CACHING FROM FETCH
     //! THIS AFFECTS THIRD PARTY LIBRARIES LIKE DRIZZLE
     const _headers = headers();
@@ -29,11 +38,11 @@ export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ erro
     }
 
     console.log("ACTION: Validated fields");
-    const { email, password } = validatedFields.data;
+    const { email, password, twoFactorToken } = validatedFields.data;
 
-    /* --------------------------- Email Verification --------------------------- */
     const existingUser = await getUserByEmail(db, email);
 
+    /* --------------------------- Email Verification --------------------------- */
     // If the user does not exist, invalidate the request
     if (!existingUser || !existingUser.email || !existingUser.passwordHash) {
         return { error: "Invalid email or password." };
@@ -49,6 +58,59 @@ export const logIn = async (values: z.infer<typeof LogInSchema>): Promise<{ erro
         return {
             error: `Email is not verified. A new verification email has been sent to ${newVerificationToken.email}`,
         };
+    }
+
+    /* ------------------------------- Two-Factor ------------------------------- */
+    // Check if the user has two-factor enabled
+    // If the user had two-factor disabled, they can proceed with the normal login process
+    // But, if they have two-factor enabled
+    if (existingUser.isTwoFactorEnabled) {
+        // Fetch the two-factor token for the user
+        const fetchedTwoFactorToken = await getTwoFactorTokenByUserId(db, existingUser.id);
+
+        // If a two-factor token exists
+        if (fetchedTwoFactorToken) {
+            // Verify that the token is not expired
+            // Confirmed or not, an expired token is no longer valid
+            if (new Date(fetchedTwoFactorToken.expiresAt) < new Date()) {
+                // Delete the expired two-factor token
+                await deleteTwoFactorTokenById(db, fetchedTwoFactorToken.id);
+
+                return { error: "Confirmation token expired." };
+            }
+
+            // If confirmed, user can log in
+            // But, if not confirmed, user must confirm it
+            if (!fetchedTwoFactorToken.isConfirmed) {
+                // If the user inputted a two-factor token, try to verify it
+                if (twoFactorToken) {
+                    // Check if the two-factor token is correct
+                    if (twoFactorToken !== fetchedTwoFactorToken.token) {
+                        return { error: "Invalid confirmation token." };
+                    }
+
+                    // Confirm the two-factor token
+                    await updateTwoFactorTokenConfirmationById(db, { id: fetchedTwoFactorToken.id, isConfirmed: true });
+                }
+                // But, if the user did not input a two-factor token, send a new one
+                else {
+                    // Send new token
+                    await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
+
+                    return {
+                        twoFactorExpected: true,
+                    };
+                }
+            }
+        }
+        // If no two-factor token was found
+        else {
+            // Send new token
+            await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
+            return {
+                twoFactorExpected: true,
+            };
+        }
     }
 
     /* ----------------------------- Auth.js Sign In ---------------------------- */
@@ -99,3 +161,12 @@ export const logInOAuth = async (provider: CurrentOAuthProviders) => {
     });
     console.log("ACTION: Completed sign in");
 };
+
+/* ---------------------------------- Utils --------------------------------- */
+async function createAndSendNewTwoFactorToken(userId: string, userEmail: string) {
+    // Create a new two-factor token
+    const newTwoFactorToken = await createTwoFactorTokenForUserId(db, { userId: userId });
+
+    // Send the two-factor confirmation email
+    await sendTwoFactorConfirmationEmail(userEmail, newTwoFactorToken.token);
+}

@@ -54,6 +54,7 @@ export const LogInSchema = z.object({
     }),
     password: z.string(), // Not limiting in case constraints change throughout time
     rememberMe: z.boolean().optional(),
+    twoFactorToken: z.string().optional(),
 });
 
 export const SignUpSchema = z

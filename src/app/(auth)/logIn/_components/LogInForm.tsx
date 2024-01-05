@@ -21,8 +21,10 @@ interface LogInFormProps {}
 export default function LogInForm({}: LogInFormProps) {
     const [isPending, startTransition] = useTransition();
     const searchParams = useSearchParams();
+
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isTwoFactor, setIsTwoFactor] = useState(false);
     const [error, setError] = useState("");
 
     const form = useForm<z.infer<typeof LogInSchema>>({
@@ -39,12 +41,18 @@ export default function LogInForm({}: LogInFormProps) {
             logIn(values)
                 .then((data) => {
                     if (data?.error) {
+                        form.reset();
                         setIsError(true);
                         setError(data.error);
                     }
 
                     if (data?.success) {
+                        form.reset();
                         setIsSuccess(true);
+                    }
+
+                    if (data?.twoFactorExpected) {
+                        setIsTwoFactor(true);
                     }
                 })
                 .catch((e) => {
@@ -62,68 +70,106 @@ export default function LogInForm({}: LogInFormProps) {
     return (
         <Form {...form}>
             <form action="" onSubmit={form.handleSubmit(onSubmit)} className={css.form}>
-                <FormField
-                    control={form.control}
-                    name={"email"}
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        disabled={isPending}
-                                        placeholder="YourEmail@example.com"
-                                        type="email"
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        );
-                    }}
-                />
-                <FormField
-                    control={form.control}
-                    name={"password"}
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                <FormControl>
-                                    <Input {...field} disabled={isPending} placeholder="Password" type="password" />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        );
-                    }}
-                />
-                <FormField
-                    control={form.control}
-                    name={"rememberMe"}
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormControl>
-                                    <FormCheckbox
-                                        id="rememberMe"
-                                        label="Remember me"
-                                        checked={field.value}
-                                        disabled={isPending}
-                                        onCheckedChange={(checked) => {
-                                            field.onChange(checked);
-                                        }}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        );
-                    }}
-                />
+                {!!isTwoFactor && (
+                    <FormField
+                        control={form.control}
+                        name={"twoFactorToken"}
+                        render={({ field }) => {
+                            return (
+                                <FormItem>
+                                    <FormLabel>Your Two-Factor Code</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isPending}
+                                            placeholder="XXXXXX"
+                                            type="text"
+                                            inputMode="numeric"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            );
+                        }}
+                    />
+                )}
+                {!isTwoFactor && (
+                    <>
+                        <FormField
+                            control={form.control}
+                            name={"email"}
+                            render={({ field }) => {
+                                return (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                {...field}
+                                                disabled={isPending}
+                                                placeholder="YourEmail@example.com"
+                                                type="email"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                );
+                            }}
+                        />
+                        <FormField
+                            control={form.control}
+                            name={"password"}
+                            render={({ field }) => {
+                                return (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                {...field}
+                                                disabled={isPending}
+                                                placeholder="Password"
+                                                type="password"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                );
+                            }}
+                        />
+                        <FormField
+                            control={form.control}
+                            name={"rememberMe"}
+                            render={({ field }) => {
+                                return (
+                                    <FormItem>
+                                        <FormControl>
+                                            <FormCheckbox
+                                                id="rememberMe"
+                                                label="Remember me"
+                                                checked={field.value}
+                                                disabled={isPending}
+                                                onCheckedChange={(checked) => {
+                                                    field.onChange(checked);
+                                                }}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                );
+                            }}
+                        />
+                    </>
+                )}
 
                 {!!urlError && <FormAlertFailure title="Log in failed" message={urlError} />}
                 {isError && <FormAlertFailure title="Log in failed" message={error} />}
                 {isSuccess && (
                     <FormAlertSuccess title="Logged in successfully!" message={"You will soon be redirected."} />
+                )}
+                {isTwoFactor && (
+                    <FormAlertSuccess
+                        title="Authorization is required to access your account."
+                        message={"A new confirmation token has been sent to your email."}
+                    />
                 )}
 
                 <Button type="submit" disabled={isPending}>
