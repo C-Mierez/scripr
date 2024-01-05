@@ -1,8 +1,10 @@
 import { eq } from "drizzle-orm";
 import { db as drizzleDB } from "./index";
-import { passwordResetToken, users, verificationToken } from "./schema";
+import { passwordResetToken, twoFactorToken, users, verificationToken } from "./schema";
 import { v4 as uuid } from "uuid";
+import crypto from "crypto";
 
+// TODO: Optimize these queries to only SELECT the fields we need
 /* ---------------------------------- Utils --------------------------------- */
 /**
  * Fetches the user from the database and checks if the user is verified.
@@ -13,6 +15,17 @@ import { v4 as uuid } from "uuid";
 export const isUserVerified = async (db: typeof drizzleDB, id: string) => {
     const user = await getUserById(db, id);
     return !!(user && user.emailVerified);
+};
+
+/**
+ * Fetches the user from the database and checks if the user has two factor enabled.
+ * @param db Database instance
+ * @param id The User ID
+ * @returns Whether the user has two factor enabled
+ */
+export const isUserTwoFactorEnabled = async (db: typeof drizzleDB, id: string) => {
+    const user = await getUserById(db, id);
+    return !!(user && user.isTwoFactorEnabled);
 };
 
 /* --------------------------------- Queries -------------------------------- */
@@ -107,6 +120,24 @@ export const getPasswordResetTokenByToken = async (db: typeof drizzleDB, token: 
         return null;
     }
 };
+
+/**
+ * Fetches the TwoFactorToken associated to an ID.
+ * @param db Database instance
+ * @param id The token
+ * @returns The TwoFactorToken object or null if the token does not exist
+ */
+export const getTwoFactorTokenByToken = async (db: typeof drizzleDB, token: string) => {
+    try {
+        const fetchedToken = await db.query.twoFactorToken.findFirst({
+            where: eq(twoFactorToken.token, token),
+        });
+        return fetchedToken;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
 /* ------------------------------- Procedures ------------------------------- */
 /**
  * Inserts a new user into the database.
@@ -186,6 +217,15 @@ export const deletePasswordResetTokenById = async (db: typeof drizzleDB, id: str
 };
 
 /**
+ * Deletes a two factor token by ID.
+ * @param db Database instance
+ * @param id The token's ID
+ */
+export const deleteTwoFactorTokenById = async (db: typeof drizzleDB, id: string) => {
+    await db.delete(twoFactorToken).where(eq(twoFactorToken.id, id));
+};
+
+/**
  * Creates a new verification token for an email.
  * Relies on PostgresDB generating a UUID for the new token automatically.
  * Sets the new token expiration date to 1 hour from now.
@@ -251,4 +291,37 @@ export const createPasswordResetTokenForEmail = async (db: typeof drizzleDB, { e
         .returning();
 
     return newPasswordResetToken[0]!;
+};
+
+/**
+ * Creates a new two factor token.
+ * Generates a random number between 100_000 and 999_999 to be used as the token value.
+ * Relies on PostgresDB generating a UUID for the new token automatically.
+ * Sets the new token expiration date to 1 hour from now.
+ * @param db Database instance
+ * @param id The user's ID
+ * @returns The new twoFactorToken
+ */
+export const createTwoFactorTokenForUserId = async (db: typeof drizzleDB, { userId }: { userId: string }) => {
+    // Calculate token expiration date
+    // Milliseconds
+    const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hour from now
+
+    // Remove all existing tokens associated to the user
+    await db.delete(twoFactorToken).where(eq(twoFactorToken.userId, userId));
+
+    // Create new token value
+    const newToken = crypto.randomInt(100_000, 999_999).toString();
+
+    // Insert new token row
+    const newTwoFactorToken = await db
+        .insert(twoFactorToken)
+        .values({
+            expiresAt: expires,
+            token: newToken,
+            userId,
+        })
+        .returning();
+
+    return newTwoFactorToken[0]!;
 };
