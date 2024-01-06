@@ -8,9 +8,18 @@ import { Switch } from "@/components/ui/switch";
 import { HomeIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import useSessionUser from "~/hooks/useSessionUser";
+import { api } from "~/utils/api";
+import { useSession } from "next-auth/react";
 
 export default function UserSheet() {
     const user = useSessionUser();
+    const { update: updateSession } = useSession();
+
+    const { mutateAsync: mutateUpdateTwoFactor, isLoading: isLoadingTwoFactor } = api.auth.updateTwoFactor.useMutation({
+        onSuccess: () => {
+            updateSession();
+        },
+    });
     const { setTheme, resolvedTheme } = useTheme();
     return (
         <Sheet>
@@ -56,9 +65,12 @@ export default function UserSheet() {
                             <p>Add an additional step to your log in.</p>
                         </div>
                         <Switch
-                            onChange={() => {
-                                console.log("test");
+                            checked={user?.isTwoFactorEnabled!}
+                            defaultChecked={user?.isTwoFactorEnabled!}
+                            onCheckedChange={(checked) => {
+                                mutateUpdateTwoFactor(checked);
                             }}
+                            disabled={isLoadingTwoFactor}
                         />
                     </div>
                     <div>
