@@ -1,30 +1,31 @@
 "use client";
+
 import FormAlertFailure from "@/components/FormAlertFailure";
 import FormAlertSuccess from "@/components/FormAlertSuccess";
 import FormCheckbox from "@/components/FormCheckbox";
+import ClipboardPaste from "@/components/shared/ClipboardPaste";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { logIn } from "actions/auth";
+import { MuiOtpInput } from "mui-one-time-password-input";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { LogInSchema } from "schemas";
 import { z } from "zod";
 
 import css from "./LogInForm.module.scss";
-import { useSearchParams } from "next/navigation";
-import { logIn } from "actions/auth";
-import Link from "next/link";
 
-interface LogInFormProps {}
-
-export default function LogInForm({}: LogInFormProps) {
+export default function LogInForm() {
     const [isPending, startTransition] = useTransition();
     const searchParams = useSearchParams();
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isTwoFactor, setIsTwoFactor] = useState(false);
+    const [isTwoFactor, setIsTwoFactor] = useState(true);
     const [error, setError] = useState("");
 
     const form = useForm<z.infer<typeof LogInSchema>>({
@@ -41,18 +42,29 @@ export default function LogInForm({}: LogInFormProps) {
             logIn(values)
                 .then((data) => {
                     if (data?.error) {
-                        form.reset();
+                        if (isTwoFactor) {
+                            form.resetField("twoFactorToken");
+                        } else {
+                            form.reset();
+                        }
+
                         setIsError(true);
                         setError(data.error);
+                    } else {
+                        setIsError(false);
                     }
 
                     if (data?.success) {
                         form.reset();
                         setIsSuccess(true);
+                    } else {
+                        setIsSuccess(false);
                     }
 
                     if (data?.twoFactorExpected) {
                         setIsTwoFactor(true);
+                    } else {
+                        setIsTwoFactor(false);
                     }
                 })
                 .catch((e) => {
@@ -71,27 +83,35 @@ export default function LogInForm({}: LogInFormProps) {
         <Form {...form}>
             <form action="" onSubmit={form.handleSubmit(onSubmit)} className={css.form}>
                 {!!isTwoFactor && (
-                    <FormField
-                        control={form.control}
-                        name={"twoFactorToken"}
-                        render={({ field }) => {
-                            return (
-                                <FormItem>
-                                    <FormLabel>Your Two-Factor Code</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            disabled={isPending}
-                                            placeholder="XXXXXX"
-                                            type="text"
-                                            inputMode="numeric"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            );
-                        }}
-                    />
+                    <>
+                        <FormField
+                            control={form.control}
+                            name={"twoFactorToken"}
+                            render={({ field }) => {
+                                return (
+                                    <FormItem>
+                                        <FormLabel>Your Two-Factor Code</FormLabel>
+                                        <FormControl>
+                                            <MuiOtpInput
+                                                {...field}
+                                                length={6}
+                                                className={css.muiOtp}
+                                                inputMode="numeric"
+                                            />
+                                        </FormControl>
+                                        <div className="text-xs text-muted flex flex-col items-center w-full">
+                                            <ClipboardPaste
+                                                callback={async (text) => {
+                                                    form.setValue("twoFactorToken", text.substring(0, 6));
+                                                }}
+                                            ></ClipboardPaste>
+                                        </div>
+                                        <FormMessage />
+                                    </FormItem>
+                                );
+                            }}
+                        />
+                    </>
                 )}
                 {!isTwoFactor && (
                     <>
@@ -165,7 +185,7 @@ export default function LogInForm({}: LogInFormProps) {
                 {isSuccess && (
                     <FormAlertSuccess title="Logged in successfully!" message={"You will soon be redirected."} />
                 )}
-                {isTwoFactor && (
+                {isTwoFactor && !isPending && !isError && (
                     <FormAlertSuccess
                         title="Authorization is required to access your account."
                         message={"A new confirmation token has been sent to your email."}
