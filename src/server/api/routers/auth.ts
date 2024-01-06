@@ -9,13 +9,15 @@ import {
     getPasswordResetTokenByToken,
     getUserByEmail,
     getVerificationTokenByToken,
+    updateIsTwoFactorEnabledById,
     updateUserPasswordById,
     verifyUser,
 } from "~/server/db/queries";
 
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { sendPasswordResetEmail, sendVerificationEmail } from "~/server/mail";
 import { hashNewPassword } from "~/server/generator";
+import { z } from "zod";
 
 export const authRouter = createTRPCRouter({
     signUp: publicProcedure.input(SignUpSchema).mutation(async ({ ctx, input }) => {
@@ -164,6 +166,19 @@ export const authRouter = createTRPCRouter({
 
         return {
             email: user.email,
+        };
+    }),
+    updateTwoFactor: protectedProcedure.input(z.boolean()).mutation(async ({ ctx, input }) => {
+        console.log("updateTwoFactor: ", input);
+        // Update the user's two factor status
+        const updatedUser = await updateIsTwoFactorEnabledById(ctx.db, {
+            id: ctx.session.user.id,
+            isTwoFactorEnabled: input,
+        });
+
+        console.log("updatedUser: ", updatedUser);
+        return {
+            twoFactorEnabled: updatedUser?.isTwoFactorEnabled ?? false,
         };
     }),
 });
