@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import {
@@ -21,6 +20,7 @@ import SVGComponent from "~/app/_components/svg/SVG";
 
 import css from "./DashboardHeader.module.scss";
 import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
+import UserSheet from "./UserSheet";
 
 export default function DashboardHeader() {
     const menuItems = [
@@ -133,30 +133,12 @@ function LeftNav() {
 }
 
 function RightNav() {
-    const [isPending, startTransition] = useTransition();
-
     return (
         <div className={css.rightNav}>
-            <p>
-                <button
-                    onClick={() => {
-                        startTransition(() => {
-                            logOut();
-                        });
-                    }}
-                >
-                    Log Out
-                </button>
-            </p>
             <p>Help</p>
             <p>Docs</p>
             <ThemeSwitcher />
-            <a href="/logIn">
-                <Avatar>
-                    <AvatarImage src="https://github.com/c-mierez.png" />
-                    <AvatarFallback></AvatarFallback>
-                </Avatar>
-            </a>
+            <UserSheet />
         </div>
     );
 }
@@ -164,7 +146,7 @@ function RightNav() {
 function MenuItem({ label, href }: { label: string; href: string }) {
     const pathname = usePathname();
     return (
-        <NavigationMenuItem className={pathname === href ? css.active : ""}>
+        <NavigationMenuItem className={pathname.includes(href) ? css.active : ""}>
             <Link href={href} legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>{label}</NavigationMenuLink>
             </Link>
