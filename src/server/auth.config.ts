@@ -57,6 +57,12 @@ export default {
                 session.user.roleId = token.roleId;
             }
 
+            if (token.isTwoFactorEnabled !== undefined && session.user) {
+                // TODO: Current type augmentation doesn't work. Come back to this later to fix type errors
+                // @ts-ignore
+                session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
+            }
+
             return session;
         },
         async jwt({ token }) {
@@ -75,6 +81,9 @@ export default {
 
             // Set the user's role ID inside the jwt token
             token.roleId = user.roleId;
+
+            // Set the user's twoFactorStatus inside the jwt token
+            token.isTwoFactorEnabled = user.isTwoFactorEnabled;
 
             return token;
         },
