@@ -25,7 +25,7 @@ export default function LogInForm() {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isTwoFactor, setIsTwoFactor] = useState(true);
+    const [isTwoFactor, setIsTwoFactor] = useState(false);
     const [error, setError] = useState("");
 
     const form = useForm<z.infer<typeof LogInSchema>>({
@@ -42,12 +42,6 @@ export default function LogInForm() {
             logIn(values)
                 .then((data) => {
                     if (data?.error) {
-                        if (isTwoFactor) {
-                            form.resetField("twoFactorToken");
-                        } else {
-                            form.reset();
-                        }
-
                         setIsError(true);
                         setError(data.error);
                     } else {

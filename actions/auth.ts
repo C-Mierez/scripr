@@ -123,7 +123,6 @@ export const logIn = async (
                     await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
 
                     return {
-                        error: "Confirmation token expired. A new confirmation token has been sent to your email.",
                         twoFactorExpected: true,
                     };
                 }
