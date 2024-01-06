@@ -244,6 +244,27 @@ export const updateTwoFactorTokenConfirmationById = async (
 };
 
 /**
+ * Updates a user's two factor confirmation setting by user ID.
+ * @param db Database instance
+ * @param id The user's ID
+ * @param isConfirmed Whether to enable or disable two factor
+ */
+export const updateIsTwoFactorEnabledById = async (
+    db: typeof drizzleDB,
+    { id, isTwoFactorEnabled }: { id: string; isTwoFactorEnabled: boolean }
+) => {
+    return (
+        await db
+            .update(users)
+            .set({
+                isTwoFactorEnabled,
+            })
+            .where(eq(users.id, id))
+            .returning()
+    )[0];
+};
+
+/**
  * Verifies a user by ID.
  * Sets the emailVerified field to the current date.
  * @param db Database instance
