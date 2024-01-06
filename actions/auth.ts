@@ -1,4 +1,6 @@
 "use server";
+
+import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 import { headers } from "next/headers";
 import { LogInSchema } from "schemas";
@@ -10,7 +12,6 @@ import { db } from "~/server/db";
 import {
     createTwoFactorTokenForUserId,
     createVerificationTokenForEmail,
-    deleteTwoFactorTokenById,
     getTwoFactorTokenByUserId,
     getUserByEmail,
     updateTwoFactorTokenConfirmationById,
@@ -60,6 +61,15 @@ export const logIn = async (
         };
     }
 
+    /* -------------------------------- Password -------------------------------- */
+    // Check if the user's password is correct
+    const passwordMatch = await bcrypt.compare(password, existingUser.passwordHash);
+
+    // If the password is incorrect, invalidate the request
+    if (!passwordMatch) {
+        return { error: "Invalid email or password." };
+    }
+
     /* ------------------------------- Two-Factor ------------------------------- */
     // Check if the user has two-factor enabled
     // If the user had two-factor disabled, they can proceed with the normal login process
@@ -70,15 +80,6 @@ export const logIn = async (
 
         // If a two-factor token exists
         if (fetchedTwoFactorToken) {
-            // Verify that the token is not expired
-            // Confirmed or not, an expired token is no longer valid
-            if (new Date(fetchedTwoFactorToken.expiresAt) < new Date()) {
-                // Delete the expired two-factor token
-                await deleteTwoFactorTokenById(db, fetchedTwoFactorToken.id);
-
-                return { error: "Confirmation token expired." };
-            }
-
             // If confirmed, user can log in
             // But, if not confirmed, user must confirm it
             if (!fetchedTwoFactorToken.isConfirmed) {
@@ -87,6 +88,17 @@ export const logIn = async (
                     // Check if the two-factor token is correct
                     if (twoFactorToken !== fetchedTwoFactorToken.token) {
                         return { error: "Invalid confirmation token." };
+                    }
+
+                    // Verify that the token is not expired
+                    if (new Date(fetchedTwoFactorToken.expiresAt) < new Date()) {
+                        // Send new token
+                        await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
+
+                        return {
+                            error: "Confirmation token expired. A new confirmation token has been sent to your email.",
+                            twoFactorExpected: true,
+                        };
                     }
 
                     // Confirm the two-factor token
@@ -98,6 +110,20 @@ export const logIn = async (
                     await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
 
                     return {
+                        twoFactorExpected: true,
+                    };
+                }
+            }
+            // But, if the token is confirmed
+            else {
+                // Verify that the token is not expired
+                // If it is expired, since it's confirmed, we just send a new one like if they didn't have one
+                if (new Date(fetchedTwoFactorToken.expiresAt) < new Date()) {
+                    // Send new token
+                    await createAndSendNewTwoFactorToken(existingUser.id, existingUser.email);
+
+                    return {
+                        error: "Confirmation token expired. A new confirmation token has been sent to your email.",
                         twoFactorExpected: true,
                     };
                 }
