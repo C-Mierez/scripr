@@ -54,7 +54,12 @@ export const LogInSchema = z.object({
     }),
     password: z.string(), // Not limiting in case constraints change throughout time
     rememberMe: z.boolean().optional(),
-    twoFactorToken: z.string().optional(),
+    twoFactorToken: z
+        .string()
+        .length(6, {
+            message: "Invalid confirmation token.",
+        })
+        .optional(),
 });
 
 export const SignUpSchema = z
