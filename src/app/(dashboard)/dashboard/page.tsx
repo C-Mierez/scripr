@@ -1,12 +1,15 @@
-import { auth } from "~/server/auth";
+"use client";
 
-export default async function Dashboard() {
-    const session = await auth();
+import useSessionUser from "~/hooks/useSessionUser";
+
+export default function Dashboard() {
+    const user = useSessionUser();
+
     return (
         <main
             style={{ padding: "var(--padding-side)", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
-            {JSON.stringify(session)}
+            {JSON.stringify(user)}
         </main>
     );
 }
