@@ -1,0 +1,1 @@
+ALTER TABLE "scripr_user" ALTER COLUMN "isTwoFactorEnabled" SET NOT NULL;

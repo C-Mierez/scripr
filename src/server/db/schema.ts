@@ -56,7 +56,7 @@ export const users = pgTable("user", {
         .default(1)
         .references(() => roles.id),
     // Two Factor
-    isTwoFactorEnabled: boolean("isTwoFactorEnabled").default(false),
+    isTwoFactorEnabled: boolean("isTwoFactorEnabled").notNull().default(false),
 });
 
 export const accounts = pgTable(
