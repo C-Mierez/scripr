@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db as drizzleDB } from "./index";
-import { passwordResetToken, twoFactorToken, users, verificationToken } from "./schema";
+import { accounts, passwordResetToken, twoFactorToken, users, verificationToken } from "./schema";
 import { generateExpirationDate, generateTokenCode, generateTokenUUID, generateUserUUID } from "../generator";
 
 // TODO: Optimize these queries to only SELECT the fields we need
@@ -85,6 +85,24 @@ export const getUserById = async (db: typeof drizzleDB, id: string) => {
             where: eq(users.id, id),
         });
         return fetchedUser;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+/**
+ * Fetches the account from the database by user ID.
+ * @param db Database instance
+ * @param id The user's ID
+ * @returns The account object or null if the account does not exist
+ */
+export const getAccountByUserId = async (db: typeof drizzleDB, userId: string) => {
+    try {
+        const fetchedAccount = await db.query.accounts.findFirst({
+            where: eq(accounts.userId, userId),
+        });
+        return fetchedAccount;
     } catch (error) {
         console.error(error);
         return null;
