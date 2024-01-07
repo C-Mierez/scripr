@@ -6,11 +6,15 @@ const resend = new Resend(env.RESEND_API_KEY);
 
 const appUrl = env.NEXT_PUBLIC_APP_URL;
 
+const emailDomain = env.NEXT_PUBLIC_DOMAIN;
+
+const emailSenderAccount = `account@${emailDomain}`;
+
 export const sendVerificationEmail = async (email: string, token: string) => {
     const confirmLink = `${appUrl}${verifyRoute}?token=${token}`;
 
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: emailSenderAccount,
         to: email,
         subject: "Verify your email to access Scripr",
         html: `
@@ -25,7 +29,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
     const confirmLink = `${appUrl}${passwordResetVerifyRoute}?token=${token}`;
 
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: emailSenderAccount,
         to: email,
         subject: "Reset your Scripr password",
         html: `
@@ -38,7 +42,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 
 export const sendTwoFactorConfirmationEmail = async (email: string, token: string) => {
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: emailSenderAccount,
         to: email,
         subject: "Your two-factor confirmation code",
         html: `

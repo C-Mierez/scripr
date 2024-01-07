@@ -37,6 +37,7 @@ export const env = createEnv({
      */
     client: {
         NEXT_PUBLIC_APP_URL: z.string().url(),
+        NEXT_PUBLIC_DOMAIN: z.string(),
     },
 
     /**
@@ -53,6 +54,7 @@ export const env = createEnv({
         GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
         RESEND_API_KEY: process.env.RESEND_API_KEY,
         NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+        NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
         // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
     },
     /**
