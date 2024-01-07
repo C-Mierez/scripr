@@ -2,7 +2,7 @@ import authConfig from "~/server/auth.config";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { pgTable } from "~/server/db/schema";
 import { db } from "./db";
-import NextAuth, { type DefaultSession as DS } from "next-auth";
+import NextAuth from "next-auth";
 
 // declare module "@auth/core" {
 //     /**
@@ -27,6 +27,8 @@ export const {
     session: {
         strategy: "jwt",
     },
+    // TODO: Check this on future auth.js updates
+    // @ts-ignore
     adapter: DrizzleAdapter(db, pgTable),
     ...authConfig,
 });
