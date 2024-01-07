@@ -6,6 +6,7 @@ import { LogInSchema } from "schemas";
 
 import { db } from "./db";
 import {
+    getAccountByUserId,
     getUserByEmail,
     getUserById,
     isUserTwoFactorDisabledOrConfirmed,
@@ -20,6 +21,7 @@ declare module "next-auth" {
     interface User {
         roleId: number;
         isTwoFactorEnabled: boolean;
+        isOAuth?: boolean;
     }
 }
 
@@ -66,6 +68,11 @@ export default {
                 session.user.id = token.sub;
             }
 
+            if (token.name && token.email && session.user) {
+                session.user.name = token.name;
+                session.user.email = token.email;
+            }
+
             if (token.roleId && session.user) {
                 // TODO: Current type augmentation doesn't work. Come back to this later to fix type errors
                 session.user.roleId = token.roleId as number;
@@ -74,6 +81,10 @@ export default {
             if (token.isTwoFactorEnabled !== undefined && session.user) {
                 // TODO: Current type augmentation doesn't work. Come back to this later to fix type errors
                 session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
+            }
+
+            if (token.isOAuth !== undefined && session.user) {
+                session.user.isOAuth = token.isOAuth as boolean;
             }
 
             return session;
@@ -92,11 +103,21 @@ export default {
                 return token;
             }
 
+            // Get the account
+            const existingAccount = await getAccountByUserId(db, user.id);
+
+            // Set the user name and email inside the jwt token
+            token.name = user.name;
+            token.email = user.email;
+
             // Set the user's role ID inside the jwt token
             token.roleId = user.roleId;
 
             // Set the user's twoFactorStatus inside the jwt token
             token.isTwoFactorEnabled = user.isTwoFactorEnabled;
+
+            // Set the user's OAuth status inside the jwt token
+            token.isOAuth = !!existingAccount;
 
             return token;
         },
