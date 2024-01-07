@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { logInOAuth } from "actions/auth";
 import { useTransition } from "react";
 import { CurrentOAuthProviders } from "~/server/auth.config";
+import { useSearchParams } from "next/navigation";
 
 export default function OAuthProvider() {
     const [isPending, startTransition] = useTransition();
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
 
     const providers: { provider: CurrentOAuthProviders; label: string }[] = [
         {
@@ -28,7 +31,7 @@ export default function OAuthProvider() {
                         className="w-full"
                         onClick={() => {
                             startTransition(() => {
-                                logInOAuth(provider);
+                                logInOAuth(provider, callbackUrl);
                             });
                         }}
                         disabled={isPending}

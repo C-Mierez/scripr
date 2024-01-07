@@ -19,7 +19,8 @@ import {
 import { sendTwoFactorConfirmationEmail, sendVerificationEmail } from "~/server/mail";
 
 export const logIn = async (
-    values: z.infer<typeof LogInSchema>
+    values: z.infer<typeof LogInSchema>,
+    callbackUrl?: string | null
 ): Promise<{ error?: string; success?: boolean; twoFactorExpected?: boolean }> => {
     //! Important: DISABLE NEXT.JS AUTOMATIC CACHING FROM FETCH
     //! THIS AFFECTS THIRD PARTY LIBRARIES LIKE DRIZZLE
@@ -144,7 +145,7 @@ export const logIn = async (
         await signIn("credentials", {
             email,
             password,
-            redirectTo: DEFAULT_AUTHED_REDIRECT_URL,
+            redirectTo: callbackUrl || DEFAULT_AUTHED_REDIRECT_URL,
             redirect: true,
         });
         console.log("ACTION: Completed sign in");
@@ -176,13 +177,14 @@ export const logOut = async () => {
 };
 
 /* -------------------------- Third Party Providers ------------------------- */
-export const logInOAuth = async (provider: CurrentOAuthProviders) => {
+export const logInOAuth = async (provider: CurrentOAuthProviders, callbackUrl?: string | null) => {
     //! Important: DISABLE NEXT.JS AUTOMATIC CACHING FROM FETCH
     //! THIS AFFECTS THIRD PARTY LIBRARIES LIKE DRIZZLE
     const _headers = headers();
     console.log("ACTION: LogInOAuth started");
     await signIn(provider, {
-        callbackUrl: "/",
+        redirectTo: callbackUrl || DEFAULT_AUTHED_REDIRECT_URL,
+        redirect: true,
     });
     console.log("ACTION: Completed sign in");
 };

@@ -22,6 +22,7 @@ import css from "./LogInForm.module.scss";
 export default function LogInForm() {
     const [isPending, startTransition] = useTransition();
     const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -39,7 +40,7 @@ export default function LogInForm() {
 
     const onSubmit = (values: z.infer<typeof LogInSchema>) => {
         startTransition(() => {
-            logIn(values)
+            logIn(values, callbackUrl)
                 .then((data) => {
                     if (data?.error) {
                         setIsError(true);
