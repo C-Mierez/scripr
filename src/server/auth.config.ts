@@ -16,6 +16,21 @@ import {
 import type { NextAuthConfig } from "next-auth";
 import { env } from "~/env.mjs";
 
+declare module "next-auth" {
+    interface User {
+        roleId: number;
+        isTwoFactorEnabled: boolean;
+    }
+}
+
+// THIS DOESNT WORK EITHER :)
+// declare module "next-auth/jwt" {
+//     interface JWT {
+//         roleId: number;
+//         isTwoFactorEnabled: boolean;
+//     }
+// }
+
 export default {
     trustHost: true,
     // This is where the default routes in Auth.js can be overridden or defined
@@ -53,14 +68,12 @@ export default {
 
             if (token.roleId && session.user) {
                 // TODO: Current type augmentation doesn't work. Come back to this later to fix type errors
-                // @ts-ignore
-                session.user.roleId = token.roleId;
+                session.user.roleId = token.roleId as number;
             }
 
             if (token.isTwoFactorEnabled !== undefined && session.user) {
                 // TODO: Current type augmentation doesn't work. Come back to this later to fix type errors
-                // @ts-ignore
-                session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
+                session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
             }
 
             return session;
