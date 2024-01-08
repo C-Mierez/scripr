@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 import useSessionUser from "~/hooks/useSessionUser";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 export default function UserSheet() {
     const user = useSessionUser();
@@ -38,7 +39,7 @@ export default function UserSheet() {
                             <AvatarImage src="https://github.com/c-mierez.png" />
                             <AvatarFallback></AvatarFallback>
                         </Avatar>
-                        <div className="text-center text-muted capitalize ">
+                        <div className="text-center text-muted capitalize">
                             <p className="text-xs">Welcome</p>
                             <p className="text-base text-foreground font-[var(--fw-medium)]">{user?.name}</p>
                         </div>
@@ -68,7 +69,11 @@ export default function UserSheet() {
                             checked={user?.isTwoFactorEnabled!}
                             defaultChecked={user?.isTwoFactorEnabled!}
                             onCheckedChange={(checked) => {
-                                mutateUpdateTwoFactor(checked);
+                                toast.promise(mutateUpdateTwoFactor(checked), {
+                                    loading: "Updating two-factor authentication...",
+                                    success: "Two-factor authentication updated successfully.",
+                                    error: "Failed to update two-factor authentication.",
+                                });
                             }}
                             disabled={isLoadingTwoFactor}
                         />
