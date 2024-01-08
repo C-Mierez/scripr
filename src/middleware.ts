@@ -15,9 +15,7 @@ export const { auth } = NextAuth(authConfig);
 export default auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
-
-    // console.log("MIDDLEWARE: req", req);
-    console.log("MIDDLEWARE: req", req.auth);
+    console.log("MIDDLEWARE: req", req.nextUrl.pathname, req.auth);
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(ApiAuthPrefix);
     const isApiTRPCRoute = nextUrl.pathname.startsWith(ApiTRPCPrefix);
