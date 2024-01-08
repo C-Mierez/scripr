@@ -18,11 +18,9 @@
         gap: 0.5ch;
 
         @include font-small;
-        color: var(--color-black);
+        color: var(--color-black-50);
 
         label {
-            opacity: 0.5;
-
             span {
                 @include font-body;
                 font-weight: var(--fw-bold);

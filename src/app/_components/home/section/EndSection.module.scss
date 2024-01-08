@@ -135,11 +135,13 @@ section.end {
         p,
         a {
             @include font-tiny;
-            color: var(--color-black);
-            opacity: 0.75;
+            color: var(--color-black-50);
+        }
 
-            &:hover {
-                opacity: 1;
+        span {
+            &:hover,
+            &:hover * {
+                color: var(--color-black);
             }
         }
 
@@ -152,7 +154,11 @@ section.end {
             svg {
                 height: 1rem;
                 width: 1rem;
-                fill: var(--color-black);
+                fill: var(--color-black-50);
+
+                &:hover {
+                    fill: var(--color-black);
+                }
             }
         }
     }

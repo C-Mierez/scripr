@@ -13,7 +13,7 @@ footer.footer {
 
     z-index: 9;
 
-    background: linear-gradient(var(--color-primary-700), var(--color-primary-800));
+    // background: linear-gradient(var(--color-primary-700), var(--color-primary-800));
     color: var(--color-white);
 
     .brand {
@@ -27,8 +27,8 @@ footer.footer {
         height: 1px;
         width: var(--width-container-main-bigger);
 
-        background: var(--color-accent-500);
-        opacity: 0.5;
+        background: var(--color-always-white);
+        opacity: 0.1;
     }
 
     .legals {
@@ -36,8 +36,8 @@ footer.footer {
             @include font-tiny;
 
             padding-top: calc(var(--padding-element) * 0.5);
-            color: var(--color-accent-500);
-            opacity: 0.5;
+            color: var(--color-always-white);
+            opacity: 0.1;
         }
     }
 }

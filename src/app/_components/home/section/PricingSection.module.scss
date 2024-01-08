@@ -6,8 +6,7 @@
 .divider {
     height: 1px;
     width: 100%;
-    background: var(--color-black);
-    opacity: 0.1;
+    background: var(--color-gray);
     margin-block: calc(var(--padding-element) * 0.25);
 }
 
@@ -23,7 +22,7 @@ header.pricing {
     border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
     box-shadow: var(--box-shadow-top);
 
-    background: var(--color-primary-50);
+    // background: var(--color-primary-100);
 
     h1 {
         @include font-header;
@@ -49,7 +48,7 @@ section.pricing {
 
     width: 100%;
 
-    background: var(--color-primary-50);
+    // background: var(--color-primary-100);
 
     z-index: 17;
 
@@ -75,19 +74,19 @@ section.pricing {
         }
 
         .planCard {
-            --color: var(--color-black);
-            --background: var(--color-success);
-            --backgroundAlt: var(--color-primary-500);
+            --color: var(--color-always-white);
+            --background: var(--color-primary-600);
+            --backgroundAlt: var(--color-success);
 
             display: flex;
             flex-direction: column;
             align-items: flex-start;
 
             width: min(100%, 25rem);
-            // box-shadow: var(--box-shadow-small);
-            border: 1px solid var(--color-black);
+            box-shadow: var(--box-shadow);
+            // border: 1px solid var(--color-black);
 
-            background: var(--color-white);
+            // background: var(--color-primary-50);
 
             @include mobile {
                 min-height: var(--minSize);
@@ -125,7 +124,7 @@ section.pricing {
                 h1 {
                     @include font-subheader-tiny;
                     text-transform: uppercase;
-                    color: var(--background);
+                    color: var(--color-black-75);
                 }
 
                 .priceRow {
@@ -169,15 +168,14 @@ section.pricing {
                         line-height: 1.5;
 
                         & > *:last-child {
-                            opacity: 0.5;
+                            color: var(--color-black-50);
                         }
                     }
                 }
 
                 h3 {
                     @include font-small;
-                    color: var(--color-black);
-                    opacity: 0.5;
+                    color: var(--color-black-50);
                 }
 
                 ul {
@@ -232,19 +230,11 @@ section.pricing {
                     }
 
                     &:hover {
-                        color: var(--color-white);
-
                         &::before {
                             height: 0%;
                         }
                     }
                 }
-            }
-
-            &.alt {
-                --color: var(--color-white);
-                --background: var(--color-primary-500);
-                --backgroundAlt: var(--color-success);
             }
         }
     }
@@ -287,8 +277,8 @@ section.pricing {
             p {
                 @include font-body;
                 text-align: start;
-                margin-block: 0.5em 1em;
-                opacity: 0.75;
+                margin-block: 0.5em 2em;
+                color: var(--color-black-50);
             }
 
             span {
@@ -305,7 +295,7 @@ section.pricing {
                     border: none;
 
                     background: var(--color-success);
-                    color: var(--color-white);
+                    color: var(--color-always-white);
 
                     z-index: 1;
 
@@ -370,7 +360,7 @@ section.pricing {
                         font-weight: var(--fw-bold);
                         text-align: start;
 
-                        opacity: 0.25;
+                        color: var(--color-black-50);
 
                         @include mobile {
                             font-size: var(--fs-1);
@@ -389,10 +379,9 @@ section.pricing {
 
                     p {
                         @include font-body;
-                        font-weight: var(--fw-medium);
                         text-align: start;
                         margin-block: 1em;
-                        opacity: 0.75;
+                        color: var(--color-black-75);
 
                         @include mobile {
                             font-weight: var(--fw-regular);
@@ -423,7 +412,8 @@ section.pricing {
                         svg {
                             height: 5rem;
                             width: 5rem;
-                            fill: var(--color-primary-500);
+                            fill: var(--color-success);
+                            filter: drop-shadow(0 0 0.25rem var(--color-black-10));
 
                             @include mobile {
                                 height: 4rem;
@@ -438,9 +428,9 @@ section.pricing {
 
                         p {
                             @include font-body;
-                            font-weight: var(--fw-regular);
+                            font-weight: var(--fw-light);
                             margin-block: 0.5em;
-                            opacity: 0.75;
+                            color: var(--color-black-75);
                         }
                     }
                 }

@@ -88,7 +88,7 @@
             p {
                 @include font-small;
                 font-weight: var(--fw-light);
-                opacity: 0.75;
+                color: var(--color-black-50);
                 margin-top: 0.75em;
             }
 

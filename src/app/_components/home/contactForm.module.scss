@@ -14,8 +14,7 @@ form.contactForm {
         height: 1px;
         width: 100%;
 
-        background: var(--color-black);
-        opacity: 0.1;
+        background: var(--color-gray);
     }
 
     &::after {
@@ -27,8 +26,7 @@ form.contactForm {
         height: 1px;
         width: 100%;
 
-        background: var(--color-black);
-        opacity: 0.1;
+        background: var(--color-gray);
     }
 }
 
@@ -46,7 +44,7 @@ form.contactForm {
 .fieldRow {
     --innerPadding: 1ch;
     --left: 1ch;
-    --fontSize: var(--fs-2);
+    --fontSize: var(--fs-1);
     --padding-top: calc(var(--fontSize));
 
     position: relative;
@@ -120,7 +118,7 @@ form.contactForm {
     border: none;
     border-bottom: 2px solid var(--color-success);
 
-    color: var(--color-black);
+    color: var(--color-black-75);
     background: none;
 
     resize: none;
@@ -144,7 +142,7 @@ form.contactForm {
     border: none;
     border-bottom: 2px solid var(--color-success);
 
-    color: var(--color-black);
+    color: var(--color-black-75);
     background: none;
 
     resize: none;
@@ -171,7 +169,7 @@ form.contactForm {
 .textfield input:valid,
 .textfield textarea:valid {
     background: transparent;
-    color: var(--color-black);
+    color: var(--color-black-75);
     outline: none;
 }
 

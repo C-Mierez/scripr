@@ -14,18 +14,30 @@ export default function EndSection() {
             </div>
             <div className={css.foot}>
                 <p>
-                    <a href="\">Terms of Service</a> and <a href="\">Privacy Policy</a>
+                    <a href="\">
+                        <span>Terms of Service</span>
+                    </a>{" "}
+                    and{" "}
+                    <a href="\">
+                        <span>Privacy Policy</span>
+                    </a>
                 </p>
-                <ClickableClipboardSmallText />
+                <span>
+                    <ClickableClipboardSmallText />
+                </span>
                 <ul>
                     <li>
                         <a href="https://github.com/C-Mierez/scripr" target="_blank">
-                            <SVGComponent.GitHubLogo />
+                            <span>
+                                <SVGComponent.GitHubLogo />
+                            </span>
                         </a>
                     </li>
                     <li>
                         <a href="https://twitter.com/CMierez_" target="_blank">
-                            <SVGComponent.XLogo />
+                            <span>
+                                <SVGComponent.XLogo />
+                            </span>
                         </a>
                     </li>
                 </ul>

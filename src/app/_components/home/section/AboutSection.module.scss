@@ -122,8 +122,6 @@ section.about {
                 padding-block: var(--padding-element);
                 padding-inline: var(--padding-element);
 
-                background: var(--color-primary-600);
-
                 overflow: clip;
 
                 @include mobile {

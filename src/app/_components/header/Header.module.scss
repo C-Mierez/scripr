@@ -20,9 +20,10 @@ header.header {
         border-bottom-left-radius: var(--border-radius-main);
         border-bottom-right-radius: var(--border-radius-main);
 
-        border: 1px solid var(--color-black);
+        // border: 1px solid var(--color-black-50);
         border-top: none;
-        background: var(--color-primary-50);
+        box-shadow: var(--box-shadow);
+        background: var(--color-primary-100);
 
         @include mobile {
             padding-inline: calc((100% - var(--width-min)) * 0.5);
@@ -135,7 +136,7 @@ header.header {
                             width: 0%;
                             height: 1px;
 
-                            background: var(--color-black);
+                            background: var(--color-black-50);
                             transition: width var(--animation-duration) var(--animation-function-bezier);
                         }
                         &::after {
@@ -147,7 +148,7 @@ header.header {
                             width: 0%;
                             height: 1px;
 
-                            background: var(--color-black);
+                            background: var(--color-black-50);
                             transition: width var(--animation-duration) var(--animation-function-bezier);
                         }
 
@@ -213,8 +214,6 @@ header.header {
 
                 padding-block: calc(var(--padding-element) * 0.5);
 
-                border-top: 1px solid var(--color-black);
-
                 @include mobile {
                     grid-template-columns: 1fr;
                     place-items: center;
@@ -238,12 +237,11 @@ header.header {
                 p,
                 a {
                     @include font-tiny;
-                    color: var(--color-black);
-                    opacity: 0.75;
+                    color: var(--color-black-75);
                     text-align: center;
 
                     &:hover {
-                        opacity: 1;
+                        color: var(--color-black);
                     }
                 }
 
@@ -256,7 +254,11 @@ header.header {
                     svg {
                         height: 1rem;
                         width: 1rem;
-                        fill: var(--color-black);
+                        fill: var(--color-black-75);
+
+                        &:hover {
+                            fill: var(--color-black);
+                        }
                     }
                 }
             }
@@ -295,10 +297,9 @@ header.header {
 
         text-transform: uppercase;
 
-        color: var(--color-black);
-        opacity: 0.5;
+        color: var(--color-black-50);
 
-        transition: opacity var(--animation-duration-medium) var(--animation-function-bezier);
+        transition: color var(--animation-duration-medium) var(--animation-function-bezier);
 
         @include mobile {
             font-size: var(--fs--1);
@@ -307,7 +308,7 @@ header.header {
 
     &:hover {
         .name {
-            opacity: 1;
+            color: var(--color-black);
         }
     }
 }

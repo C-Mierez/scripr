@@ -40,8 +40,7 @@ section.comparison {
             height: 1px;
             width: 100%;
 
-            background: var(--color-black);
-            opacity: 0.1;
+            background: var(--color-gray);
         }
 
         &::before {
@@ -78,8 +77,7 @@ section.comparison {
             height: 100%;
             width: 1px;
 
-            background: var(--color-black);
-            opacity: 0.1;
+            background: var(--color-gray);
         }
 
         &:nth-child(2)::before {
@@ -92,7 +90,7 @@ section.comparison {
         h2 {
             @include font-small;
             text-align: center;
-            opacity: 0.75;
+            color: var(--color-black-75);
             line-height: 1;
 
             @include mobile {
@@ -174,13 +172,8 @@ section.comparison {
                 height: 1px;
                 width: 100%;
 
-                background: var(--color-black);
-                opacity: 0.1;
+                background: var(--color-gray);
             }
-        }
-
-        &:nth-child(odd) {
-            background: var(--color-primary-50);
         }
 
         .tableColumn {
@@ -197,7 +190,11 @@ section.comparison {
             font-size: var(--fontSize);
 
             p {
-                opacity: 0.5;
+                color: var(--color-black-75);
+            }
+
+            svg {
+                fill: var(--color-black-75);
             }
 
             &::before {
@@ -209,8 +206,7 @@ section.comparison {
                 height: 100%;
                 width: 1px;
 
-                background: var(--color-black);
-                opacity: 0.1;
+                background: var(--color-gray);
             }
 
             &:nth-child(2):before {
@@ -238,15 +234,5 @@ section.comparison {
                 margin-left: 0;
             }
         }
-    }
-
-    .tableSeparator {
-        content: "";
-
-        height: 1px;
-        width: 100%;
-
-        background: var(--color-black);
-        opacity: 0.1;
     }
 }

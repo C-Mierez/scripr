@@ -11,6 +11,7 @@ import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
+import { CSSVariables } from "~/utils/utils";
 
 export default function Header() {
     const navLinks = [
@@ -88,7 +89,7 @@ export default function Header() {
             initial="initial"
             animate={collapseHeader ? "collapse" : "expanded"}
         >
-            <nav className={css.nav}>
+            <nav className={CSSVariables(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
 
                 <motion.div

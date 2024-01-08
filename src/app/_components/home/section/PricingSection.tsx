@@ -16,11 +16,15 @@ export default function PricingSection() {
     return (
         <>
             <div className={sharedCss.anchor} id={AnchorIDs.Pricing} />
-            <header className={css.pricing}>
+            <header
+                className={CSSVariables(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}
+            >
                 <h1 className={sharedCss.headerDecorated}>Pricing</h1>
                 <h2>Choose a plan that suits you best</h2>
             </header>
-            <section className={css.pricing}>
+            <section
+                className={CSSVariables(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}
+            >
                 <div className={css.planCardGrid}>
                     {Content.Plans.PlansCardData.map((plan, index) => (
                         <PlanCard
@@ -231,7 +235,11 @@ export type PlanCardData = {
 function PlanCard(props: PlanCardData) {
     return (
         <motion.div
-            className={CSSVariables(css.planCard, props.alt ? css.alt : undefined)}
+            className={CSSVariables(
+                css.planCard,
+                props.alt ? css.alt : undefined,
+                "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]"
+            )}
             {...defaultAnim({
                 initial: {
                     opacity: 0,

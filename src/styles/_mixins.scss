@@ -2,152 +2,152 @@
 /*                                Media Queries                               */
 /* ////////////////////////////////////////////////////////////////////////// */
 @mixin mobile {
-  @media (width < 915px) {
-    @content;
-  }
+    @media (width < 915px) {
+        @content;
+    }
 }
 
 @mixin desktop {
-  @media (width >= 915px) {
-    @content;
-  }
+    @media (width >= 915px) {
+        @content;
+    }
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                 Type Scales                                */
 /* ////////////////////////////////////////////////////////////////////////// */
 @mixin font-header {
-  font-family: var(--font-header-alt-400);
-  font-weight: var(--fw-regular);
-  font-size: var(--fs-7);
-  line-height: var(--font-line-height-header);
+    font-family: var(--font-header-alt-400);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-7);
+    line-height: var(--font-line-height-header);
 
-  @include mobile {
-    font-size: var(--fs-6);
-  }
+    @include mobile {
+        font-size: var(--fs-6);
+    }
 }
 
 @mixin font-header-medium {
-  font-size: var(--fs-4);
-  font-weight: var(--fw-regular);
-  font-family: var(--font-header);
-  line-height: var(--font-line-height-header);
+    font-size: var(--fs-4);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header);
+    line-height: var(--font-line-height-header);
 
-  @include mobile {
-    font-size: var(--fs-3);
-  }
+    @include mobile {
+        font-size: var(--fs-3);
+    }
 }
 
 @mixin font-header-regular {
-  font-size: var(--fs-2);
-  font-weight: var(--fw-regular);
-  font-family: var(--font-header);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs-2);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header);
+    line-height: var(--font-line-height-subheader);
 
-  @include mobile {
-    font-size: var(--fs-3);
-  }
+    @include mobile {
+        font-size: var(--fs-3);
+    }
 }
 
 @mixin font-header-small {
-  font-size: var(--fs-1);
-  font-weight: var(--fw-bold);
-  font-family: var(--font-header-alt-700);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-header-alt-700);
+    line-height: var(--font-line-height-subheader);
 }
 
 @mixin font-header-tiny {
-  font-size: var(--fs-0);
-  font-weight: var(--fw-regular);
-  font-family: var(--font-header-alt-400);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs-0);
+    font-weight: var(--fw-regular);
+    font-family: var(--font-header-alt-400);
+    line-height: var(--font-line-height-subheader);
 
-  @include mobile {
-    font-size: var(--fs-1);
-  }
+    @include mobile {
+        font-size: var(--fs-1);
+    }
 }
 
 @mixin font-subheader {
-  font-size: var(--fs-2);
-  font-weight: var(--fw-light);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs-2);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-subheader);
 
-  @include mobile {
-    font-size: var(--fs-1);
-  }
+    @include mobile {
+        font-size: var(--fs-1);
+    }
 }
 
 @mixin font-subheader-medium {
-  font-size: var(--fs-1);
-  font-weight: var(--fw-light);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-subheader);
 
-  @include mobile {
-    font-size: var(--fs-0);
-  }
+    @include mobile {
+        font-size: var(--fs-0);
+    }
 }
 
 @mixin font-subheader-tiny {
-  font-size: var(--fs--1);
-  font-weight: var(--fw-bold);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-subheader);
+    font-size: var(--fs--1);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-subheader);
 
-  @include mobile {
-    font-size: var(--fs-0);
-  }
+    @include mobile {
+        font-size: var(--fs-0);
+    }
 }
 
 @mixin font-body {
-  font-size: var(--fs-0);
-  font-weight: var(--fw-light);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-body);
+    font-size: var(--fs-0);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-body);
 }
 
 @mixin font-small {
-  font-size: var(--fs--1);
-  font-weight: var(--fw-light);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-body);
+    font-size: var(--fs--1);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-body);
 }
 
 @mixin font-tiny {
-  font-size: var(--fs--2);
-  font-weight: var(--fw-light);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-body);
+    font-size: var(--fs--2);
+    font-weight: var(--fw-light);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-body);
 }
 
 @mixin font-button {
-  font-size: var(--fs-0);
-  font-weight: var(--fw-medium);
-  font-family: var(--font-body);
-  line-height: var(--font-line-height-button);
-
-  @include mobile {
     font-size: var(--fs-0);
-  }
+    font-weight: var(--fw-medium);
+    font-family: var(--font-body);
+    line-height: var(--font-line-height-button);
+
+    @include mobile {
+        font-size: var(--fs-0);
+    }
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                  Scrollbar                                 */
 /* ////////////////////////////////////////////////////////////////////////// */
 @mixin scrollbarColor($scrollbarBackgroundColor, $scrollbarThumbColor, $width, $widthProperty) {
-  &::-webkit-scrollbar {
-    width: $width;
-    background-color: $scrollbarBackgroundColor;
-  }
+    &::-webkit-scrollbar {
+        width: $width;
+        background-color: $scrollbarBackgroundColor;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: $scrollbarThumbColor;
-  }
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbarThumbColor;
+    }
 
-  /* Firefox */
-  @supports (scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor) {
-    scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor;
-    scrollbar-width: $widthProperty;
-  }
+    /* Firefox */
+    @supports (scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor) {
+        scrollbar-color: $scrollbarThumbColor $scrollbarBackgroundColor;
+        scrollbar-width: $widthProperty;
+    }
 }

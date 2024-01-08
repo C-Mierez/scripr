@@ -3,13 +3,12 @@
 .divider {
     height: 1px;
     width: 100%;
-    background: var(--color-black);
-    opacity: 0.1;
+    background: var(--color-gray);
     margin-block: calc(var(--padding-element) * 0.25);
 }
 
 .customPlanCard {
-    --color: var(--color-white);
+    --color: var(--color-always-white);
     --background: var(--color-primary-500);
 
     display: flex;
@@ -17,10 +16,7 @@
     align-items: flex-start;
 
     width: min(100%, 25rem);
-    // box-shadow: var(--box-shadow-small);
-    border: 1px solid var(--color-black);
-
-    background: var(--color-white);
+    box-shadow: var(--box-shadow);
 
     @include mobile {
         min-height: var(--minSize);
@@ -63,7 +59,7 @@
         h1 {
             @include font-subheader-tiny;
             text-transform: uppercase;
-            color: var(--background);
+            color: var(--color-black-75);
         }
 
         .priceRow {
@@ -75,7 +71,6 @@
 
             padding-block: calc(var(--padding-element) * 0.25);
 
-            background: var(--color-white);
             z-index: 1;
 
             .dollar {
@@ -112,15 +107,14 @@
                 line-height: 1.5;
 
                 & > *:last-child {
-                    opacity: 0.5;
+                    color: var(--color-black-50);
                 }
             }
         }
 
         h3 {
             @include font-small;
-            color: var(--color-black);
-            opacity: 0.5;
+            color: var(--color-black-50);
         }
     }
 
@@ -167,8 +161,6 @@
             }
 
             &:hover {
-                color: var(--color-white);
-
                 &::before {
                     height: 0%;
                 }

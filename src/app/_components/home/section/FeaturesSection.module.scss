@@ -93,7 +93,7 @@ section.features {
                 margin-top: calc(var(--padding-element) * 0.5);
                 height: 1px;
                 transform-origin: 0%;
-                background: var(--color-black);
+                background: var(--color-gray);
 
                 @include mobile {
                     display: none;
@@ -130,8 +130,7 @@ section.features {
                     height: 1px;
                     width: 100%;
 
-                    background: var(--color-black);
-                    opacity: 0.1;
+                    background: var(--color-gray);
                 }
 
                 &::after {
@@ -142,8 +141,7 @@ section.features {
                     height: 1px;
                     width: 100%;
 
-                    background: var(--color-black);
-                    opacity: 0.1;
+                    background: var(--color-gray);
                 }
 
                 .data {

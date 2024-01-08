@@ -187,7 +187,12 @@ function ScrollerSection() {
                     ></motion.div>
                 </motion.h2>
 
-                <div className={css.textScroller}>
+                <div
+                    className={CSSVariables(
+                        css.textScroller,
+                        "bg-[var(--color-primary-600)] dark:bg-[var(--color-primary-800)]"
+                    )}
+                >
                     <motion.ul
                         className={css.scrollList}
                         style={{

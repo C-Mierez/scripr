@@ -1,6 +1,7 @@
 import { Content } from "~/utils/data";
 import IconComponent from "../../svg/Icon";
 import css from "./ComparisonSection.module.scss";
+import { CSSVariables } from "~/utils/utils";
 
 export default function ComparisonSection() {
     return (
@@ -45,7 +46,13 @@ function TableGroup(props: TableGroupData) {
         <div className={css.tableGroup}>
             <h1>{props.title}</h1>
             {props.rows.map((row, index) => (
-                <div className={css.tableRow} key={`tableRow_${index}`}>
+                <div
+                    className={CSSVariables(
+                        css.tableRow,
+                        "odd:bg-[var(--color-primary-50)] dark:odd:bg-[var(--color-primary-500)]"
+                    )}
+                    key={`tableRow_${index}`}
+                >
                     <div className={css.tableFirst}>{row.label}</div>
                     <div className={css.tableColumn}>
                         {typeof row.starter === "boolean" ? (
