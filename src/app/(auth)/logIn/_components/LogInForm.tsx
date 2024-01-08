@@ -27,7 +27,7 @@ export default function LogInForm() {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isTwoFactor, setIsTwoFactor] = useState(true);
+    const [isTwoFactor, setIsTwoFactor] = useState(false);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
