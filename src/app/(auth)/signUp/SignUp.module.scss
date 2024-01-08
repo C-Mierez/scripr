@@ -9,13 +9,25 @@
     width: 100%;
     padding-block: var(--padding-side);
 
-    & > h2 {
-        @include font-header-medium;
-        font-size: var(--fs-3);
-        font-weight: var(--fw-bold);
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
 
-        @include mobile {
-            font-size: var(--fs-2);
+        .return svg {
+            height: var(--fs-0);
+            width: var(--fs-0);
+        }
+
+        h2 {
+            @include font-header-medium;
+            font-size: var(--fs-3);
+            font-weight: var(--fw-bold);
+            line-height: 1;
+
+            @include mobile {
+                font-size: var(--fs-2);
+            }
         }
     }
 

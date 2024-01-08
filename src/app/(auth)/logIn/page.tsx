@@ -4,6 +4,7 @@ import AuthScaffold from "../_components/AuthScaffold";
 import LogInForm from "./_components/LogInForm";
 import OAuthProvider from "./_components/OAuthProviders";
 import css from "./LogIn.module.scss";
+import BackToLandingButton from "../_components/BackToLandingButton";
 
 export default function LogInPage() {
     return (
@@ -23,7 +24,10 @@ export default function LogInPage() {
 function LogIn() {
     return (
         <div className={css.container}>
-            <h2>Your Account</h2>
+            <div className={css.header}>
+                <h2>Your Account</h2>
+                <BackToLandingButton />
+            </div>
             <LogInForm />
             <div className={css.foot}>
                 <p>Or sign in with</p>

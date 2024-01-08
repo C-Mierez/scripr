@@ -1,6 +1,7 @@
 import AuthFormWrapper from "../_components/AuthFormWrapper";
 import AuthHero from "../_components/AuthHero";
 import AuthScaffold from "../_components/AuthScaffold";
+import BackToLandingButton from "../_components/BackToLandingButton";
 import OAuthProvider from "../logIn/_components/OAuthProviders";
 import SignUpForm from "./_components/SignUpForm";
 import css from "./SignUp.module.scss";
@@ -23,7 +24,10 @@ export default function SignUpPage() {
 function SignUp() {
     return (
         <div className={css.container}>
-            <h2>New Account</h2>
+            <div className={css.header}>
+                <h2>New Account</h2>
+                <BackToLandingButton />
+            </div>
             <SignUpForm />
             <div className={css.foot}>
                 <p>Or sign up with</p>
