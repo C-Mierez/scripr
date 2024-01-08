@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./Providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto_Serif({
     subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Providers>
                     <TRPCReactProvider cookies={cookies().toString()}>{children}</TRPCReactProvider>
                     {/* <LenisScroller /> */}
+                    <Toaster />
                 </Providers>
             </body>
         </html>
