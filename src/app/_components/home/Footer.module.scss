@@ -34,6 +34,7 @@ footer.footer {
     .legals {
         p {
             @include font-tiny;
+            text-align: center;
 
             padding-top: calc(var(--padding-element) * 0.5);
             color: var(--color-always-white);

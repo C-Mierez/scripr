@@ -11,13 +11,17 @@ import { useForm } from "react-hook-form";
 import { SignUpSchema } from "schemas";
 import { z } from "zod";
 import { api } from "~/utils/api";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 import css from "./SignUpForm.module.scss";
+import { useState } from "react";
 
 interface SignUpFormProps {}
 
 export default function SignUpForm({}: SignUpFormProps) {
     const { isLoading, mutateAsync, data, isSuccess, isError, error } = api.auth.signUp.useMutation();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const form = useForm<z.infer<typeof SignUpSchema>>({
         resolver: zodResolver(SignUpSchema),
@@ -64,9 +68,28 @@ export default function SignUpForm({}: SignUpFormProps) {
                     render={({ field }) => {
                         return (
                             <FormItem>
-                                <FormLabel>Password</FormLabel>
+                                <FormLabel className="flex justify-between">
+                                    Password
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setShowPassword(!showPassword);
+                                        }}
+                                    >
+                                        {showPassword ? (
+                                            <EyeOpenIcon color="var(--color-black)" className="w-4 h-4" />
+                                        ) : (
+                                            <EyeClosedIcon color="var(--color-black)" className="w-4 h-4" />
+                                        )}
+                                    </button>
+                                </FormLabel>
                                 <FormControl>
-                                    <Input {...field} disabled={isLoading} placeholder="* * * * *" type="password" />
+                                    <Input
+                                        {...field}
+                                        disabled={isLoading}
+                                        placeholder="* * * * *"
+                                        type={showPassword ? "text" : "password"}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -79,9 +102,28 @@ export default function SignUpForm({}: SignUpFormProps) {
                     render={({ field }) => {
                         return (
                             <FormItem>
-                                <FormLabel>Confirm Password</FormLabel>
+                                <FormLabel className="flex justify-between">
+                                    Confirm Password
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setShowConfirmPassword(!showConfirmPassword);
+                                        }}
+                                    >
+                                        {showConfirmPassword ? (
+                                            <EyeOpenIcon color="var(--color-black)" className="w-4 h-4" />
+                                        ) : (
+                                            <EyeClosedIcon color="var(--color-black)" className="w-4 h-4" />
+                                        )}
+                                    </button>
+                                </FormLabel>
                                 <FormControl>
-                                    <Input {...field} disabled={isLoading} placeholder="* * * * *" type="password" />
+                                    <Input
+                                        {...field}
+                                        disabled={isLoading}
+                                        placeholder="* * * * *"
+                                        type={showConfirmPassword ? "text" : "password"}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

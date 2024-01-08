@@ -13,12 +13,15 @@ import { useForm } from "react-hook-form";
 import { PasswordResetSchema } from "schemas";
 import { z } from "zod";
 import { api } from "~/utils/api";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 import css from "./PasswordResetForm.module.scss";
 
 export default function PasswordResetForm() {
     const [isTokenMissing, setIsTokenMissing] = useState(false);
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const { isSuccess, isError, isLoading, data, error, mutateAsync } = api.auth.resetPassword.useMutation();
 
@@ -80,13 +83,27 @@ export default function PasswordResetForm() {
                     render={({ field }) => {
                         return (
                             <FormItem>
-                                <FormLabel>New Password</FormLabel>
+                                <FormLabel className="flex justify-between">
+                                    New Password
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setShowPassword(!showPassword);
+                                        }}
+                                    >
+                                        {showPassword ? (
+                                            <EyeOpenIcon color="var(--color-black)" className="w-4 h-4" />
+                                        ) : (
+                                            <EyeClosedIcon color="var(--color-black)" className="w-4 h-4" />
+                                        )}
+                                    </button>
+                                </FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
                                         disabled={isLoading || isSuccess}
                                         placeholder="* * * * *"
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -100,13 +117,27 @@ export default function PasswordResetForm() {
                     render={({ field }) => {
                         return (
                             <FormItem>
-                                <FormLabel>Confirm Password</FormLabel>
+                                <FormLabel className="flex justify-between">
+                                    Confirm Password
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setShowConfirmPassword(!showConfirmPassword);
+                                        }}
+                                    >
+                                        {showConfirmPassword ? (
+                                            <EyeOpenIcon color="var(--color-black)" className="w-4 h-4" />
+                                        ) : (
+                                            <EyeClosedIcon color="var(--color-black)" className="w-4 h-4" />
+                                        )}
+                                    </button>
+                                </FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
                                         disabled={isLoading || isSuccess}
                                         placeholder="* * * * *"
-                                        type="password"
+                                        type={showConfirmPassword ? "text" : "password"}
                                     />
                                 </FormControl>
                                 <FormMessage />

@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    min-height: 100svh;
+    min-height: 100lvh;
 
     background: var(--color-primary-50);
 
@@ -13,6 +13,14 @@
 
         @include mobile {
             padding-inline: var(--padding-side);
+        }
+    }
+
+    @include laptop {
+        grid-template-columns: 1fr;
+
+        & > :first-child {
+            display: none;
         }
     }
 }

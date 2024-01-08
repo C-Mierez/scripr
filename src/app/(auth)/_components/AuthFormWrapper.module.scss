@@ -1,13 +1,21 @@
+@import "~/styles/mixins";
+
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
+    padding-block: var(--padding-side);
+
     background: var(--color-primary-100);
 
     & > * {
         height: fit-content;
         min-height: 75svh;
+    }
+
+    @include mobile {
+        justify-content: flex-start;
     }
 }

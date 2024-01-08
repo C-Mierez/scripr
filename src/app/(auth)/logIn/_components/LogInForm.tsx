@@ -18,6 +18,7 @@ import { LogInSchema } from "schemas";
 import { z } from "zod";
 
 import css from "./LogInForm.module.scss";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 export default function LogInForm() {
     const [isPending, startTransition] = useTransition();
@@ -26,8 +27,9 @@ export default function LogInForm() {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isTwoFactor, setIsTwoFactor] = useState(false);
+    const [isTwoFactor, setIsTwoFactor] = useState(true);
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const form = useForm<z.infer<typeof LogInSchema>>({
         resolver: zodResolver(LogInSchema),
@@ -136,13 +138,27 @@ export default function LogInForm() {
                             render={({ field }) => {
                                 return (
                                     <FormItem>
-                                        <FormLabel>Password</FormLabel>
+                                        <FormLabel className="flex justify-between">
+                                            Password
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setShowPassword(!showPassword);
+                                                }}
+                                            >
+                                                {showPassword ? (
+                                                    <EyeOpenIcon color="var(--color-black)" className="w-4 h-4" />
+                                                ) : (
+                                                    <EyeClosedIcon color="var(--color-black)" className="w-4 h-4" />
+                                                )}
+                                            </button>
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
                                                 placeholder="Password"
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                             />
                                         </FormControl>
                                         <FormMessage />

@@ -7,6 +7,12 @@
     }
 }
 
+@mixin laptop {
+    @media (width < 1200px) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media (width >= 915px) {
         @content;
