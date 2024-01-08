@@ -410,8 +410,11 @@ export const createTwoFactorTokenForUserId = async (db: typeof drizzleDB, { user
     // Remove all existing tokens associated to the user
     await db.delete(twoFactorToken).where(eq(twoFactorToken.userId, userId));
 
+    console.log("about to call crypto");
     // Create new token value
     const newToken = await generateTokenCode();
+
+    console.log("called crypto");
 
     // Insert new token row
     const newTwoFactorToken = await db

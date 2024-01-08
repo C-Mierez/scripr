@@ -41,7 +41,10 @@ export const generateTokenUUID = async () => {
  * @returns The generated token code
  */
 export const generateTokenCode = async () => {
-    return crypto.randomInt(100_000, 999_999).toString();
+    console.log("Im about to crypto");
+    const token = crypto.randomInt(100_000, 999_999).toString();
+    console.log("I just cryptoed really hard");
+    return token;
 };
 
 /**
