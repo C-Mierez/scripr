@@ -32,7 +32,14 @@ export default function ConfirmationEmail(props: ConfirmationEmailProps) {
                                 If you did not request this code, just ignore this email.
                             </Text>
                             <Hr />
-                            <Text className="text-[#ccd0d6] text-sm my-1 mx-auto text-center">Scripr</Text>
+                            {/* <Text className="text-[#ccd0d6] text-sm my-1 mx-auto text-center">Scripr</Text> */}
+                            <Img
+                                src="https://scripr.xyz/logoFullBlack.png"
+                                alt="Scripr"
+                                width={88}
+                                height={65}
+                                className="mx-auto mt-4"
+                            ></Img>
                             <Text className="text-[#ccd0d6] text-xs my-1 mx-auto text-center">
                                 All your finances, in one single place™
                             </Text>
