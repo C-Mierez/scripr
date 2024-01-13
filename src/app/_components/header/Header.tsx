@@ -32,13 +32,10 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     /* ---------------------------- Header Animations --------------------------- */
-    const [collapseBranding, setCollapseBranding] = useState(false);
-    const [collapseHeader, setCollapseHeader] = useState(true);
+    const [collapseHeader, setCollapseHeader] = useState(false);
     const collapsing = useRef(false);
     const { scrollY } = useScroll();
-    const { height } = useDimensions();
-    const showBrandingThreshold = height * 0.2;
-    const showHeaderThreshold = height;
+    const [hasEntered, setHasEntered] = useState(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // If Menu is open, ignore changes
@@ -46,25 +43,16 @@ export default function Header() {
 
         const prev = scrollY.getPrevious();
 
-        /* --------------------------- Branding Thresholds -------------------------- */
-        if (collapseBranding && latest < showBrandingThreshold) {
-            setCollapseBranding(false);
-        } else if (!collapseBranding && latest > showBrandingThreshold) {
-            setCollapseBranding(true);
-        }
         /* ---------------------------- Header Thresholds --------------------------- */
-        if (latest > showHeaderThreshold) {
-            if (collapseHeader && prev > latest) {
-                setCollapseHeader(false);
-            } else if (!collapseHeader && !collapsing.current && prev < latest) {
-                collapsing.current = true;
-                setTimeout(() => {
-                    setCollapseHeader(true);
-                    collapsing.current = false;
-                }, 1000);
-            }
-        } else if (!collapseHeader && latest <= showHeaderThreshold) {
-            setCollapseHeader(true);
+        if (collapseHeader && prev > latest) {
+            setCollapseHeader(false);
+            if (!hasEntered) setHasEntered(true);
+        } else if (!collapseHeader && !collapsing.current && prev < latest) {
+            collapsing.current = true;
+            setTimeout(() => {
+                setCollapseHeader(true);
+                collapsing.current = false;
+            }, 1000);
         }
     });
     /* ---------------------------------- Lenis --------------------------------- */
@@ -78,16 +66,11 @@ export default function Header() {
     return (
         <motion.header
             className={css.header}
-            onPointerLeave={() => {
-                if (scrollY.get() < showHeaderThreshold) {
-                    setCollapseBranding(false);
-                    setCollapseHeader(true);
-                }
-            }}
             /* ------------------------------ FramerMotion ------------------------------ */
             variants={headerVariants}
             initial="initial"
             animate={collapseHeader ? "collapse" : "expanded"}
+            custom={hasEntered}
         >
             <nav className={CSSVariables(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
@@ -97,16 +80,10 @@ export default function Header() {
                     onClick={() => {
                         lenis.scrollTo(0);
                     }}
-                    onPointerEnter={() => {
-                        if (scrollY.get() < showHeaderThreshold) {
-                            setCollapseBranding(true);
-                            setCollapseHeader(false);
-                        }
-                    }}
                     /* ------------------------------ FramerMotion ------------------------------ */
                     variants={headerBrandingVariants}
                     initial="initial"
-                    animate={collapseBranding ? "collapse" : "expanded"}
+                    animate={"collapsed"}
                 >
                     <div className={css.logo}>
                         <SVGComponent.ScriprLogo />

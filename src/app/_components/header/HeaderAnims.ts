@@ -24,10 +24,10 @@ export const headerVariants: Variants = {
         translateY: "-100%",
         transition,
     },
-    expanded: {
+    expanded: (hasEntered: boolean) => ({
         translateY: "0%",
-        transition,
-    },
+        transition: { ...transition, delay: hasEntered ? 0 : 2 },
+    }),
 };
 
 export const menuHeightVariants: Variants = {
