@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { MoonIcon, QuestionMarkCircledIcon, SunIcon } from "@radix-ui/react-icons";
+import { GearIcon, HomeIcon, MoonIcon, QuestionMarkCircledIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
 import css from "./ThemeSwitcher.module.scss";
 import { useEffect, useState } from "react";
+import { CSSVariables } from "~/utils/utils";
 
 export default function ThemeSwitcher() {
     const { setTheme, resolvedTheme } = useTheme();
@@ -37,11 +38,22 @@ export default function ThemeSwitcher() {
                                 return (
                                     <li key={`theme_${index}`}>
                                         <Button
-                                            className={css.themeSwitcherButton}
+                                            variant={"ghost"}
+                                            className={CSSVariables(
+                                                css.themeSwitcherButton,
+                                                "flex justify-start gap-[1ch] p-0"
+                                            )}
                                             onClick={() => {
                                                 setTheme(theme);
                                             }}
                                         >
+                                            {theme === "light" ? (
+                                                <SunIcon className={css.themeIcon} />
+                                            ) : theme === "dark" ? (
+                                                <MoonIcon className={css.themeIcon} />
+                                            ) : (
+                                                <HomeIcon className={css.themeIcon} />
+                                            )}
                                             {theme}
                                         </Button>
                                     </li>
