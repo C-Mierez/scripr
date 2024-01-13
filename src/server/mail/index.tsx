@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import { env } from "~/env.mjs";
 import { passwordResetVerifyRoute, verifyRoute } from "~/routes";
+import ConfirmationEmail from "./ConfirmationEmail";
+import RedirectEmail from "./RedirectEmail";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -17,11 +19,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         from: emailSenderAccount,
         to: email,
         subject: "Verify your email to access Scripr",
-        html: `
-            <p>
-                Click <a href="${confirmLink}" target="_blank">here</a> to verify your email.
-            </p>
-        `,
+        react: <RedirectEmail emailType="verify" redirectUrl={confirmLink} />,
     });
 };
 
@@ -32,11 +30,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
         from: emailSenderAccount,
         to: email,
         subject: "Reset your Scripr password",
-        html: `
-            <p>
-                Click <a href="${confirmLink}" target="_blank">here</a> to reset your password.
-            </p>
-        `,
+        react: <RedirectEmail emailType="password-reset" redirectUrl={confirmLink} />,
     });
 };
 
@@ -45,10 +39,17 @@ export const sendTwoFactorConfirmationEmail = async (email: string, token: strin
         from: emailSenderAccount,
         to: email,
         subject: "Your two-factor confirmation code",
-        html: `
-            <p>
-                Your two-factor confirmation code is <b>${token}</b>.
-            </p>
-        `,
+        react: <ConfirmationEmail token={token} />,
     });
 };
+
+// export const testEmail = async () => {
+//     const confirmLink = `${appUrl}${passwordResetVerifyRoute}?token=8431457856468484`;
+
+//     await resend.emails.send({
+//         from: emailSenderAccount,
+//         to: "carlos.mierez20@gmail.com",
+//         subject: "test",
+//         react: <RedirectEmail emailType="password-reset" redirectUrl={confirmLink} />,
+//     });
+// };
