@@ -1,0 +1,33 @@
+@import "~/styles/mixins";
+
+.slidingButton {
+    position: relative;
+
+    overflow: clip;
+
+    transition: color var(--animation-duration-medium) var(--animation-function-bezier);
+
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: var(--color-text);
+        transition: top var(--animation-duration-medium) var(--animation-function-bezier);
+        z-index: -1;
+    }
+
+    &:hover {
+        color: var(--color-background);
+
+        &::before {
+            top: 0;
+        }
+    }
+}

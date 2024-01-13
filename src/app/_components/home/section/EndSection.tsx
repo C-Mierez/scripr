@@ -9,7 +9,9 @@ export default function EndSection() {
         <section className={css.end}>
             <div className={css.cta}>
                 <h1 className={sharedCss.headerDecorated}>Take Back</h1>
-                <button>Get Started</button>
+                <a href="/dashboard">
+                    <button>Get Started</button>
+                </a>
                 <h1>Your Control</h1>
             </div>
             <div className={css.foot}>

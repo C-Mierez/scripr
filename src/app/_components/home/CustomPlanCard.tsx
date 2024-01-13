@@ -121,7 +121,9 @@ export default function CustomPlanCard() {
                 </ul>
             </div>
             <div className={css.footer}>
-                <button>Get Started</button>
+                <a href="/dashboard">
+                    <button>Get Started</button>
+                </a>
             </div>
         </div>
     );

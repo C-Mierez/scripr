@@ -10,14 +10,18 @@ export default function ComparisonSection() {
                 <div className={css.headerWrapper}>
                     <div className={css.tableFirst} />
                     <div className={css.tableCard}>
-                        <h2>It's free</h2>
-                        <h1>Starter</h1>
-                        <button>Start</button>
+                        <a href="/dashboard">
+                            <h2>It's free</h2>
+                            <h1>Starter</h1>
+                            <button>Start</button>
+                        </a>
                     </div>
                     <div className={css.tableCard}>
-                        <h2>{"$20/ month"}</h2>
-                        <h1>Investor</h1>
-                        <button>Start</button>
+                        <a href="/dashboard">
+                            <h2>{"$20/ month"}</h2>
+                            <h1>Investor</h1>
+                            <button>Start</button>
+                        </a>
                     </div>
                 </div>
             </div>

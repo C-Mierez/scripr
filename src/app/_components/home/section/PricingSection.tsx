@@ -53,20 +53,22 @@ export default function PricingSection() {
                                 We ensure every customer gets pricing that aligns to their budget and business needs.
                                 Consult with our sales team to assist you with choosing the best options for you.
                             </p>
-                            <span>
-                                <motion.button
-                                    {...defaultAnim({
-                                        initial: {
-                                            y: "100%",
-                                        },
-                                        inView: {
-                                            y: "0%",
-                                        },
-                                    })}
-                                >
-                                    Contact Sales
-                                </motion.button>
-                            </span>
+                            <a href={`#${AnchorIDs.Contact}`}>
+                                <span>
+                                    <motion.button
+                                        {...defaultAnim({
+                                            initial: {
+                                                y: "100%",
+                                            },
+                                            inView: {
+                                                y: "0%",
+                                            },
+                                        })}
+                                    >
+                                        Contact Sales
+                                    </motion.button>
+                                </span>
+                            </a>
                         </div>
                         <div className={css.deal}>
                             <h2>Are you a student?</h2>
@@ -288,7 +290,9 @@ function PlanCard(props: PlanCardData) {
                 </motion.ul>
             </div>
             <div className={css.footer}>
-                <button>Get Started</button>
+                <a href="/dashboard">
+                    <button>Get Started</button>
+                </a>
             </div>
         </motion.div>
     );
