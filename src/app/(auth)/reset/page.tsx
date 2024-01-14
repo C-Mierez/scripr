@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AuthFormWrapper from "../_components/AuthFormWrapper";
 import AuthHero from "../_components/AuthHero";
 import AuthScaffold from "../_components/AuthScaffold";
@@ -27,7 +28,7 @@ function Reset() {
             <div className={css.foot}>
                 <div className={css.separator} />
                 <p>
-                    Remembered your password? <a href="/logIn">Log in</a>
+                    Remembered your password? <Link href="/logIn">Log in</Link>
                 </p>
             </div>
         </div>

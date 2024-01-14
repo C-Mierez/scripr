@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AuthFormWrapper from "../_components/AuthFormWrapper";
 import AuthHero from "../_components/AuthHero";
 import AuthScaffold from "../_components/AuthScaffold";
@@ -34,7 +35,7 @@ function SignUp() {
                 <OAuthProvider />
                 <div className={css.separator} />
                 <p>
-                    Already have an account? <a href="/logIn">Log In</a>
+                    Already have an account? <Link href="/logIn">Log In</Link>
                 </p>
             </div>
         </div>

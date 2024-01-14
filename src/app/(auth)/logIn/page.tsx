@@ -5,6 +5,7 @@ import LogInForm from "./_components/LogInForm";
 import OAuthProvider from "./_components/OAuthProviders";
 import css from "./LogIn.module.scss";
 import BackToLandingButton from "../_components/BackToLandingButton";
+import Link from "next/link";
 
 export default function LogInPage() {
     return (
@@ -34,7 +35,7 @@ function LogIn() {
                 <OAuthProvider />
                 <div className={css.separator} />
                 <p>
-                    Don't have an account? <a href="/signUp">Sign up</a>
+                    Don't have an account? <Link href="/signUp">Sign up</Link>
                 </p>
             </div>
         </div>
