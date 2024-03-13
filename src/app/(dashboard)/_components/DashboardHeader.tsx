@@ -1,25 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import { logOut } from "actions/auth";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useTransition } from "react";
-import SVGComponent from "~/app/_components/svg/SVG";
+import { useState } from "react";
 
 import css from "./DashboardHeader.module.scss";
-import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
 import UserSheet from "./UserSheet";
 
 export default function DashboardHeader() {
@@ -52,17 +35,7 @@ export default function DashboardHeader() {
 
     return (
         <header className={css.header}>
-            <nav className={css.nav}>
-                <LeftNav />
-                <RightNav />
-            </nav>
-            <NavigationMenu className={css.menu}>
-                <NavigationMenuList>
-                    {menuItems.map((item, index) => (
-                        <MenuItem key={`menuItem_${index}`} label={item.label} href={item.href} />
-                    ))}
-                </NavigationMenuList>
-            </NavigationMenu>
+            <UserSheet></UserSheet>
         </header>
     );
 }
@@ -82,74 +55,3 @@ const portfolios = [
         label: "Family",
     },
 ];
-
-function LeftNav() {
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState("");
-
-    return (
-        <div className={css.leftNav}>
-            <a href="/">
-                <SVGComponent.ScriprLogo />
-            </a>
-            <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                    <Button variant="outline" role="combobox" aria-expanded={open} className={css.button}>
-                        {value
-                            ? portfolios.find((portfolio) => portfolio.value === value)?.label
-                            : "Select portfolio..."}
-                        <CaretSortIcon className={css.buttonIcon} />
-                    </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                    <Command>
-                        <CommandInput placeholder="Search portfolio..." className="h-9" />
-                        <CommandEmpty>No portfolio found.</CommandEmpty>
-                        <CommandGroup>
-                            {portfolios.map((portfolio) => (
-                                <CommandItem
-                                    key={portfolio.value}
-                                    value={portfolio.value}
-                                    onSelect={(currentValue: any) => {
-                                        setValue(currentValue === value ? "" : currentValue);
-                                        setOpen(false);
-                                    }}
-                                >
-                                    {portfolio.label}
-                                    <CheckIcon
-                                        className={cn(
-                                            "ml-auto h-4 w-4",
-                                            value === portfolio.value ? "opacity-100" : "opacity-0"
-                                        )}
-                                    />
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
-                    </Command>
-                </PopoverContent>
-            </Popover>
-        </div>
-    );
-}
-
-function RightNav() {
-    return (
-        <div className={css.rightNav}>
-            <p>Help</p>
-            <p>Docs</p>
-            <ThemeSwitcher />
-            <UserSheet />
-        </div>
-    );
-}
-
-function MenuItem({ label, href }: { label: string; href: string }) {
-    const pathname = usePathname();
-    return (
-        <NavigationMenuItem className={pathname.includes(href) ? css.active : ""}>
-            <Link href={href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>{label}</NavigationMenuLink>
-            </Link>
-        </NavigationMenuItem>
-    );
-}

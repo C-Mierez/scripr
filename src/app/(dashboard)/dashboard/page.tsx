@@ -6,9 +6,7 @@ export default function Dashboard() {
     const user = useSessionUser();
 
     return (
-        <main
-            style={{ padding: "var(--padding-side)", display: "flex", flexDirection: "column", alignItems: "center" }}
-        >
+        <main className="flex flex-col items-center justify-center w-full h-full p-4 text-center min-h-screen overflow-hidden">
             {JSON.stringify(user)}
         </main>
     );
