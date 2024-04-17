@@ -4,14 +4,14 @@ import { useLenis } from "@studio-freight/react-lenis";
 import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import useDimensions from "~/hooks/useDimensions";
-import { AnchorIDs } from "~/utils/data";
+import { AnchorIDs } from "~/lib/data";
 
 import ClickableClipboardSmallText from "../ClickableClipboardSmallText";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
 import ThemeSwitcher from "~/components/shared/ThemeSwitcher";
-import { CSSVariables } from "~/utils/utils";
+import { cv } from "~/lib/utils";
 
 export default function Header() {
     const navLinks = [
@@ -72,7 +72,7 @@ export default function Header() {
             animate={collapseHeader ? "collapse" : "expanded"}
             custom={hasEntered}
         >
-            <nav className={CSSVariables(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
+            <nav className={cv(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
 
                 <motion.div

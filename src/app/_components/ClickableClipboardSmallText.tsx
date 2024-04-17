@@ -1,6 +1,6 @@
 "use client";
 
-import { ContactEmail } from "../../utils/data";
+import { ContactEmail } from "../../lib/data";
 import { useEffect, useState } from "react";
 import css from "./ClickableClipboardSmallText.module.scss";
 

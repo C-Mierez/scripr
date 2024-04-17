@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import React from "react";
-import { CSSVariables } from "~/utils/utils";
+import { cv } from "~/lib/utils";
 
-import { defaultAnim, duration, staggerDelay, transition } from "../../../utils/animations";
+import { defaultAnim, duration, staggerDelay, transition } from "../../../lib/animations";
 import css from "./contactForm.module.scss";
 import { isMobile } from "react-device-detect";
 
@@ -79,7 +79,7 @@ export function TextArea(props: { label: string; description: string; required: 
                 })}
                 transition={{ ...transition, delay: duration * 0.5 }}
             ></motion.div>
-            <div ref={wrapperRef} className={CSSVariables(css.textfield, css.textarea)}>
+            <div ref={wrapperRef} className={cv(css.textfield, css.textarea)}>
                 <textarea
                     required={props.required}
                     placeholder={`${props.label}${props.required ? "*" : ""}`}
@@ -122,7 +122,7 @@ function RatingField(props: { label: string; description: string; required: bool
                             onChange={(e) => {
                                 e.preventDefault();
                             }}
-                            className={CSSVariables(css.ratingField)}
+                            className={cv(css.ratingField)}
                         />
                         <motion.label
                             htmlFor={`star${i}`}

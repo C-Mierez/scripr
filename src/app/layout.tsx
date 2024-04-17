@@ -7,7 +7,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./Providers";
 import { Toaster } from "~/components/ui/sonner";
 import NextTopLoader from "nextjs-toploader";
-import { duration } from "../utils/animations";
+import { duration } from "../lib/animations";
 
 const roboto = Roboto_Serif({
     subsets: ["latin"],

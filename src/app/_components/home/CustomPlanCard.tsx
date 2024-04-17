@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import css from "./CustomPlanCard.module.scss";
 import ValueSlider from "../inputs/ValueSlider";
 import ValueCheckbox from "../inputs/ValueCheckbox";
-import { CSSVariables } from "~/utils/utils";
+import { cv } from "~/lib/utils";
 
 export default function CustomPlanCard() {
     const [currentPrice, setCurrentPrice] = useState(1);
@@ -35,24 +35,14 @@ export default function CustomPlanCard() {
     });
 
     return (
-        <div
-            className={CSSVariables(
-                css.customPlanCard,
-                "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]"
-            )}
-        >
+        <div className={cv(css.customPlanCard, "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]")}>
             <div className={css.header}>
                 <h2>Your Plan</h2>
             </div>
             <div className={css.body}>
                 <h1>Custom</h1>
                 <div className={css.divider} />
-                <div
-                    className={CSSVariables(
-                        css.priceRow,
-                        "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]"
-                    )}
-                >
+                <div className={cv(css.priceRow, "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]")}>
                     <p className={css.dollar}>{"$"}</p>
                     <p className={css.price}>{currentPrice.toFixed(0)}</p>
                     <div className={css.description}>

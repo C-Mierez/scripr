@@ -12,7 +12,7 @@ import { ResetSchema } from "schemas";
 import { z } from "zod";
 
 import css from "./ResetForm.module.scss";
-import { api } from "~/utils/api";
+import { api } from "~/lib/api";
 
 export default function ResetForm() {
     const { mutateAsync, isSuccess, isError, isLoading, data, error } = api.auth.requestPasswordReset.useMutation();

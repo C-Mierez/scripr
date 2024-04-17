@@ -1,13 +1,13 @@
 "use client";
-import { Content } from "~/utils/data";
+import { Content } from "~/lib/data";
 
 import FAQCard from "../FAQCard";
 import css from "./FAQSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import { LayoutGroup, motion, useScroll } from "framer-motion";
-import { layoutTransition } from "~/utils/animations";
+import { layoutTransition } from "~/lib/animations";
 import { isMobile } from "react-device-detect";
-import { AnchorIDs } from "../../../../utils/data";
+import { AnchorIDs } from "../../../../lib/data";
 import { useRef } from "react";
 
 export default function FAQSection() {

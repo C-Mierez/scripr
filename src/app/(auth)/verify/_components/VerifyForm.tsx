@@ -8,7 +8,7 @@ import { Separator } from "~/components/ui/separator";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { api } from "~/utils/api";
+import { api } from "~/lib/api";
 
 export default function VerifyForm() {
     const [isTokenMissing, setIsTokenMissing] = useState(false);

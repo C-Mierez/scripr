@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PasswordResetSchema } from "schemas";
 import { z } from "zod";
-import { api } from "~/utils/api";
+import { api } from "~/lib/api";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 import css from "./PasswordResetForm.module.scss";

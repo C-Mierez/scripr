@@ -1,5 +1,5 @@
 import { Variants } from "framer-motion";
-import { staggerDelay, transition } from "~/utils/animations";
+import { staggerDelay, transition } from "~/lib/animations";
 
 export const headerBrandingVariants: Variants = {
     initial: {

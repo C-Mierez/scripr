@@ -3,7 +3,7 @@
 import { useState } from "react";
 import css from "./SliderButton.module.scss";
 import { motion } from "framer-motion";
-import { bezierEase, mediumDuration, defaultAnim } from "~/utils/animations";
+import { bezierEase, mediumDuration, defaultAnim } from "~/lib/animations";
 import { HeroSectionVariants } from "./home/section/HeroSectionAnims";
 
 export default function SliderButton({ label, href }: { label: string; href: string }) {

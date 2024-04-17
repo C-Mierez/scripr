@@ -1,12 +1,12 @@
 "use client";
 
-import { Content } from "~/utils/data";
+import { Content } from "~/lib/data";
 import css from "./FeaturesSection.module.scss";
 import sharedCss from "../shared.module.scss";
-import { AnchorIDs } from "../../../../utils/data";
+import { AnchorIDs } from "../../../../lib/data";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { defaultAnim, transition } from "~/utils/animations";
+import { defaultAnim, transition } from "~/lib/animations";
 
 export default function FeaturesSection() {
     const featuresRef = useRef(null);

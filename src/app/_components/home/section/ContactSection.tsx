@@ -3,7 +3,7 @@ import sharedCss from "../shared.module.scss";
 import ContactForm from "../ContactForm";
 import SVGComponent from "../../svg/SVG";
 import ParallaxReviews from "../ParallaxReviews";
-import { AnchorIDs } from "../../../../utils/data";
+import { AnchorIDs } from "../../../../lib/data";
 
 export default function ContactSection() {
     return (

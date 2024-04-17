@@ -1,11 +1,11 @@
 "use client";
 
 import { Variants, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { defaultAnim, duration, staggerDelay, transition } from "~/utils/animations";
-import { Content } from "~/utils/data";
-import { CSSVariables } from "~/utils/utils";
+import { defaultAnim, duration, staggerDelay, transition } from "~/lib/animations";
+import { Content } from "~/lib/data";
+import { cv } from "~/lib/utils";
 
-import { AnchorIDs } from "../../../../utils/data";
+import { AnchorIDs } from "../../../../lib/data";
 import IconComponent from "../../svg/Icon";
 import CustomPlanCard from "../CustomPlanCard";
 import sharedCss from "../shared.module.scss";
@@ -16,15 +16,11 @@ export default function PricingSection() {
     return (
         <>
             <div className={sharedCss.anchor} id={AnchorIDs.Pricing} />
-            <header
-                className={CSSVariables(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}
-            >
+            <header className={cv(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}>
                 <h1 className={sharedCss.headerDecorated}>Pricing</h1>
                 <h2>Choose a plan that suits you best</h2>
             </header>
-            <section
-                className={CSSVariables(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}
-            >
+            <section className={cv(css.pricing, "bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-50)]")}>
                 <div className={css.planCardGrid}>
                     {Content.Plans.PlansCardData.map((plan, index) => (
                         <PlanCard
@@ -237,7 +233,7 @@ export type PlanCardData = {
 function PlanCard(props: PlanCardData) {
     return (
         <motion.div
-            className={CSSVariables(
+            className={cv(
                 css.planCard,
                 props.alt ? css.alt : undefined,
                 "bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-100)]"

@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { transition } from "~/utils/animations";
+import { transition } from "~/lib/animations";
 
 import css from "./AuthHero.module.scss";
 

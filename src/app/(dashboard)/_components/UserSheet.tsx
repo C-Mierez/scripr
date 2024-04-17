@@ -8,7 +8,7 @@ import { Switch } from "~/components/ui/switch";
 import { HomeIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import useSessionUser from "~/hooks/useSessionUser";
-import { api } from "~/utils/api";
+import { api } from "~/lib/api";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 

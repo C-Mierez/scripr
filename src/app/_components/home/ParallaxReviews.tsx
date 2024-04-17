@@ -5,7 +5,7 @@ import useDimensions from "~/hooks/useDimensions";
 
 import SVGComponent from "../svg/SVG";
 import css from "./parallaxReviews.module.scss";
-import { Content } from "~/utils/data";
+import { Content } from "~/lib/data";
 
 export default function ParallaxReviews() {
     const parallaxRef = useRef(null);

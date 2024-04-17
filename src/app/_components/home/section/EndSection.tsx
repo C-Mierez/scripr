@@ -1,7 +1,7 @@
 import css from "./EndSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import SVGComponent from "../../svg/SVG";
-import { ContactEmail } from "../../../../utils/data";
+import { ContactEmail } from "../../../../lib/data";
 import ClickableClipboardSmallText from "../../ClickableClipboardSmallText";
 
 export default function EndSection() {

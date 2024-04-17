@@ -6,9 +6,9 @@ import { useRef } from "react";
 import css from "./HeroSection.module.scss";
 import sharedCss from "../shared.module.scss";
 import SliderButton from "../../SliderButton";
-import { AnchorIDs } from "../../../../utils/data";
+import { AnchorIDs } from "../../../../lib/data";
 import { HeroSectionVariants } from "./HeroSectionAnims";
-import { defaultAnim } from "~/utils/animations";
+import { defaultAnim } from "~/lib/animations";
 import SlidingButton from "~/components/SlidingButton";
 
 export default function HeroSection() {

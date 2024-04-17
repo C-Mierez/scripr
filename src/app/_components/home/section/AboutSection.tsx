@@ -2,11 +2,11 @@
 
 import css from "./AboutSection.module.scss";
 import sharedCss from "../shared.module.scss";
-import { CSSVariables } from "~/utils/utils";
-import { AnchorIDs } from "../../../../utils/data";
+import { cv } from "~/lib/utils";
+import { AnchorIDs } from "../../../../lib/data";
 import { useRef } from "react";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { defaultAnim } from "~/utils/animations";
+import { defaultAnim } from "~/lib/animations";
 
 export default function AboutSection() {
     const firstSectionRef = useRef(null);
@@ -52,7 +52,7 @@ export default function AboutSection() {
         <>
             <div className={sharedCss.anchor} id={AnchorIDs.About} />
             <header className={css.about}>
-                <h1 className={CSSVariables(sharedCss.headerDecorated, sharedCss.alt)}>About Us</h1>
+                <h1 className={cv(sharedCss.headerDecorated, sharedCss.alt)}>About Us</h1>
                 <p>
                     We're a small but mighty team of people who are all about helping to make finance less overwhelming
                     and more accessible to people
@@ -188,10 +188,7 @@ function ScrollerSection() {
                 </motion.h2>
 
                 <div
-                    className={CSSVariables(
-                        css.textScroller,
-                        "bg-[var(--color-primary-600)] dark:bg-[var(--color-primary-800)]"
-                    )}
+                    className={cv(css.textScroller, "bg-[var(--color-primary-600)] dark:bg-[var(--color-primary-800)]")}
                 >
                     <motion.ul
                         className={css.scrollList}

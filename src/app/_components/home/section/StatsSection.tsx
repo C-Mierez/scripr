@@ -1,4 +1,4 @@
-import { Content } from "~/utils/data";
+import { Content } from "~/lib/data";
 import css from "./StatsSection.module.scss";
 
 export default function StatsSection() {

@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 
 import css from "./ThemeSwitcher.module.scss";
 import { useEffect, useState } from "react";
-import { CSSVariables } from "~/utils/utils";
+import { cv } from "~/lib/utils";
 
 export default function ThemeSwitcher() {
     const { setTheme, resolvedTheme } = useTheme();
@@ -39,10 +39,7 @@ export default function ThemeSwitcher() {
                                     <li key={`theme_${index}`}>
                                         <Button
                                             variant={"ghost"}
-                                            className={CSSVariables(
-                                                css.themeSwitcherButton,
-                                                "flex justify-start gap-[1ch] p-0"
-                                            )}
+                                            className={cv(css.themeSwitcherButton, "flex justify-start gap-[1ch] p-0")}
                                             onClick={() => {
                                                 setTheme(theme);
                                             }}

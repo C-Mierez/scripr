@@ -1,4 +1,4 @@
-import { VariantsList, delay, duration, shortDuration, transition } from "~/utils/animations";
+import { VariantsList, delay, duration, shortDuration, transition } from "~/lib/animations";
 
 export const HeroSectionVariants: VariantsList = {
     GridBackground: {

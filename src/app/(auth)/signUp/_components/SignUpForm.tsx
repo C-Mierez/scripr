@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignUpSchema } from "schemas";
 import { z } from "zod";
-import { api } from "~/utils/api";
+import { api } from "~/lib/api";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 import css from "./SignUpForm.module.scss";

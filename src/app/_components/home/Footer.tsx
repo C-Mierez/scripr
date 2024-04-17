@@ -1,11 +1,11 @@
-import { CSSVariables } from "~/utils/utils";
+import { cv } from "~/lib/utils";
 import SVGComponent from "../svg/SVG";
 import css from "./Footer.module.scss";
 
 export default function Footer() {
     return (
         <footer
-            className={CSSVariables(
+            className={cv(
                 css.footer,
                 "bg-gradient-to-t from-[var(--color-primary-800)] to-[var(--color-primary-700)] dark:from-[var(--color-primary-50)] dark:to-[var(--color-primary-100)]"
             )}
