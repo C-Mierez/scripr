@@ -78,7 +78,9 @@ export default function Header() {
                 <motion.div
                     className={css.branding}
                     onClick={() => {
-                        lenis.scrollTo(0);
+                        if (lenis) {
+                            lenis.scrollTo(0);
+                        }
                     }}
                     /* ------------------------------ FramerMotion ------------------------------ */
                     variants={headerBrandingVariants}
@@ -106,7 +108,9 @@ export default function Header() {
                                         custom={{ index, length: navLinks.length, globalDelay: 0.5 }}
                                         onClick={() => {
                                             if (link.href.startsWith("#")) {
-                                                lenis.scrollTo(link.href);
+                                                if (lenis) {
+                                                    lenis.scrollTo(link.href);
+                                                }
                                             }
                                         }}
                                     >
@@ -214,7 +218,9 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
                                     href={item.href}
                                     onClick={() => {
                                         if (item.href.startsWith("#")) {
-                                            lenis.scrollTo(item.href);
+                                            if (lenis) {
+                                                lenis.scrollTo(item.href);
+                                            }
                                         }
                                     }}
                                     /* ------------------------------ FramerMotion ------------------------------ */

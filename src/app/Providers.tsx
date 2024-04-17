@@ -14,7 +14,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 options={{
                     lerp: 0.08,
                     touchMultiplier: 0.05,
-                    smoothTouch: false,
                 }}
             >
                 {children}
