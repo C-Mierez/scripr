@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./Providers";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "~/components/ui/sonner";
 import NextTopLoader from "nextjs-toploader";
 import { duration } from "../utils/animations";
 

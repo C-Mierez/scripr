@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "~/lib/utils";
 import { CheckCircledIcon, ClipboardIcon } from "@radix-ui/react-icons";
 import { VariantProps } from "class-variance-authority";
 import React, { useState } from "react";

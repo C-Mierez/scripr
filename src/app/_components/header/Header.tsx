@@ -10,7 +10,7 @@ import ClickableClipboardSmallText from "../ClickableClipboardSmallText";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
-import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
+import ThemeSwitcher from "~/components/shared/ThemeSwitcher";
 import { CSSVariables } from "~/utils/utils";
 
 export default function Header() {

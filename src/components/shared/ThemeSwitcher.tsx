@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "~/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover";
 import { GearIcon, HomeIcon, MoonIcon, QuestionMarkCircledIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 

@@ -9,7 +9,7 @@ import SliderButton from "../../SliderButton";
 import { AnchorIDs } from "../../../../utils/data";
 import { HeroSectionVariants } from "./HeroSectionAnims";
 import { defaultAnim } from "~/utils/animations";
-import SlidingButton from "@/components/SlidingButton";
+import SlidingButton from "~/components/SlidingButton";
 
 export default function HeroSection() {
     const heroSectionRef = useRef(null);

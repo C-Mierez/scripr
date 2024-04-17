@@ -1,12 +1,12 @@
 "use client";
 
-import FormAlertFailure from "@/components/FormAlertFailure";
-import FormAlertSuccess from "@/components/FormAlertSuccess";
-import FormCheckbox from "@/components/FormCheckbox";
-import ClipboardPaste from "@/components/shared/ClipboardPaste";
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import FormAlertFailure from "~/components/FormAlertFailure";
+import FormAlertSuccess from "~/components/FormAlertSuccess";
+import FormCheckbox from "~/components/FormCheckbox";
+import ClipboardPaste from "~/components/shared/ClipboardPaste";
+import { Button } from "~/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { logIn } from "actions/auth";
 import { MuiOtpInput } from "mui-one-time-password-input";

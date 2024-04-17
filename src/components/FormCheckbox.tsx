@@ -1,5 +1,5 @@
 import css from "./FormCheckbox.module.scss";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "~/components/ui/checkbox";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 
 interface FormCheckboxProps extends CheckboxPrimitive.CheckboxProps {

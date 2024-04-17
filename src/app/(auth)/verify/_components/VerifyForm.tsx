@@ -1,10 +1,10 @@
 "use client";
 
-import FormAlertFailure from "@/components/FormAlertFailure";
-import FormAlertSuccess from "@/components/FormAlertSuccess";
-import SquareLoader from "@/components/loaders/SquareLoader";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import FormAlertFailure from "~/components/FormAlertFailure";
+import FormAlertSuccess from "~/components/FormAlertSuccess";
+import SquareLoader from "~/components/loaders/SquareLoader";
+import { Button } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

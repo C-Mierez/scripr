@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import AuthFormWrapper from "../_components/AuthFormWrapper";
 import AuthHero from "../_components/AuthHero";
 import AuthScaffold from "../_components/AuthScaffold";
