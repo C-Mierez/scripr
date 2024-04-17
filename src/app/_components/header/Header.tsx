@@ -44,10 +44,10 @@ export default function Header() {
         const prev = scrollY.getPrevious();
 
         /* ---------------------------- Header Thresholds --------------------------- */
-        if (collapseHeader && prev > latest) {
+        if (collapseHeader && prev! > latest) {
             setCollapseHeader(false);
             if (!hasEntered) setHasEntered(true);
-        } else if (!collapseHeader && !collapsing.current && prev < latest) {
+        } else if (!collapseHeader && !collapsing.current && prev! < latest) {
             collapsing.current = true;
             setTimeout(() => {
                 setCollapseHeader(true);
