@@ -1,4 +1,4 @@
-import { db } from "./src/server/db/index";
+import { db } from "../src/server/db/index";
 import { roles } from "~/server/db/schema";
 import { UserRoleSchema } from "schemas";
 

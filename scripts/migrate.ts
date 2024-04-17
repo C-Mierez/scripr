@@ -1,5 +1,5 @@
 import { migrate } from "drizzle-orm/neon-serverless/migrator";
-import { db } from "./src/server/db/index";
+import { db } from "../src/server/db/index";
 
 const main = async () => {
     try {
