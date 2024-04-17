@@ -7,3 +7,4 @@
 - [ ] Update dependencies to their latest usable version.
 - [ ] Clean up animations.ts and make sure it's consistent with css variables. 
 - [ ] Update auth.js to latest version???
+- [ ] Fix Resend not sending emails.
