@@ -41,7 +41,7 @@ export default function RedirectEmail(props: RedirectEmailProps) {
                             <Hr />
                             {/* <Text className="text-[#ccd0d6] text-sm my-1 mx-auto text-center">Scripr</Text> */}
                             <Img
-                                src="https://scripr.xyz/logoFullBlack.png"
+                                src="https://scripr.xyz/assets/logoFullBlack.png"
                                 alt="Scripr"
                                 width={88}
                                 height={65}
