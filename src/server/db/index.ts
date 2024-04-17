@@ -3,7 +3,7 @@ import { neon, Pool, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
 import * as schema from "./schema";
 
-neonConfig.fetchConnectionCache = true;
+// neonConfig.fetchConnectionCache = true;
 
 // const sql = neon(env.DATABASE_URL!);
 const sql = new Pool({
