@@ -1,0 +1,7 @@
+# TODO
+- [ ] Rework the use definition and use of Tailwind vs CSS variables.
+- [ ] Simplify theme switcher into Dark or Light mode only with a single click.
+- [ ] Refactor and rename files outside src folder to be more descriptive.
+- [ ] Refactor shadcn into the src folder and share /components.
+- [ ] Clean up and categorize components folder. Remove non-reusable components.
+- [ ] Update dependencies to their latest usable version.
