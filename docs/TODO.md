@@ -4,7 +4,7 @@
 - [ ] Refactor and rename files outside src folder to be more descriptive.
 - [x] Refactor shadcn into the src folder and share /components.
 - [ ] Clean up and categorize components folder. Remove non-reusable components.
-- [ ] Update dependencies to their latest usable version.
+- [x] Update dependencies to their latest usable version.
 - [ ] Clean up animations.ts and make sure it's consistent with css variables. 
-- [ ] Update auth.js to latest version???
-- [ ] Fix Resend not sending emails.
+- [x] Update auth.js to latest version???
+- [x] Fix Resend not sending emails.
