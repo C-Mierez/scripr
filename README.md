@@ -65,7 +65,7 @@ This is a monolithic project built primarily within Next.js 14, though extension
     - Using Resend as email provider.
     - OAuth users do not require email verification.
       - Event-driven verification of OAuth users after signing up.
-  - [ ] Password Reset.
+  - [x] Password Reset.
   - [x] Input validation, both on client and server.
   - [x] Error handling, including server-side errors and Auth.js-specific behaviour.  
 
