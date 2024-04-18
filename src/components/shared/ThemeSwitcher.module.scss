@@ -8,6 +8,11 @@
     color: var(--color-black-75);
 
     cursor: pointer;
+
+    &:hover {
+        fill: var(--color-black-100);
+        color: var(--color-black-100);
+    }
 }
 
 .popoverContainer {
