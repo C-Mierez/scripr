@@ -1,6 +1,6 @@
 import { Transition, Variants } from "framer-motion";
 
-export const bezierEase = [0.76, 0, 0.24, 1];
+export const animationEase = [0.76, 0, 0.24, 1];
 
 export const shortDuration = 0.3;
 export const mediumDuration = 0.5;
@@ -10,9 +10,9 @@ export const staggerDelay = 0.05;
 
 export const delay = 0.5;
 
-export const transition = { duration: duration, ease: bezierEase } as Transition;
+export const transition = { duration: duration, ease: animationEase } as Transition;
 
-export const layoutTransition = { duration: mediumDuration, bezierEase };
+export const layoutTransition = { duration: mediumDuration, bezierEase: animationEase };
 
 export type VariantsList = {
     [key: string]: Variants;
