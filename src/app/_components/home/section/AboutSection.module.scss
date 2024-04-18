@@ -101,7 +101,7 @@ section.about {
     .stickyWrapper {
         position: relative;
 
-        height: 500lvh;
+        height: 400lvh;
 
         .scrollerSection {
             position: sticky;
@@ -152,7 +152,8 @@ section.about {
     h1 {
         position: relative;
         @include font-header-medium;
-        margin-block: var(--padding-section);
+        margin-top: var(--padding-side);
+        margin-bottom: var(--padding-section);
         max-width: var(--width-container-small);
         text-align: center;
         line-height: 1.5;
