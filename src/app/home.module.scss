@@ -3,23 +3,11 @@
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                   Global                                   */
 /* ////////////////////////////////////////////////////////////////////////// */
-main.main {
-    isolation: isolate;
+.stickyWrapper {
+    --sectionNegativeMarginBottom: calc(var(--border-radius-main) * -1 - var(--margin-shadow-bottom));
+    --headerPadding: calc(var(--sectionNegativeMarginBottom) * -1 + calc(var(--padding-section) * 0.5)) 0
+        calc(var(--padding-section) * 0.5) 0;
 
-    .stickyWrapper {
-        --sectionNegativeMarginBottom: calc(var(--border-radius-main) * -1 - var(--margin-shadow-bottom));
-        --headerPadding: calc(var(--sectionNegativeMarginBottom) * -1 + calc(var(--padding-section) * 0.5)) 0
-            calc(var(--padding-section) * 0.5) 0;
-
-        position: relative;
-        z-index: 1;
-    }
-}
-
-.divider {
-    height: 1px;
-    width: 100%;
-    background: var(--color-gray);
-    opacity: 0.1;
-    margin-block: calc(var(--padding-element) * 0.25);
+    position: relative;
+    z-index: 1;
 }
