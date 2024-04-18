@@ -1,7 +1,7 @@
 import { Content } from "~/lib/data";
 import IconComponent from "../../svg/Icon";
 import css from "./ComparisonSection.module.scss";
-import { cv } from "~/lib/utils";
+import { cn } from "~/lib/utils";
 
 export default function ComparisonSection() {
     return (
@@ -51,7 +51,7 @@ function TableGroup(props: TableGroupData) {
             <h1>{props.title}</h1>
             {props.rows.map((row, index) => (
                 <div
-                    className={cv(
+                    className={cn(
                         css.tableRow,
                         "odd:bg-[var(--color-primary-50)] dark:odd:bg-[var(--color-primary-500)]"
                     )}

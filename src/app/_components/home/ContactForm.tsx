@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import React from "react";
-import { cv } from "~/lib/utils";
+import { cn } from "~/lib/utils";
 
 import { defaultAnim, duration, staggerDelay, transition } from "../../../lib/animations";
 import css from "./contactForm.module.scss";
@@ -79,7 +79,7 @@ export function TextArea(props: { label: string; description: string; required: 
                 })}
                 transition={{ ...transition, delay: duration * 0.5 }}
             ></motion.div>
-            <div ref={wrapperRef} className={cv(css.textfield, css.textarea)}>
+            <div ref={wrapperRef} className={cn(css.textfield, css.textarea)}>
                 <textarea
                     required={props.required}
                     placeholder={`${props.label}${props.required ? "*" : ""}`}
@@ -98,7 +98,7 @@ export function TextArea(props: { label: string; description: string; required: 
 function RatingField(props: { label: string; description: string; required: boolean }) {
     return (
         <motion.div
-            className={css.fieldRow}
+            className={cn(css.fieldRow, "mt-4")}
             /* ------------------------------ FramerMotion ------------------------------ */
             {...defaultAnim({
                 initial: { opacity: 0 },
@@ -122,7 +122,7 @@ function RatingField(props: { label: string; description: string; required: bool
                             onChange={(e) => {
                                 e.preventDefault();
                             }}
-                            className={cv(css.ratingField)}
+                            className={cn(css.ratingField)}
                         />
                         <motion.label
                             htmlFor={`star${i}`}

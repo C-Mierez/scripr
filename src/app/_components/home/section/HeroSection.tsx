@@ -2,14 +2,13 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-import css from "./HeroSection.module.scss";
-import sharedCss from "../shared.module.scss";
-import SliderButton from "../../SliderButton";
-import { AnchorIDs } from "../../../../lib/data";
-import { HeroSectionVariants } from "./HeroSectionAnims";
-import { defaultAnim } from "~/lib/animations";
 import SlidingButton from "~/components/SlidingButton";
+import { defaultAnim } from "~/lib/animations";
+import { AnchorIDs } from "~/lib/data";
+
+import sharedCss from "../shared.module.scss";
+import css from "./HeroSection.module.scss";
+import { HeroSectionVariants } from "./HeroSectionAnims";
 
 export default function HeroSection() {
     const heroSectionRef = useRef(null);
@@ -18,7 +17,7 @@ export default function HeroSection() {
     const { scrollY: viewportScrollY } = useScroll();
 
     /* ------------------------------ Section Anim ------------------------------ */
-    const padding = useTransform(viewportScrollY, [0, 300], ["1.5lvh", "0lvh"]);
+    const padding = useTransform(viewportScrollY, [0, 300], ["1lvh", "0lvh"]);
     const borderRadius = useTransform(viewportScrollY, [0, 300], ["6lvh", "0lvh"]);
 
     /* -------------------------------- Grid Anim ------------------------------- */
@@ -55,14 +54,13 @@ export default function HeroSection() {
                                 in one single place
                             </motion.h2>
                         </motion.div>
-                        <div className={css.cta}>
-                            {/* <SliderButton label="Get Started" href="/dashboard" /> */}
+                        <motion.div className={css.cta} {...defaultAnim(HeroSectionVariants.CTADesc)}>
                             <SlidingButton label="Get Started" href="/dashboard" />
                             <motion.div className={css.description} {...defaultAnim(HeroSectionVariants.CTADesc)}>
                                 <p>Billed annually. Only 5$ a month.</p>
                                 <p>Join us now. Cancel any time.</p>
                             </motion.div>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </motion.section>
                 <div className={css.heroScrollSpacer} />
