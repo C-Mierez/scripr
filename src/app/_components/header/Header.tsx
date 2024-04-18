@@ -1,17 +1,15 @@
 "use client";
-
 import { useLenis } from "@studio-freight/react-lenis";
 import { AnimatePresence, motion, useIsPresent, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import useDimensions from "~/hooks/useDimensions";
+import ThemeSwitcher from "~/components/shared/ThemeSwitcher";
 import { AnchorIDs } from "~/lib/data";
+import { cn } from "~/lib/utils";
 
 import ClickableClipboardSmallText from "../ClickableClipboardSmallText";
 import SVGComponent from "../svg/SVG";
 import css from "./Header.module.scss";
 import { headerBrandingVariants, headerVariants, menuHeightVariants, menuNavLinksVariants } from "./HeaderAnims";
-import ThemeSwitcher from "~/components/shared/ThemeSwitcher";
-import { cv } from "~/lib/utils";
 
 export default function Header() {
     const navLinks = [
@@ -72,7 +70,7 @@ export default function Header() {
             animate={collapseHeader ? "collapse" : "expanded"}
             custom={hasEntered}
         >
-            <nav className={cv(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
+            <nav className={cn(css.nav, "dark:border-[1px] dark:border-[var(--color-gray)] ")}>
                 <button onClick={toggleMenu}>{isMenuOpen ? "Close" : "Menu"}</button>
 
                 <motion.div
@@ -176,7 +174,7 @@ function Menu({ isMenuOpen, callback }: { isMenuOpen?: boolean; callback: () => 
 
     useEffect(() => {
         if (isPresent) {
-            setActiveItem(0);
+            setActiveItem(defaultActive);
         } else {
             setActiveItem(-1);
         }

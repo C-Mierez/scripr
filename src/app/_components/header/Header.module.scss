@@ -210,9 +210,9 @@ header.header {
             .foot {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                align-items: end;
+                align-items: center;
 
-                padding-block: calc(var(--padding-element) * 0.5);
+                min-height: var(--border-radius-main);
 
                 @include mobile {
                     grid-template-columns: 1fr;
@@ -222,11 +222,11 @@ header.header {
 
                 @include desktop {
                     & > :first-child {
-                        place-self: start;
+                        justify-self: start;
                     }
 
                     & > :last-child {
-                        place-self: end;
+                        justify-self: end;
                     }
                 }
 
