@@ -1,10 +1,12 @@
 # TODO
-- [ ] Rework the use definition and use of Tailwind vs CSS variables.
-- [ ] Simplify theme switcher into Dark or Light mode only with a single click.
+- [x] Rework the definition and use of Tailwind vs CSS variables.
+- [x] Fix landing button animations.
+- [x] Simplify theme switcher into Dark or Light mode only with a single click.
 - [ ] Refactor and rename files outside src folder to be more descriptive.
 - [x] Refactor shadcn into the src folder and share /components.
 - [ ] Clean up and categorize components folder. Remove non-reusable components.
 - [x] Update dependencies to their latest usable version.
-- [ ] Clean up animations.ts and make sure it's consistent with css variables. 
+- [x] Clean up animations.ts and make sure it's consistent with css variables. 
 - [x] Update auth.js to latest version???
 - [x] Fix Resend not sending emails.
+- [ ] Replace third-party OTP with shadcn's OTP.
